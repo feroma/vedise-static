@@ -1,0 +1,77 @@
+// =============================================================================
+// Icone — Google Material Symbols (stile Outlined), font variabile self-hosted.
+// Licenza: Apache 2.0 (src/fonts/LICENSE-Material-Symbols.txt).
+//
+// Uso:  <span class="icon" aria-hidden="true">arrow_forward</span>
+//       il testo è il nome dell'icona (ligature): fonts.google.com/icons
+//
+// Assi variabili:
+//   FILL  0–1        → .icon--fill
+//   wght  100–700    → .icon--w100 … .icon--w700  (default 400)
+//   GRAD  -50–200    → .icon--grad-low / .icon--grad-high
+//   opsz  20–48      → automatico in base alla dimensione (font-optical-sizing)
+//
+// NB: il file completo pesa ~4 MB. Prima del passaggio in produzione va
+// ridotto alle sole icone usate (vedi README).
+// =============================================================================
+@use '../abstracts' as *;
+
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  src: url('../fonts/material-symbols-outlined.woff2') format('woff2');
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: block; // evita di mostrare per un attimo il nome dell'icona come testo
+}
+
+// .material-symbols-outlined è la classe usata negli snippet di Google:
+// così si può copiare il codice direttamente da fonts.google.com/icons.
+.icon,
+.material-symbols-outlined {
+  --icon-fill: 0;
+  --icon-grad: 0;
+
+  display: inline-block;
+  flex-shrink: 0;
+  font-family: 'Material Symbols Outlined';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  font-variation-settings: 'FILL' var(--icon-fill), 'GRAD' var(--icon-grad);
+  font-optical-sizing: auto;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  vertical-align: middle;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+// --- Dimensioni ---------------------------------------------------------------
+.icon--sm { font-size: 20px; }
+.icon--md { font-size: 24px; }
+.icon--lg { font-size: 40px; }
+.icon--xl { font-size: 48px; }
+.icon--text { font-size: 1.25em; } // segue la dimensione del testo circostante
+
+// --- Riempimento, peso, grado ---------------------------------------------
+.icon--fill { --icon-fill: 1; }
+
+@each $w in (100, 200, 300, 400, 500, 600, 700) {
+  .icon--w#{$w} { font-weight: $w; }
+}
+
+.icon--grad-low { --icon-grad: -25; }   // più sottile, es. chiaro su scuro
+.icon--grad-high { --icon-grad: 200; }  // più marcato
+
+// --- Icona + testo allineati --------------------------------------------------
+.icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}

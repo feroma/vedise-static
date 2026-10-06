@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <!-- @include head.html -->
+  <title>Colori — VEDISE Styleguide</title>
+</head>
+<body>
+  <!-- @include sg-nav.html -->
+
+  <main class="container">
+    <header class="sg-header">
+      <h1>Colori</h1>
+      <p>Palette del progetto, definita in src/scss/abstracts/_variables.scss ($colors). Per ogni colore: variabile SCSS, custom property CSS, classi di utilità e contrasto con testo bianco e nero (WCAG: AA ≥ 4.5 testo normale, ≥ 3 testo grande).</p>
+    </header>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Brand</h2>
+      <p class="sg-label">Rosso — colore del brand · $color-brand / var(--color-brand)</p>
+      <div class="row sg-grid-gap">
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="red-light"></div></div>
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="red"></div></div>
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="red-dark"></div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Verde</h2>
+      <div class="row sg-grid-gap">
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="green-light"></div></div>
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="green"></div></div>
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="green-dark"></div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Blu</h2>
+      <div class="row sg-grid-gap">
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="blue-light"></div></div>
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="blue"></div></div>
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="blue-dark"></div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Grigi</h2>
+      <div class="row sg-grid-gap">
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="gray-light"></div></div>
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="gray"></div></div>
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="gray-dark"></div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Bianco e nero</h2>
+      <div class="row sg-grid-gap">
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="white"></div></div>
+        <div class="col-2 col-lg-4"><div class="sg-swatch" data-color="black"></div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Utilizzo</h2>
+      <p class="sg-label">SCSS · CSS · HTML</p>
+<pre class="sg-code">// SCSS (dopo @use '../abstracts' as *;)
+color: $color-brand;
+background: palette('blue-dark');
+
+/* CSS / inline / JS */
+color: var(--color-red);
+
+&lt;!-- HTML --&gt;
+&lt;p class="text-red"&gt;…&lt;/p&gt;
+&lt;section class="bg-gray-light"&gt;…&lt;/section&gt;</pre>
+    </section>
+  </main>
+
+  <!-- @include scripts.html -->
+</body>
+</html>

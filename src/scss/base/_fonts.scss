@@ -1,0 +1,40 @@
+// =============================================================================
+// Font self-hosted, subset latin. Sono font variabili: un file copre tutti i pesi.
+//   DM Sans        pesi 100–1000, normale + corsivo, asse ottico opsz 9–40
+//                  (il browser adatta il disegno alla dimensione, come Google Fonts)
+//   Noto Serif SC  pesi 200–900, solo normale (il corsivo non esiste: il browser
+//                  lo simulerebbe inclinando il testo → disattivato sui titoli in _typography)
+// Licenza: SIL Open Font License 1.1 (vedi src/fonts/OFL-*.txt).
+// I percorsi sono relativi a src/css/main.css → funzionano anche nel tema WP.
+// =============================================================================
+
+$latin-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+  U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+  U+FEFF, U+FFFD;
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/dm-sans-latin-opsz-wght-normal.woff2') format('woff2');
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: $latin-range;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/dm-sans-latin-opsz-wght-italic.woff2') format('woff2');
+  font-weight: 100 1000;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: $latin-range;
+}
+
+@font-face {
+  font-family: 'Noto Serif SC';
+  src: url('../fonts/noto-serif-sc-latin-wght-normal.woff2') format('woff2');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: $latin-range;
+}

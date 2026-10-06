@@ -1,0 +1,40 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use 'variables' as *;
+
+// Accetta una sigla ('md', 'xl'…) oppure un valore in px
+@function bp($bp) {
+  @if meta.type-of($bp) == 'string' {
+    @if not map.has-key($breakpoints, $bp) {
+      @error "Breakpoint '#{$bp}' non definito in $breakpoints.";
+    }
+    @return map.get($breakpoints, $bp);
+  }
+  @return $bp;
+}
+
+// Media query mobile-first: @include mq-up(lg) { … }
+@mixin mq-up($bp) {
+  $w: bp($bp);
+  @if $w == 0 {
+    @content;
+  } @else {
+    @media (min-width: $w) {
+      @content;
+    }
+  }
+}
+
+// Media query "fino a" (esclude il breakpoint stesso): @include mq-down(lg) { … }
+@mixin mq-down($bp) {
+  @media (max-width: (bp($bp) - 0.02px)) {
+    @content;
+  }
+}
+
+// Media query "tra" due breakpoint: @include mq-between(md, lg) { … }
+@mixin mq-between($from, $to) {
+  @media (min-width: bp($from)) and (max-width: (bp($to) - 0.02px)) {
+    @content;
+  }
+}

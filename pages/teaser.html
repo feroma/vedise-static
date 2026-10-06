@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <!-- @include head.html -->
+  <title>Teaser — VEDISE Styleguide</title>
+</head>
+<body>
+  <!-- @include sg-nav.html -->
+
+  <main class="container">
+    <header class="sg-header">
+      <h1>Teaser</h1>
+      <p>Anteprime di contenuto. Struttura BEM di partenza (src/scss/components/_teaser.scss, partials/teaser.html): lo stile va applicato secondo il progetto grafico.</p>
+    </header>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Teaser in griglia</h2>
+      <p class="sg-label">.col-4 .col-lg-4 ×3 &gt; .teaser</p>
+      <div class="row sg-grid-gap">
+        <div class="col-4 col-lg-4"><!-- @include teaser.html --></div>
+        <div class="col-4 col-lg-4"><!-- @include teaser.html --></div>
+        <div class="col-4 col-lg-4"><!-- @include teaser.html --></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Teaser compatti</h2>
+      <p class="sg-label">.col-2 .col-lg-3 ×4 &gt; .teaser</p>
+      <div class="row sg-grid-gap">
+        <div class="col-2 col-lg-3"><!-- @include teaser.html --></div>
+        <div class="col-2 col-lg-3"><!-- @include teaser.html --></div>
+        <div class="col-2 col-lg-3"><!-- @include teaser.html --></div>
+        <div class="col-2 col-lg-3"><!-- @include teaser.html --></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Teaser orizzontale</h2>
+      <p class="sg-label">.teaser.teaser--horizontal</p>
+      <div class="row">
+        <div class="col-4 col-lg-10 offset-lg-1">
+          <article class="teaser teaser--horizontal">
+            <a class="teaser__media" href="#"></a>
+            <div>
+              <p class="teaser__eyebrow body-6 ls-wide text-uppercase">In evidenza</p>
+              <h3 class="teaser__title title-3">Titolo del teaser in evidenza</h3>
+              <p class="teaser__text">Testo introduttivo più ampio per la variante orizzontale, pensata per i contenuti in primo piano.</p>
+              <a class="teaser__link" href="#">Scopri di più</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- @include scripts.html -->
+</body>
+</html>

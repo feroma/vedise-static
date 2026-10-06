@@ -1,0 +1,13 @@
+// Custom properties globali: var(--color-red), var(--color-brand)…
+// Utili in CSS inline, nel JS (GSAP) e nell'editor di WordPress.
+@use '../abstracts' as *;
+
+:root {
+  @each $name, $value in $colors {
+    --color-#{$name}: #{$value};
+  }
+
+  --color-brand: #{$color-brand};
+  --color-text: #{$color-text};
+  --color-bg: #{$color-bg};
+}

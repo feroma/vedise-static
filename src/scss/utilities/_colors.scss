@@ -1,0 +1,10 @@
+// Utility colore (come Bootstrap): .text-red, .bg-blue-dark…
+@use '../abstracts' as *;
+
+@each $name, $value in $colors {
+  .text-#{$name} { color: $value !important; }
+  .bg-#{$name} { background-color: $value !important; }
+}
+
+.text-brand { color: $color-brand !important; }
+.bg-brand { background-color: $color-brand !important; }

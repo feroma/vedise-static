@@ -1,0 +1,580 @@
+@use 'sass:math';
+// =============================================================================
+// CSS della sola styleguide (menu, etichette, demo, overlay griglia).
+// NON va portato nel tema WordPress.
+// =============================================================================
+@use 'abstracts' as *;
+$sg-accent: #ff0050;
+$sg-line: #e2e2e2;
+$sg-muted: #8a8a8a;
+$sg-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+// Sigla del breakpoint corrente e lista dei breakpoint, lette da styleguide.js
+$sg-bp-list: '';
+@each $bp, $w in $breakpoints {
+  $px: $w;
+  @if not math.is-unitless($w) {
+    $px: math.div($w, 1px);
+  }
+  $sg-bp-list: $sg-bp-list + '#{$bp}:#{$px},';
+}
+
+:root {
+  --sg-bp-list: '#{$sg-bp-list}';
+
+  @each $bp, $w in $breakpoints {
+    @include mq-up($bp) {
+      --sg-bp: '#{$bp}';
+    }
+  }
+}
+
+$sg-nav-h: 49px; // altezza della barra superiore (sticky)
+
+html {
+  scroll-padding-top: $sg-nav-h + 24px;
+}
+
+// --- Barra di navigazione --------------------------------------------------
+.sg-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px 24px;
+  height: $sg-nav-h;
+  overflow-x: auto;
+  padding: 0 var(--margin);
+  white-space: nowrap;
+  scrollbar-width: none;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid $sg-line;
+  font: 14px/1.4 $font-body;
+
+  a {
+    flex-shrink: 0;
+    text-decoration: none;
+    opacity: 0.6;
+
+    &:hover,
+    &.is-active {
+      opacity: 1;
+    }
+
+    &.is-active {
+      box-shadow: inset 0 -2px 0 currentColor;
+    }
+  }
+
+  &__brand {
+    margin-right: auto;
+    font-weight: 700;
+    opacity: 1 !important;
+    box-shadow: none !important;
+  }
+
+  &__hint {
+    display: none;
+    color: $sg-muted;
+
+    @include mq-up($bp-lg) {
+      display: inline;
+    }
+
+    font-size: 12px;
+
+    kbd {
+      padding: 1px 6px;
+      border: 1px solid $sg-line;
+      border-radius: 4px;
+      font: 11px/1.4 $sg-mono;
+    }
+  }
+}
+
+// --- Intestazione pagina ---------------------------------------------------
+.sg-header {
+  padding-block: 48px 24px;
+  border-bottom: 1px solid $sg-line;
+
+  p {
+    max-width: 60ch;
+    color: $sg-muted;
+  }
+}
+
+// --- Sezioni ------------------------------------------------------------------
+.sg-section {
+  padding-block: 40px;
+  border-bottom: 1px dashed $sg-line;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.sg-title {
+  margin-bottom: 4px;
+  font: 600 18px/1.3 $font-body;
+}
+
+.sg-label {
+  margin-bottom: 16px;
+  color: $sg-muted;
+  font: 12px/1.5 $sg-mono;
+}
+
+.sg-demo {
+  padding-block: 14px;
+  background: #eef1ff;
+  color: #3c4bd1;
+  font: 12px/1 $sg-mono;
+  text-align: center;
+}
+
+.sg-stack > * + * {
+  margin-top: 24px;
+}
+
+// Riga di specimen tipografico: etichetta + esempio
+.sg-specimen {
+  display: grid;
+  gap: 4px 24px;
+  padding-block: 16px;
+  border-bottom: 1px solid $sg-line;
+
+  @include mq-up($bp-lg) {
+    grid-template-columns: 200px 1fr;
+    align-items: baseline;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.sg-weights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  font-size: 28px;
+
+  &--heading {
+    font-family: $font-heading;
+  }
+}
+
+// --- Campioni colore ------------------------------------------------------------
+.sg-swatch {
+  height: 100%;
+  border: 1px solid $sg-line;
+  font-size: 13px;
+
+  &__chip {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 8px;
+    height: 120px;
+    padding: 10px 12px;
+    font: 600 13px/1 $font-body;
+
+    @include mq-up($bp-lg) {
+      height: 160px;
+    }
+  }
+
+  &__body {
+    padding: 12px;
+  }
+
+  &__name {
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  &__meta {
+    margin: 0;
+    color: $sg-muted;
+    font: 11px/1.7 $sg-mono;
+    word-break: break-word;
+
+    code {
+      color: $color-text;
+      cursor: copy;
+    }
+  }
+
+  &__contrast {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+}
+
+.sg-badge {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font: 11px/1.4 $sg-mono;
+
+  &--pass { background: #e3f3e3; color: #1d6b1d; }
+  &--large { background: #fdf3d8; color: #7a5a00; }
+  &--fail { background: #fbe4e4; color: #9b1c1c; }
+}
+
+.sg-code {
+  margin: 0;
+  padding: 20px;
+  overflow-x: auto;
+  background: #f6f6f6;
+  font: 13px/1.6 $sg-mono;
+}
+
+// --- Tabelle ----------------------------------------------------------------
+.sg-table-wrap {
+  overflow-x: auto;
+}
+
+.sg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font: 14px/1.4 $font-body;
+  white-space: nowrap;
+
+  th,
+  td {
+    padding: 10px 16px 10px 0;
+    border-bottom: 1px solid $sg-line;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    color: $sg-muted;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  code {
+    font: 12px/1.4 $sg-mono;
+  }
+
+  tr.is-current td,
+  td.is-current,
+  th.is-current {
+    background: #fff3f3;
+  }
+
+  tr.is-current td:first-child {
+    box-shadow: inset 3px 0 0 $sg-accent;
+    padding-left: 10px;
+  }
+}
+
+// --- Specimen scala tipografica -----------------------------------------
+.sg-type {
+  padding-block: 24px;
+  border-bottom: 1px solid $sg-line;
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 16px;
+    margin-bottom: 12px;
+  }
+
+  &__name {
+    font: 600 14px/1.4 $font-body;
+  }
+
+  &__now {
+    color: $sg-accent;
+    font: 12px/1.4 $sg-mono;
+  }
+
+  &__sample {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+// --- Pagina con menu laterale (Componenti) ----------------------------------
+.sg-layout {
+  padding-top: 32px;
+
+  &__aside {
+    // su mobile: barra orizzontale fissata sotto la navigazione
+    position: sticky;
+    top: $sg-nav-h;
+    z-index: 50;
+    background: #fff;
+
+    @include mq-up(lg) {
+      position: static;
+      background: none;
+    }
+  }
+}
+
+.sg-sidenav {
+  display: flex;
+  gap: 4px 20px;
+  overflow-x: auto;
+  padding-block: 12px;
+  border-bottom: 1px solid $sg-line;
+  font: 15px/1.4 $font-body;
+
+  @include mq-up(lg) {
+    position: sticky;
+    top: $sg-nav-h + 32px;
+    flex-direction: column;
+    padding-block: 0;
+    border-bottom: 0;
+    border-left: 1px solid $sg-line;
+  }
+
+  a {
+    flex-shrink: 0;
+    color: $sg-muted;
+    text-decoration: none;
+    transition: color 0.15s;
+
+    @include mq-up(lg) {
+      margin-left: -1px;
+      padding: 6px 0 6px 16px;
+      border-left: 2px solid transparent;
+    }
+
+    &:hover {
+      color: $color-text;
+    }
+
+    &.is-active {
+      color: $color-text;
+      font-weight: 600;
+
+      @include mq-up(lg) {
+        border-left-color: $sg-accent;
+      }
+    }
+  }
+}
+
+.sg-group {
+  padding-top: 32px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid $sg-line;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  @include mq-up(lg) {
+    padding-top: 0;
+    margin-bottom: 64px;
+  }
+
+  &__title {
+    margin-bottom: 8px;
+  }
+
+  &__desc {
+    max-width: 70ch;
+    margin-bottom: 0;
+    color: $sg-muted;
+  }
+}
+
+// --- Pulsanti --------------------------------------------------------------------
+.sg-btn-row {
+  margin-bottom: 32px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &--dark {
+    padding: 24px;
+    background: palette('blue-dark');
+  }
+}
+
+// --- Icone ------------------------------------------------------------------------
+.sg-icon-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 32px;
+}
+
+.sg-icon-dark {
+  display: inline-flex;
+  padding: 8px;
+  background: palette('blue-dark');
+}
+
+.sg-icons-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  margin-bottom: 24px;
+  font-size: 14px;
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  select {
+    padding: 4px 6px;
+    border: 1px solid $sg-line;
+    background: #fff;
+  }
+}
+
+.sg-input {
+  flex: 1 1 280px;
+  padding: 10px 14px;
+  border: 1px solid $sg-line;
+  border-radius: 0;
+  font-size: 15px;
+
+  &:focus {
+    outline: 2px solid $color-text;
+    outline-offset: -1px;
+  }
+}
+
+.sg-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  border-top: 1px solid $sg-line;
+  border-left: 1px solid $sg-line;
+}
+
+.sg-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 104px;
+  padding: 12px 6px;
+  border: 0;
+  border-right: 1px solid $sg-line;
+  border-bottom: 1px solid $sg-line;
+  background: #fff;
+  color: $color-text;
+  cursor: copy;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #f6f6f6;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  &__name {
+    max-width: 100%;
+    overflow: hidden;
+    color: $sg-muted;
+    font: 10px/1.3 $sg-mono;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &.is-copied .sg-icon__name {
+    color: $sg-accent;
+  }
+}
+
+// --- Indice -------------------------------------------------------------------
+.sg-card {
+  display: block;
+  height: 100%;
+  padding: 24px;
+  border: 1px solid $sg-line;
+  text-decoration: none;
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: $color-text;
+  }
+
+  p {
+    margin: 0;
+    color: $sg-muted;
+    font-size: 15px;
+  }
+}
+
+.sg-grid-gap > * {
+  margin-bottom: var(--gutter);
+}
+
+// --- Info breakpoint (in basso a destra) ----------------------------------
+.sg-bp {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 10000;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: #111;
+  color: #fff;
+  font: 11px/1.3 $sg-mono;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+// --- Overlay griglia (tasto G) ------------------------------------------------
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  pointer-events: none;
+
+  &.is-visible {
+    display: block;
+  }
+
+  .container,
+  .row {
+    height: 100%;
+  }
+
+  .row > div {
+    height: 100%;
+
+    &::before {
+      content: '';
+      display: block;
+      height: 100%;
+      background: rgba($sg-accent, 0.1);
+      outline: 1px solid rgba($sg-accent, 0.25);
+    }
+
+    // Sotto i 1024 mostra solo 4 colonne
+    &:nth-child(n + 5) {
+      display: none;
+    }
+  }
+
+  @include mq-up($bp-lg) {
+    .row > div:nth-child(n + 5) {
+      display: block;
+    }
+  }
+}

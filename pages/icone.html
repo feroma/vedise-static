@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <!-- @include head.html -->
+  <title>Icone — VEDISE Styleguide</title>
+</head>
+<body>
+  <!-- @include sg-nav.html -->
+
+  <main class="container">
+    <header class="sg-header">
+      <h1>Icone</h1>
+      <p>Google Material Symbols, stile Outlined, font variabile in self-hosting. L'icona si scrive con il suo nome dentro un elemento con classe <code>.icon</code>. Nel catalogo in fondo alla pagina un clic su un'icona copia il codice pronto da incollare.</p>
+    </header>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Utilizzo</h2>
+      <p class="sg-label">aria-hidden="true" per le icone decorative; per un'icona da sola dentro un link o un bottone aggiungi un testo per gli screen reader</p>
+<pre class="sg-code">&lt;span class="icon" aria-hidden="true"&gt;arrow_forward&lt;/span&gt;
+
+&lt;!-- icona + testo --&gt;
+&lt;a class="icon-text" href="#"&gt;Scopri di più &lt;span class="icon icon--text" aria-hidden="true"&gt;arrow_forward&lt;/span&gt;&lt;/a&gt;
+
+&lt;!-- solo icona --&gt;
+&lt;button type="button"&gt;
+  &lt;span class="icon" aria-hidden="true"&gt;search&lt;/span&gt;
+  &lt;span class="visually-hidden"&gt;Cerca&lt;/span&gt;
+&lt;/button&gt;</pre>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Dimensioni</h2>
+      <p class="sg-label">.icon--sm 20 · .icon (default) 24 · .icon--lg 40 · .icon--xl 48 · .icon--text 1.25em del testo</p>
+      <div class="sg-icon-row">
+        <span class="icon icon--sm" aria-hidden="true">medical_services</span>
+        <span class="icon" aria-hidden="true">medical_services</span>
+        <span class="icon icon--lg" aria-hidden="true">medical_services</span>
+        <span class="icon icon--xl" aria-hidden="true">medical_services</span>
+        <span class="title-3 icon-text">Titolo <span class="icon icon--text" aria-hidden="true">medical_services</span></span>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Riempimento</h2>
+      <p class="sg-label">.icon · .icon--fill</p>
+      <div class="sg-icon-row">
+        <span class="icon icon--xl" aria-hidden="true">favorite</span>
+        <span class="icon icon--xl icon--fill" aria-hidden="true">favorite</span>
+        <span class="icon icon--xl" aria-hidden="true">home</span>
+        <span class="icon icon--xl icon--fill" aria-hidden="true">home</span>
+        <span class="icon icon--xl" aria-hidden="true">info</span>
+        <span class="icon icon--xl icon--fill" aria-hidden="true">info</span>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Peso</h2>
+      <p class="sg-label">.icon--w100 … .icon--w700 (default 400)</p>
+      <div class="sg-icon-row">
+        <span class="icon icon--xl icon--w100" aria-hidden="true">settings</span>
+        <span class="icon icon--xl icon--w200" aria-hidden="true">settings</span>
+        <span class="icon icon--xl icon--w300" aria-hidden="true">settings</span>
+        <span class="icon icon--xl icon--w400" aria-hidden="true">settings</span>
+        <span class="icon icon--xl icon--w500" aria-hidden="true">settings</span>
+        <span class="icon icon--xl icon--w600" aria-hidden="true">settings</span>
+        <span class="icon icon--xl icon--w700" aria-hidden="true">settings</span>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Colore</h2>
+      <p class="sg-label">Le icone ereditano il colore del testo: usa le classi .text-*</p>
+      <div class="sg-icon-row">
+        <span class="icon icon--xl text-red" aria-hidden="true">check_circle</span>
+        <span class="icon icon--xl text-green" aria-hidden="true">check_circle</span>
+        <span class="icon icon--xl text-blue" aria-hidden="true">check_circle</span>
+        <span class="icon icon--xl text-gray-dark" aria-hidden="true">check_circle</span>
+        <span class="sg-icon-dark"><span class="icon icon--xl icon--grad-low text-white" aria-hidden="true">check_circle</span></span>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Catalogo</h2>
+      <p class="sg-label">Tutte le icone disponibili · clic per copiare il codice con le opzioni scelte</p>
+
+      <div class="sg-icons-controls">
+        <input class="sg-input" type="search" id="sg-icon-search" placeholder="Cerca (in inglese): arrow, search, phone…" autocomplete="off">
+        <label><input type="checkbox" id="sg-icon-fill"> Fill</label>
+        <label>Peso
+          <select id="sg-icon-weight">
+            <option>100</option><option>200</option><option>300</option>
+            <option selected>400</option><option>500</option><option>600</option><option>700</option>
+          </select>
+        </label>
+        <label>Dimensione
+          <select id="sg-icon-size">
+            <option value="sm">20</option><option value="" selected>24</option>
+            <option value="lg">40</option><option value="xl">48</option>
+          </select>
+        </label>
+        <span class="sg-label" id="sg-icon-count" style="margin:0"></span>
+      </div>
+
+      <div class="sg-icons" id="sg-icons"></div>
+    </section>
+  </main>
+
+  <!-- @include scripts.html -->
+</body>
+</html>

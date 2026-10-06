@@ -1,0 +1,80 @@
+// =============================================================================
+// Scala tipografica
+//
+// Valori in px: (font-size, line-height) per breakpoint.
+//   xl  (≥ 1360) = valori del progetto grafico (base 1920)
+//   lg / md / xs = riduzioni proporzionate per schermi più piccoli
+//   xxl (≥ 1920) = i valori xl crescono in proporzione alla larghezza
+//                  (a 1920 sono identici al progetto, a 2560 sono ×1.33)
+//
+// La line-height viene convertita in rapporto senza unità, così scala
+// insieme al font-size.
+// =============================================================================
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:math';
+@use 'variables' as *;
+@use 'mixins' as *;
+
+$type-scale: (
+  // Titoli — Noto Serif SC
+  'title-1': (family: $font-heading, xs: (44, 48), md: (60, 64), lg: (72, 76), xl: (96, 100)),
+  'title-2': (family: $font-heading, xs: (36, 40), md: (48, 54), lg: (54, 60), xl: (64, 72)),
+  'title-3': (family: $font-heading, xs: (32, 36), md: (40, 46), lg: (46, 52), xl: (54, 60)),
+  'title-4': (family: $font-heading, xs: (28, 32), md: (34, 38), lg: (40, 44), xl: (48, 52)),
+
+  // Testi — DM Sans
+  'body-1':  (family: $font-body, xs: (28, 32), md: (34, 38), lg: (40, 44), xl: (48, 52)),
+  'body-2':  (family: $font-body, xs: (24, 32), md: (28, 36), lg: (32, 42), xl: (36, 48)),
+  'body-3':  (family: $font-body, xs: (22, 26), md: (26, 30), lg: (28, 32), xl: (32, 36)),
+  'body-4':  (family: $font-body, xs: (20, 28), md: (20, 28), lg: (22, 30), xl: (24, 32)),
+  'body-5':  (family: $font-body, xs: (16, 24), md: (18, 26), lg: (18, 26), xl: (18, 26)),
+  'body-6':  (family: $font-body, xs: (16, 32), md: (16, 32), lg: (16, 32), xl: (16, 32)),
+);
+
+// Breakpoint in cui la scala cambia
+$type-breakpoints: ('xs', 'md', 'lg', 'xl');
+
+// Limite superiore della crescita proporzionale (null = nessun limite).
+// Es. 2560px: oltre quella larghezza i testi smettono di crescere.
+$type-fluid-max: null;
+
+@function -lh($size, $lh) {
+  @return math.div(math.round(math.div($lh, $size) * 10000), 10000);
+}
+
+@function -fluid($size) {
+  $vw: math.div($size, math.div($design-width, 1px)) * 100vw;
+  @if $type-fluid-max {
+    @return min($vw, $size * math.div($type-fluid-max, $design-width) * 1px);
+  }
+  @return $vw;
+}
+
+// Applica uno stile della scala: @include text-style('title-2');
+// Usalo nei componenti SCSS al posto delle classi, se preferisci.
+@mixin text-style($name) {
+  @if not map.has-key($type-scale, $name) {
+    @error "Stile tipografico '#{$name}' non definito in $type-scale.";
+  }
+  $style: map.get($type-scale, $name);
+
+  font-family: map.get($style, 'family');
+
+  @each $bp in $type-breakpoints {
+    $v: map.get($style, $bp);
+    @if $v {
+      $size: list.nth($v, 1);
+      $lh: list.nth($v, 2);
+      @include mq-up($bp) {
+        font-size: $size * 1px;
+        line-height: -lh($size, $lh);
+      }
+    }
+  }
+
+  // ≥ 1920: crescita proporzionale dei valori xl
+  @include mq-up('xxl') {
+    font-size: -fluid(list.nth(map.get($style, 'xl'), 1));
+  }
+}

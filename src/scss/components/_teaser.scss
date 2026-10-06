@@ -1,0 +1,55 @@
+// =============================================================================
+// Teaser (BEM) — struttura di partenza neutra.
+// TODO: applicare lo stile del progetto grafico.
+// In WordPress diventerà template-parts/teaser.php
+// =============================================================================
+@use '../abstracts' as *;
+
+.teaser {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__media {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background: #e9e9e9;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__eyebrow {
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    margin-bottom: 8px;
+  }
+
+  &__text {
+    margin-bottom: 16px;
+  }
+
+  &__link {
+    margin-top: auto;
+    font-weight: 600;
+  }
+
+  // Variante orizzontale da desktop
+  &--horizontal {
+    @include mq-up($bp-lg) {
+      flex-direction: row;
+      gap: var(--gutter);
+
+      .teaser__media {
+        flex: 0 0 50%;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

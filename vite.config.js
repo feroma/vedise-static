@@ -1,8 +1,42 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'node:path';
-import { readdirSync, existsSync } from 'node:fs';
+import { resolve, sep } from 'node:path';
+import { readdirSync, existsSync, readFileSync } from 'node:fs';
 
 const root = import.meta.dirname;
+
+// Percorso pubblico del sito. Lascia '/' se la styleguide viene pubblicata alla
+// radice di un dominio; se va in una sottocartella usa es. '/vedise-static/'.
+const BASE = '/';
+
+/**
+ * Include HTML: nelle pagine scrivi <!-- @include nome.html --> e il contenuto
+ * di partials/nome.html viene inserito al suo posto (anche annidato).
+ * Nei partial e nelle pagine %BASE_URL% viene sostituito con BASE.
+ */
+function htmlIncludes() {
+    const re = /<!--\s*@include\s+([\w./-]+)\s*-->/g;
+    const inject = (html, depth = 0) =>
+        depth > 5
+            ? html
+            : html.replace(re, (_, file) =>
+                  inject(readFileSync(resolve(root, 'partials', file), 'utf8'), depth + 1)
+              );
+
+    return {
+        name: 'html-includes',
+        transformIndexHtml: {
+            order: 'pre',
+            handler: (html) => inject(html).replaceAll('%BASE_URL%', BASE),
+        },
+        // Modificando un partial il browser si ricarica
+        handleHotUpdate({ file, server }) {
+            if (file.includes(`${sep}partials${sep}`) || file.includes('/partials/')) {
+                server.ws.send({ type: 'full-reload' });
+                return [];
+            }
+        },
+    };
+}
 
 // Rileva automaticamente tutte le pagine HTML (root + /pages)
 const htmlIn = (dir) =>
@@ -18,6 +52,8 @@ const input = Object.fromEntries(
 );
 
 export default defineConfig({
+    base: BASE,
+    plugins: [htmlIncludes()],
     server: { port: 5173, open: true },
     build: {
         outDir: 'dist',

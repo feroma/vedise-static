@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <!-- @include head.html -->
+  <title>Tipografia — VEDISE Styleguide</title>
+</head>
+<body>
+  <!-- @include sg-nav.html -->
+
+  <main class="container">
+    <header class="sg-header">
+      <h1>Tipografia</h1>
+      <p>Titoli in Noto Serif SC, testi in DM Sans. Gli stili sono classi indipendenti dai tag (<code>&lt;h2 class="title-1"&gt;</code>). I valori del progetto grafico valgono da xl (1360) in su; sotto si riducono, da xxl (1920) crescono in proporzione alla larghezza. Ridimensiona la finestra per vedere i valori cambiare.</p>
+    </header>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Scala</h2>
+      <p class="sg-label">font-size / line-height in px per breakpoint — definita in src/scss/abstracts/_typography.scss ($type-scale)</p>
+      <div class="sg-table-wrap">
+        <table class="sg-table" data-styles="title-1,title-2,title-3,title-4,body-1,body-2,body-3,body-4,body-5,body-6"></table>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Titoli</h2>
+      <p class="sg-label">.title-1 … .title-4 — Noto Serif SC · tag di default: h1→title-1, h2→title-2, h3→title-3, h4/h5/h6→title-4</p>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.title-1</span><span class="sg-type__now"></span></div>
+        <p class="sg-type__sample title-1">Dispositivi medici di qualità</p>
+      </div>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.title-2</span><span class="sg-type__now"></span></div>
+        <p class="sg-type__sample title-2">Dispositivi medici di qualità</p>
+      </div>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.title-3</span><span class="sg-type__now"></span></div>
+        <p class="sg-type__sample title-3">Dispositivi medici di qualità</p>
+      </div>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.title-4</span><span class="sg-type__now"></span></div>
+        <p class="sg-type__sample title-4">Dispositivi medici di qualità</p>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Testi</h2>
+      <p class="sg-label">.body-1 … .body-6 — DM Sans · testo di default (body): body-5</p>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.body-1</span><span class="sg-type__now"></span></div>
+        <p class="sg-type__sample body-1">Distribuiamo dispositivi medici selezionati</p>
+      </div>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.body-2</span><span class="sg-type__now"></span></div>
+        <p class="sg-type__sample body-2">Distribuiamo dispositivi medici selezionati per strutture sanitarie e professionisti.</p>
+      </div>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.body-3</span><span class="sg-type__now"></span></div>
+        <p class="sg-type__sample body-3">Distribuiamo dispositivi medici selezionati per strutture sanitarie e professionisti.</p>
+      </div>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.body-4</span><span class="sg-type__now"></span></div>
+        <p class="sg-type__sample body-4">Distribuiamo dispositivi medici selezionati per strutture sanitarie e professionisti, con assistenza tecnica e formazione dedicata.</p>
+      </div>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.body-5</span><span class="sg-type__now"></span></div>
+        <p class="sg-type__sample body-5">Distribuiamo dispositivi medici selezionati per strutture sanitarie e professionisti, con assistenza tecnica e formazione dedicata. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+      </div>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.body-6</span><span class="sg-type__now"></span></div>
+        <p class="sg-type__sample body-6">Distribuiamo dispositivi medici selezionati per strutture sanitarie e professionisti, con assistenza tecnica e formazione dedicata. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Spaziatura e maiuscole</h2>
+      <p class="sg-label">Combinabili con qualsiasi stile</p>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.ls-tight</span><span class="sg-label" style="margin:0">letter-spacing: -0.02em</span></div>
+        <p class="sg-type__sample title-2 ls-tight">Dispositivi medici di qualità</p>
+      </div>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.ls-tighter</span><span class="sg-label" style="margin:0">letter-spacing: -0.04em</span></div>
+        <p class="sg-type__sample title-2 ls-tighter">Dispositivi medici di qualità</p>
+      </div>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.ls-tightest</span><span class="sg-label" style="margin:0">letter-spacing: -0.06em</span></div>
+        <p class="sg-type__sample title-2 ls-tightest">Dispositivi medici di qualità</p>
+      </div>
+      <div class="sg-type">
+        <div class="sg-type__head"><span class="sg-type__name">.ls-wide .text-uppercase</span><span class="sg-label" style="margin:0">letter-spacing: 0.1em · text-transform: uppercase</span></div>
+        <p class="sg-type__sample body-6 ls-wide text-uppercase">Dispositivi medici</p>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Noto Serif SC</h2>
+      <p class="sg-label">Titoli — variabile, pesi 200–900 · nessun corsivo disponibile</p>
+      <div class="sg-weights sg-weights--heading">
+        <span style="font-weight:200">Aa 200</span>
+        <span style="font-weight:300">Aa 300</span>
+        <span style="font-weight:400">Aa 400</span>
+        <span style="font-weight:500">Aa 500</span>
+        <span style="font-weight:600">Aa 600</span>
+        <span style="font-weight:700">Aa 700</span>
+        <span style="font-weight:800">Aa 800</span>
+        <span style="font-weight:900">Aa 900</span>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">DM Sans</h2>
+      <p class="sg-label">Testi — variabile, pesi 100–1000 · dimensione ottica automatica (opsz 9–40)</p>
+      <div class="sg-weights">
+        <span style="font-weight:100">Aa 100</span>
+        <span style="font-weight:200">Aa 200</span>
+        <span style="font-weight:300">Aa 300</span>
+        <span style="font-weight:400">Aa 400</span>
+        <span style="font-weight:500">Aa 500</span>
+        <span style="font-weight:600">Aa 600</span>
+        <span style="font-weight:700">Aa 700</span>
+        <span style="font-weight:800">Aa 800</span>
+        <span style="font-weight:900">Aa 900</span>
+        <span style="font-weight:1000">Aa 1000</span>
+      </div>
+      <p class="sg-label" style="margin-top:24px">Corsivo</p>
+      <div class="sg-weights">
+        <span style="font-weight:100;font-style:italic">Aa 100</span>
+        <span style="font-weight:200;font-style:italic">Aa 200</span>
+        <span style="font-weight:300;font-style:italic">Aa 300</span>
+        <span style="font-weight:400;font-style:italic">Aa 400</span>
+        <span style="font-weight:500;font-style:italic">Aa 500</span>
+        <span style="font-weight:600;font-style:italic">Aa 600</span>
+        <span style="font-weight:700;font-style:italic">Aa 700</span>
+        <span style="font-weight:800;font-style:italic">Aa 800</span>
+        <span style="font-weight:900;font-style:italic">Aa 900</span>
+        <span style="font-weight:1000;font-style:italic">Aa 1000</span>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Utilizzo</h2>
+      <p class="sg-label">HTML · SCSS</p>
+<pre class="sg-code">&lt;!-- HTML: la classe decide l'aspetto, il tag la gerarchia --&gt;
+&lt;h2 class="title-1 ls-tight"&gt;…&lt;/h2&gt;
+&lt;p class="body-4"&gt;…&lt;/p&gt;
+&lt;span class="body-6 ls-wide text-uppercase"&gt;…&lt;/span&gt;
+
+// SCSS: stesso stile dentro un componente (dopo @use '../abstracts' as *;)
+.teaser__title {
+  @include text-style('title-4');
+}</pre>
+    </section>
+  </main>
+
+  </main>
+
+  <!-- @include scripts.html -->
+</body>
+</html>

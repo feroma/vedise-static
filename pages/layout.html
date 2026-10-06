@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <!-- @include head.html -->
+  <title>Layout — VEDISE Styleguide</title>
+</head>
+<body>
+  <!-- @include sg-nav.html -->
+
+  <main class="container">
+    <header class="sg-header">
+      <h1>Layout</h1>
+      <p>Sotto i 1024px: 4 colonne, gutter 16, margini 16. Da 1024px: 12 colonne, gutter 30, margini 120 (160 da 1360px). Ridimensiona la finestra e premi <strong>G</strong> per vedere la griglia.</p>
+    </header>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Breakpoint</h2>
+      <p class="sg-label">Mobile-first: ogni sigla vale da quella larghezza in su — $breakpoints in src/scss/abstracts/_variables.scss</p>
+      <div class="sg-table-wrap">
+        <table class="sg-table">
+          <thead>
+            <tr><th>Sigla</th><th>Da (px)</th><th>A (px)</th><th>Dispositivi</th><th>Griglia</th><th>Tipografia</th></tr>
+          </thead>
+          <tbody>
+            <tr data-bp="xs"><td><code>xs</code></td><td>0</td><td>575</td><td>Smartphone</td><td>4 col · gutter 16 · margini 16</td><td>ridotta</td></tr>
+            <tr data-bp="sm"><td><code>sm</code></td><td>576</td><td>767</td><td>Smartphone orizzontale</td><td>4 col · gutter 16 · margini 16</td><td>ridotta</td></tr>
+            <tr data-bp="md"><td><code>md</code></td><td>768</td><td>1023</td><td>Tablet verticale</td><td>4 col · gutter 16 · margini 16</td><td>ridotta</td></tr>
+            <tr data-bp="lg"><td><code>lg</code></td><td>1024</td><td>1359</td><td>Tablet orizzontale, laptop piccolo</td><td>12 col · gutter 30 · margini 120</td><td>ridotta</td></tr>
+            <tr data-bp="xl"><td><code>xl</code></td><td>1360</td><td>1919</td><td>Laptop, desktop</td><td>12 col · gutter 30 · margini 160</td><td>progetto grafico</td></tr>
+            <tr data-bp="xxl"><td><code>xxl</code></td><td>1920</td><td>—</td><td>Desktop grande</td><td>12 col · gutter 30 · margini 160</td><td>proporzionale alla larghezza</td></tr>
+          </tbody>
+        </table>
+      </div>
+<pre class="sg-code" style="margin-top:24px">// SCSS
+@include mq-up(md) { … }          // ≥ 768
+@include mq-down(lg) { … }        // &lt; 1024
+@include mq-between(md, xl) { … } // 768 – 1359
+
+&lt;!-- Classi --&gt;
+.col-lg-6  .d-none .d-md-block  .justify-content-xl-between</pre>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Struttura</h2>
+      <p class="sg-label">.container &gt; .row &gt; .col-{1-4} .col-lg-{1-12}</p>
+      <div class="row">
+        <div class="col-4 col-lg-12"><div class="sg-demo">.col-4 .col-lg-12</div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Metà</h2>
+      <p class="sg-label">.col-4 .col-lg-6 ×2 — in colonna su mobile</p>
+      <div class="row sg-grid-gap">
+        <div class="col-4 col-lg-6"><div class="sg-demo">A</div></div>
+        <div class="col-4 col-lg-6"><div class="sg-demo">B</div></div>
+      </div>
+
+      <p class="sg-label">.col-2 .col-lg-6 ×2 — affiancate anche su mobile</p>
+      <div class="row">
+        <div class="col-2 col-lg-6"><div class="sg-demo">A</div></div>
+        <div class="col-2 col-lg-6"><div class="sg-demo">B</div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Terzi</h2>
+      <p class="sg-label">.col-4 .col-lg-4 ×3</p>
+      <div class="row sg-grid-gap">
+        <div class="col-4 col-lg-4"><div class="sg-demo">1</div></div>
+        <div class="col-4 col-lg-4"><div class="sg-demo">2</div></div>
+        <div class="col-4 col-lg-4"><div class="sg-demo">3</div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Quarti</h2>
+      <p class="sg-label">.col-2 .col-lg-3 ×4 — 2+2 su mobile, 4 in fila su desktop</p>
+      <div class="row sg-grid-gap">
+        <div class="col-2 col-lg-3"><div class="sg-demo">1</div></div>
+        <div class="col-2 col-lg-3"><div class="sg-demo">2</div></div>
+        <div class="col-2 col-lg-3"><div class="sg-demo">3</div></div>
+        <div class="col-2 col-lg-3"><div class="sg-demo">4</div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Asimmetrico</h2>
+      <p class="sg-label">.col-4 .col-lg-8 + .col-4 .col-lg-4</p>
+      <div class="row sg-grid-gap">
+        <div class="col-4 col-lg-8"><div class="sg-demo">8</div></div>
+        <div class="col-4 col-lg-4"><div class="sg-demo">4</div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Offset</h2>
+      <p class="sg-label">.col-4 .col-lg-8 .offset-lg-2</p>
+      <div class="row sg-grid-gap">
+        <div class="col-4 col-lg-8 offset-lg-2"><div class="sg-demo">centrata</div></div>
+      </div>
+      <p class="sg-label">.col-3 .offset-1 .col-lg-6 .offset-lg-6</p>
+      <div class="row">
+        <div class="col-3 offset-1 col-lg-6 offset-lg-6"><div class="sg-demo">offset</div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Auto e larghezze uguali</h2>
+      <p class="sg-label">.col ×3 — si dividono lo spazio</p>
+      <div class="row sg-grid-gap">
+        <div class="col"><div class="sg-demo">.col</div></div>
+        <div class="col"><div class="sg-demo">.col</div></div>
+        <div class="col"><div class="sg-demo">.col</div></div>
+      </div>
+      <p class="sg-label">.col-auto + .col</p>
+      <div class="row">
+        <div class="col-auto"><div class="sg-demo">&nbsp;.col-auto&nbsp;</div></div>
+        <div class="col"><div class="sg-demo">.col</div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Senza gutter</h2>
+      <p class="sg-label">.row.no-gutters</p>
+      <div class="row no-gutters">
+        <div class="col-2 col-lg-6"><div class="sg-demo">A</div></div>
+        <div class="col-2 col-lg-6"><div class="sg-demo" style="background:#dde2ff">B</div></div>
+      </div>
+    </section>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Visibilità</h2>
+      <p class="sg-label">.d-{{bp}}-none / .d-{{bp}}-block… disponibili per tutti i breakpoint</p>
+      <div class="row">
+        <div class="col-4 col-lg-12">
+          <div class="sg-demo d-none d-lg-block">visibile solo ≥ 1024</div>
+          <div class="sg-demo d-lg-none">visibile solo &lt; 1024</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- @include scripts.html -->
+</body>
+</html>

@@ -1,0 +1,39 @@
+// Utility di visibilità e allineamento (come Bootstrap 4)
+// .d-none, .d-md-block, .justify-content-lg-between, .align-items-xl-center…
+@use '../abstracts' as *;
+
+$displays: (none, block, inline, inline-block, flex, grid);
+$justify: (start: flex-start, center: center, end: flex-end, between: space-between);
+$align: (start: flex-start, center: center, end: flex-end, stretch: stretch);
+
+@each $bp, $w in $breakpoints {
+  $infix: '-#{$bp}';
+  @if $w == 0 {
+    $infix: '';
+  }
+
+  @include mq-up($bp) {
+    @each $d in $displays {
+      .d#{$infix}-#{$d} { display: $d !important; }
+    }
+    @each $k, $v in $justify {
+      .justify-content#{$infix}-#{$k} { justify-content: $v !important; }
+    }
+    @each $k, $v in $align {
+      .align-items#{$infix}-#{$k} { align-items: $v !important; }
+    }
+  }
+}
+
+// Testo nascosto ma letto dagli screen reader
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

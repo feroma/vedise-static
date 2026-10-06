@@ -1,0 +1,123 @@
+// =============================================================================
+// Pill
+//
+// Riferimento Figma: padding 10 / 45, radius 100, bordo 1px, DM Sans 700 28px.
+//
+//   <span class="pill">ICU</span>                         etichetta
+//   <a class="pill" href="#">ICU</a>                      link
+//   <button class="pill" aria-pressed="false">ICU</button> filtro on/off
+//
+// Varianti:   .pill (outline, default)  ·  .pill--fill
+// Colori:     default colore del testo ($color-text). Modificatori:
+//             .pill--red · --green · --blue · --dark · --white (come in Figma,
+//             su fondi scuri o foto)
+// Dimensioni: .pill--sm
+// Stato:      .is-active o aria-pressed="true" → pieno
+// =============================================================================
+@use 'sass:list';
+@use '../abstracts' as *;
+
+$pill-border: 1px;
+
+// colore principale, colore del testo sul pieno
+$pill-colors: (
+  'red':   (palette('red'), $color-white),
+  'green': (palette('green'), $color-white),
+  'blue':  (palette('blue'), $color-white),
+  'dark':  (palette('blue-dark'), $color-white),
+  'white': ($color-white, palette('blue-dark')),
+);
+
+.pill {
+  --pill-main: #{$color-text};
+  --pill-on-main: #{$color-bg};
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35em;
+  padding: (8px - $pill-border) (28px - $pill-border);
+  border: $pill-border solid var(--pill-main);
+  border-radius: 100px;
+  background: transparent;
+  color: var(--pill-main);
+  font-family: $font-body;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+
+  @include mq-up(lg) {
+    padding: (10px - $pill-border) (36px - $pill-border);
+    font-size: 24px;
+  }
+
+  @include mq-up(xl) {
+    padding: (10px - $pill-border) (45px - $pill-border);
+    font-size: 28px; // valore Figma
+  }
+
+  > .icon {
+    font-size: 1.15em;
+  }
+
+  // --- Pieno -----------------------------------------------------------------------
+  &--fill,
+  &.is-active,
+  &[aria-pressed='true'] {
+    background: var(--pill-main);
+    color: var(--pill-on-main);
+  }
+
+  // --- Interattiva (link o bottone) ---------------------------------------------
+  &:is(a, button) {
+    cursor: pointer;
+
+    &:hover {
+      background: var(--pill-main);
+      color: var(--pill-on-main);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--pill-main);
+      outline-offset: 3px;
+    }
+  }
+
+  &:is(button) {
+    appearance: none;
+  }
+
+  &--fill:is(a, button):hover {
+    opacity: 0.85;
+  }
+
+  // --- Piccola ----------------------------------------------------------------------
+  &--sm {
+    padding: (5px - $pill-border) (16px - $pill-border);
+    font-size: 14px;
+
+    @include mq-up(lg) {
+      padding: (6px - $pill-border) (20px - $pill-border);
+      font-size: 16px;
+    }
+  }
+}
+
+@each $name, $c in $pill-colors {
+  .pill--#{$name} {
+    --pill-main: #{list.nth($c, 1)};
+    --pill-on-main: #{list.nth($c, 2)};
+  }
+}
+
+// Gruppo di pill
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}

@@ -1,0 +1,87 @@
+@use 'sass:map';
+
+// =============================================================================
+// Variabili di progetto
+// I valori segnati con "TODO" sono segnaposto da allineare al progetto grafico.
+// =============================================================================
+
+// --- Font ------------------------------------------------------------------
+$font-heading: 'Noto Serif SC', Georgia, 'Times New Roman', serif;
+$font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+
+// --- Colori -----------------------------------------------------------------
+// Palette del progetto grafico: ogni tinta ha tono base, chiaro e scuro.
+// Per aggiungere o modificare un colore basta cambiare questa mappa:
+// custom properties (--color-*), classi .text-* / .bg-* e pagina "Colori"
+// della styleguide si aggiornano da sole.
+$colors: (
+  'white':       #ffffff,
+  'black':       #000000,
+
+  'gray-light':  #eaeaea,
+  'gray':        #d4d4d4,
+  'gray-dark':   #505356,
+
+  'red-light':   #efb2b4,
+  'red':         #cd161d, // colore del brand
+  'red-dark':    #7e070c,
+
+  'green-light': #c2d4b4,
+  'green':       #4e8c20,
+  'green-dark':  #255500,
+
+  'blue-light':  #aeb9c5,
+  'blue':        #316097,
+  'blue-dark':   #001d3d,
+);
+
+// Accesso rapido in SCSS: palette('red') oppure le variabili qui sotto
+@function palette($name) {
+  @if not map.has-key($colors, $name) {
+    @error "Colore '#{$name}' non definito in $colors.";
+  }
+  @return map.get($colors, $name);
+}
+
+$color-white: palette('white');
+$color-black: palette('black');
+$color-brand: palette('red');
+
+// Ruoli (TODO: confermare con il progetto grafico)
+$color-text: $color-black;
+$color-bg: $color-white;
+$color-primary: $color-brand;
+
+// --- Breakpoint ------------------------------------------------------------
+// Mobile-first: ogni sigla vale da quella larghezza in su.
+$breakpoints: (
+  'xs': 0,       // smartphone
+  'sm': 576px,   // smartphone orizzontale
+  'md': 768px,   // tablet verticale
+  'lg': 1024px,  // tablet orizzontale / laptop piccolo → griglia 12 colonne
+  'xl': 1360px,  // laptop / desktop → tipografia del progetto grafico
+  'xxl': 1920px, // desktop grande → tipografia scala in proporzione
+);
+
+$bp-sm: map.get($breakpoints, 'sm');
+$bp-md: map.get($breakpoints, 'md');
+$bp-lg: map.get($breakpoints, 'lg');
+$bp-xl: map.get($breakpoints, 'xl');
+$bp-xxl: map.get($breakpoints, 'xxl');
+
+// Larghezza di riferimento del progetto grafico
+$design-width: 1920px;
+
+// --- Griglia ---------------------------------------------------------------
+$cols-sm: 4;   // < 1024
+$cols-lg: 12;  // ≥ 1024
+
+$gutter-sm: 16px;
+$gutter-lg: 30px;
+
+$margin-sm: 16px;   // < 1024
+$margin-lg: 120px;  // 1024–1359
+$margin-xl: 160px;  // ≥ 1360
+
+// Larghezza massima del container (padding incluso). null = nessun limite.
+$container-max: null; // TODO: es. 1920px se il design prevede un limite

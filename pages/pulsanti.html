@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <!-- @include head.html -->
+  <title>Pulsanti — VEDISE Styleguide</title>
+</head>
+<body>
+  <!-- @include sg-nav.html -->
+
+  <main class="container">
+    <header class="sg-header">
+      <h1>Pulsanti</h1>
+      <p>Pieni o outline, con testo, icona o entrambi. Componente in src/scss/components/_button.scss. Funziona sia su &lt;a&gt; sia su &lt;button&gt;.</p>
+    </header>
+
+    <section class="sg-section">
+      <h2 class="sg-title">Composizione</h2>
+      <p class="sg-label">.btn — solo testo</p>
+      <div class="btn-group sg-btn-row">
+        <a class="btn" href="#"><span class="btn__label">Leggi</span></a>
+      </div>
+      <p class="sg-label">.btn — testo + icona (come in Figma)</p>
+      <div class="btn-group sg-btn-row">
+        <a class="btn" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+      </div>
+      <p class="sg-label">.btn — icona + testo</p>
+      <div class="btn-group sg-btn-row">
+        <a class="btn" href="#"><span class="icon" aria-hidden="true">arrow_left</span><span class="btn__label">Indietro</span></a>
+      </div>
+      <p class="sg-label">.btn — solo icona (con testo nascosto per gli screen reader)</p>
+      <div class="btn-group sg-btn-row">
+        <a class="btn" href="#"><span class="icon" aria-hidden="true">search</span><span class="visually-hidden">Cerca</span></a>
+        <a class="btn" href="#"><span class="icon" aria-hidden="true">arrow_right</span><span class="visually-hidden">Avanti</span></a>
+        <a class="btn" href="#"><span class="icon" aria-hidden="true">close</span><span class="visually-hidden">Chiudi</span></a>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">Pieno e outline</h2>
+      <p class="sg-label">.btn · .btn--outline</p>
+      <div class="btn-group sg-btn-row">
+        <a class="btn" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <a class="btn btn--outline" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <a class="btn" href="#"><span class="btn__label">Leggi</span></a>
+        <a class="btn btn--outline" href="#"><span class="btn__label">Leggi</span></a>
+        <a class="btn" href="#"><span class="icon" aria-hidden="true">download</span><span class="visually-hidden">Scarica</span></a>
+        <a class="btn btn--outline" href="#"><span class="icon" aria-hidden="true">download</span><span class="visually-hidden">Scarica</span></a>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">Colori</h2>
+      <p class="sg-label">.btn--red — default, colore del brand</p>
+      <div class="btn-group sg-btn-row">
+        <a class="btn" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <a class="btn btn--outline" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <a class="btn" href="#"><span class="btn__label">Leggi</span></a>
+        <a class="btn btn--outline" href="#"><span class="btn__label">Leggi</span></a>
+        <a class="btn" href="#"><span class="icon" aria-hidden="true">mail</span><span class="visually-hidden">Scrivici</span></a>
+        <a class="btn btn--outline" href="#"><span class="icon" aria-hidden="true">mail</span><span class="visually-hidden">Scrivici</span></a>
+      </div>
+      <p class="sg-label">.btn--green</p>
+      <div class="btn-group sg-btn-row">
+        <a class="btn btn--green" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <a class="btn btn--green btn--outline" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <a class="btn btn--green" href="#"><span class="btn__label">Leggi</span></a>
+        <a class="btn btn--green btn--outline" href="#"><span class="btn__label">Leggi</span></a>
+        <a class="btn btn--green" href="#"><span class="icon" aria-hidden="true">mail</span><span class="visually-hidden">Scrivici</span></a>
+        <a class="btn btn--green btn--outline" href="#"><span class="icon" aria-hidden="true">mail</span><span class="visually-hidden">Scrivici</span></a>
+      </div>
+      <p class="sg-label">.btn--blue</p>
+      <div class="btn-group sg-btn-row">
+        <a class="btn btn--blue" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <a class="btn btn--blue btn--outline" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <a class="btn btn--blue" href="#"><span class="btn__label">Leggi</span></a>
+        <a class="btn btn--blue btn--outline" href="#"><span class="btn__label">Leggi</span></a>
+        <a class="btn btn--blue" href="#"><span class="icon" aria-hidden="true">mail</span><span class="visually-hidden">Scrivici</span></a>
+        <a class="btn btn--blue btn--outline" href="#"><span class="icon" aria-hidden="true">mail</span><span class="visually-hidden">Scrivici</span></a>
+      </div>
+      <p class="sg-label">.btn--dark — blu scuro</p>
+      <div class="btn-group sg-btn-row">
+        <a class="btn btn--dark" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <a class="btn btn--dark btn--outline" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <a class="btn btn--dark" href="#"><span class="btn__label">Leggi</span></a>
+        <a class="btn btn--dark btn--outline" href="#"><span class="btn__label">Leggi</span></a>
+        <a class="btn btn--dark" href="#"><span class="icon" aria-hidden="true">mail</span><span class="visually-hidden">Scrivici</span></a>
+        <a class="btn btn--dark btn--outline" href="#"><span class="icon" aria-hidden="true">mail</span><span class="visually-hidden">Scrivici</span></a>
+      </div>
+      <p class="sg-label">.btn--white — su fondi scuri o colorati</p>
+      <div class="btn-group sg-btn-row sg-btn-row--dark">
+        <a class="btn btn--white" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <a class="btn btn--white btn--outline" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <a class="btn btn--white" href="#"><span class="btn__label">Leggi</span></a>
+        <a class="btn btn--white btn--outline" href="#"><span class="btn__label">Leggi</span></a>
+        <a class="btn btn--white" href="#"><span class="icon" aria-hidden="true">mail</span><span class="visually-hidden">Scrivici</span></a>
+        <a class="btn btn--white btn--outline" href="#"><span class="icon" aria-hidden="true">mail</span><span class="visually-hidden">Scrivici</span></a>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">Stati</h2>
+      <p class="sg-label">hover e focus (prova con mouse e tasto Tab) · disabilitato: attributo disabled, aria-disabled="true" o .is-disabled</p>
+      <div class="btn-group sg-btn-row">
+        <a class="btn" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        <button type="button" class="btn" disabled><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></button>
+        <button type="button" class="btn btn--outline" disabled><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></button>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">Larghezza piena</h2>
+      <p class="sg-label">.btn--block — ad esempio solo su mobile, dentro una colonna</p>
+      <div class="row">
+        <div class="col-4 col-lg-4">
+          <a class="btn btn--block" href="#"><span class="btn__label">Leggi</span><span class="icon" aria-hidden="true">arrow_right</span></a>
+        </div>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">Utilizzo</h2>
+      <p class="sg-label">Il testo va sempre in .btn__label: la posizione dell'icona viene riconosciuta in automatico</p>
+<pre class="sg-code">&lt;!-- link --&gt;
+&lt;a class="btn" href="/news"&gt;
+  &lt;span class="btn__label"&gt;Leggi&lt;/span&gt;
+  &lt;span class="icon" aria-hidden="true"&gt;arrow_right&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;!-- bottone outline blu --&gt;
+&lt;button type="submit" class="btn btn--outline btn--blue"&gt;
+  &lt;span class="btn__label"&gt;Invia&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- solo icona --&gt;
+&lt;button type="button" class="btn"&gt;
+  &lt;span class="icon" aria-hidden="true"&gt;search&lt;/span&gt;
+  &lt;span class="visually-hidden"&gt;Cerca&lt;/span&gt;
+&lt;/button&gt;</pre>
+    </section>
+  </main>
+
+  <!-- @include scripts.html -->
+</body>
+</html>

@@ -1,0 +1,74 @@
+// =============================================================================
+// Tipografia
+//
+// Classi di stile indipendenti dai tag: .title-1…4, .body-1…6
+// (es. <h2 class="title-1">, <p class="body-3">). La scala per breakpoint
+// è definita in abstracts/_typography.scss ($type-scale).
+//
+// TODO: confermare pesi e associazione tag → stile con il progetto grafico.
+// =============================================================================
+@use 'sass:map';
+@use '../abstracts' as *;
+
+$font-weight-heading: 400; // TODO
+$font-weight-body: 400;    // TODO
+
+// Stile di default dei tag (sovrascrivibile con una classe)
+$tag-styles: (
+  'h1': 'title-1',
+  'h2': 'title-2',
+  'h3': 'title-3',
+  'h4': 'title-4',
+  'h5': 'title-4',
+  'h6': 'title-4',
+);
+
+body {
+  @include text-style('body-5'); // testo di default
+  font-weight: $font-weight-body;
+  color: $color-text;
+  background-color: $color-bg;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-weight-heading;
+  font-synthesis-style: none; // Noto Serif SC non ha corsivo: niente finto corsivo
+  margin-bottom: 0.5em;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+// Classi di stile + tag che le usano di default (es. "h1, .title-1").
+// La classe vince sempre sul tag: <h2 class="title-1"> è un title-1.
+@each $name, $style in $type-scale {
+  $selector: '.#{$name}';
+  @each $tag, $tag-style in $tag-styles {
+    @if $tag-style == $name {
+      $selector: '#{$tag}, #{$selector}';
+    }
+  }
+
+  #{$selector} {
+    @include text-style($name);
+  }
+
+  @if map.get($style, 'family') == $font-heading {
+    .#{$name} {
+      font-weight: $font-weight-heading;
+      font-synthesis-style: none;
+    }
+  }
+}
+
+// --- Letter-spacing --------------------------------------------------------
+.ls-tight    { letter-spacing: -0.02em !important; }
+.ls-tighter  { letter-spacing: -0.04em !important; }
+.ls-tightest { letter-spacing: -0.06em !important; }
+.ls-wide     { letter-spacing: 0.1em !important; }
+.ls-normal   { letter-spacing: normal !important; }
+
+// --- Trasformazioni -------------------------------------------------------
+.text-uppercase { text-transform: uppercase !important; }
+.text-normal-case { text-transform: none !important; }

@@ -1,13 +1,54 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vedise-static</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<html lang="it">
+<head>
+  <!-- @include head.html -->
+  <title>VEDISE — Styleguide</title>
+</head>
+<body>
+  <!-- @include sg-nav.html -->
+
+  <main class="container">
+    <header class="sg-header">
+      <h1 class="js-fade-in">VEDISE Styleguide</h1>
+      <p>Ricostruzione statica del progetto grafico, divisa per argomenti. Ogni pagina documenta un gruppo di elementi che diventeranno parti del tema WordPress. Premi <strong>G</strong> per mostrare la griglia.</p>
+    </header>
+
+    <section class="sg-section">
+      <div class="row sg-grid-gap">
+        <div class="col-4 col-lg-4">
+          <a class="sg-card" href="%BASE_URL%pages/layout.html">
+            <h2 class="body-3">Layout</h2>
+            <p>Container, row e colonne: 4 colonne sotto i 1024px, 12 colonne sopra.</p>
+          </a>
+        </div>
+        <div class="col-4 col-lg-4">
+          <a class="sg-card" href="%BASE_URL%pages/colori.html">
+            <h2 class="body-3">Colori</h2>
+            <p>Palette del brand con variabili, classi e contrasti.</p>
+          </a>
+        </div>
+        <div class="col-4 col-lg-4">
+          <a class="sg-card" href="%BASE_URL%pages/tipografia.html">
+            <h2 class="body-3">Tipografia</h2>
+            <p>Font, scala dei titoli, testi e stili di supporto.</p>
+          </a>
+        </div>
+        <div class="col-4 col-lg-4">
+          <a class="sg-card" href="%BASE_URL%pages/componenti.html">
+            <h2 class="body-3">Componenti</h2>
+            <p>Pulsanti, pills e icone: varianti, colori, stati e codice.</p>
+          </a>
+        </div>
+        <div class="col-4 col-lg-4">
+          <a class="sg-card" href="%BASE_URL%pages/teaser.html">
+            <h2 class="body-3">Teaser</h2>
+            <p>Anteprime di contenuto e loro varianti.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- @include scripts.html -->
+</body>
 </html>
