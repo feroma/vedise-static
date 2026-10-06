@@ -1,0 +1,82 @@
+// =============================================================================
+// Paginatore (per i carousel)
+//
+// Riferimento Figma: quadrati 18×18 pieni, attivo 32×32 con bordo rosso 8px
+// e centro vuoto, gap 14.
+//
+//   <div class="pager">
+//     <button type="button" class="pager__item" aria-current="true" aria-label="Slide 1"></button>
+//     <button type="button" class="pager__item" aria-label="Slide 2"></button>
+//   </div>
+//
+// Attivo:  aria-current="true" oppure .is-active
+// Colori:  item non selezionati neri (default) · .pager--white per fondi scuri
+//          (personalizzabili con --pager-dot e --pager-active)
+// =============================================================================
+@use '../abstracts' as *;
+
+$pager-size: 18px;
+$pager-size-active: 32px;
+$pager-border-active: 8px;
+$pager-gap: 14px;
+
+.pager {
+  --pager-dot: #{$color-black};
+  --pager-active: #{$color-brand};
+
+  display: inline-flex;
+  align-items: center;
+  gap: $pager-gap;
+  min-height: $pager-size-active; // l'altezza non cambia quando cambia l'attivo
+
+  &--white {
+    --pager-dot: #{$color-white};
+  }
+
+  &--black {
+    --pager-dot: #{$color-black};
+  }
+
+  &__item {
+    position: relative;
+    flex-shrink: 0;
+    width: $pager-size;
+    height: $pager-size;
+    padding: 0;
+    border: 0 solid var(--pager-active);
+    border-radius: 0;
+    background: var(--pager-dot);
+    cursor: pointer;
+    appearance: none;
+    transition:
+      width 0.25s ease,
+      height 0.25s ease,
+      border-width 0.25s ease,
+      background-color 0.25s ease;
+
+    // area cliccabile più ampia del quadratino (accessibilità touch)
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -($pager-gap * 0.5);
+    }
+
+    &:hover {
+      background: var(--pager-active);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--pager-active);
+      outline-offset: 4px;
+    }
+
+    &.is-active,
+    &[aria-current='true'] {
+      width: $pager-size-active;
+      height: $pager-size-active;
+      border-width: $pager-border-active;
+      background: transparent;
+      cursor: default;
+    }
+  }
+}

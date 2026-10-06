@@ -973,6 +973,152 @@ button.btn {
   gap: 12px;
 }
 
+.pager {
+  --pager-dot: #000000;
+  --pager-active: #cd161d;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 32px;
+}
+.pager--white {
+  --pager-dot: #ffffff;
+}
+.pager--black {
+  --pager-dot: #000000;
+}
+.pager__item {
+  position: relative;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 0 solid var(--pager-active);
+  border-radius: 0;
+  background: var(--pager-dot);
+  cursor: pointer;
+  appearance: none;
+  transition: width 0.25s ease, height 0.25s ease, border-width 0.25s ease, background-color 0.25s ease;
+}
+.pager__item::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+}
+.pager__item:hover {
+  background: var(--pager-active);
+}
+.pager__item:focus-visible {
+  outline: 2px solid var(--pager-active);
+  outline-offset: 4px;
+}
+.pager__item.is-active, .pager__item[aria-current=true] {
+  width: 32px;
+  height: 32px;
+  border-width: 8px;
+  background: transparent;
+  cursor: default;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.pagination__item,
+.pagination .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 8px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  background: transparent;
+  color: #000000;
+  font-family: "DM Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+@media (min-width: 768px) {
+  .pagination__item,
+  .pagination .page-numbers {
+    min-width: 62px;
+    height: 54px;
+  }
+}
+.pagination__item--prev, .pagination__item--next, .pagination__item.prev, .pagination__item.next,
+.pagination .page-numbers--prev,
+.pagination .page-numbers--next,
+.pagination .page-numbers.prev,
+.pagination .page-numbers.next {
+  padding-inline: 3px;
+}
+.pagination__item--next, .pagination__item.next,
+.pagination .page-numbers--next,
+.pagination .page-numbers.next {
+  justify-content: flex-start;
+}
+.pagination__item > .icon,
+.pagination .page-numbers > .icon {
+  font-size: 24px;
+}
+.pagination__item:is(a, button),
+.pagination .page-numbers:is(a, button) {
+  cursor: pointer;
+}
+.pagination__item:is(a, button):hover,
+.pagination .page-numbers:is(a, button):hover {
+  border-color: #cd161d;
+  background: #cd161d;
+  color: #ffffff;
+}
+.pagination__item:is(a, button):focus-visible,
+.pagination .page-numbers:is(a, button):focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 3px;
+}
+.pagination__item[aria-current=page], .pagination__item.is-active, .pagination__item.current,
+.pagination .page-numbers[aria-current=page],
+.pagination .page-numbers.is-active,
+.pagination .page-numbers.current {
+  border-color: #d4d4d4;
+  background: #d4d4d4;
+}
+.pagination__item[aria-disabled=true], .pagination__item.is-disabled,
+.pagination .page-numbers[aria-disabled=true],
+.pagination .page-numbers.is-disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+.pagination__item--dots, .pagination__item.dots,
+.pagination .page-numbers--dots,
+.pagination .page-numbers.dots {
+  justify-content: center;
+  min-width: 0;
+  padding-inline: 4px;
+  border-color: transparent;
+}
+@media (min-width: 768px) {
+  .pagination__item--dots, .pagination__item.dots,
+  .pagination .page-numbers--dots,
+  .pagination .page-numbers.dots {
+    min-width: 0;
+    padding-inline: 8px;
+  }
+}
+
+button.pagination__item {
+  appearance: none;
+}
+
 .teaser {
   display: flex;
   flex-direction: column;
@@ -1420,3 +1566,5 @@ button.btn {
   white-space: nowrap !important;
   border: 0 !important;
 }
+
+/*# sourceMappingURL=main.css.map */

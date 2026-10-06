@@ -129,7 +129,32 @@ dopo o da sola viene riconosciuta in automatico (padding come da Figma).
 Outline di default, `.pill--fill` per il pieno; colori come i pulsanti; `.pill--sm`.
 Pieno anche con `.is-active` o `aria-pressed="true"` (filtri).
 
-Pulsanti, pills e icone sono documentati nella pagina **Componenti**, con menu laterale.
+### Paginatore
+
+```html
+<div class="pager pager--white" aria-label="Paginazione">
+  <button type="button" class="pager__item" aria-current="true" aria-label="Slide 1"></button>
+  <button type="button" class="pager__item" aria-label="Slide 2"></button>
+</div>
+```
+
+Item non selezionati neri (default) o bianchi (`.pager--white`); attivo con
+`aria-current="true"` o `.is-active`.
+
+### Paginazione
+
+```html
+<nav class="pagination" aria-label="Paginazione">
+  <a class="pagination__item" href="?pg=1">1</a>
+  <span class="pagination__item" aria-current="page">2</span>
+</nav>
+```
+
+Frecce `.pagination__item--prev/--next` con icone `chevron_left/right`, salti
+`.pagination__item--dots`, disabilitato `aria-disabled="true"`. Stila anche il
+markup di WordPress `paginate_links()` dentro un `.pagination`.
+
+Pulsanti, pills, paginatori e icone sono documentati nella pagina **Componenti**, con menu laterale.
 
 ## Colori
 

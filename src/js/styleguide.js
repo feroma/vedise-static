@@ -284,3 +284,13 @@ document.querySelectorAll('.sg-group button.pill[aria-pressed]').forEach((pill) 
         pill.setAttribute('aria-pressed', pill.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
     });
 });
+
+// Demo paginatore: clic su un item → diventa attivo
+document.querySelectorAll('.sg-pager-demo .pager').forEach((pager) => {
+    pager.addEventListener('click', (e) => {
+        const item = e.target.closest('.pager__item');
+        if (!item) return;
+        pager.querySelectorAll('.pager__item').forEach((i) => i.removeAttribute('aria-current'));
+        item.setAttribute('aria-current', 'true');
+    });
+});

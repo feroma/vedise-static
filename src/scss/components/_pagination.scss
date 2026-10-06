@@ -1,0 +1,139 @@
+// =============================================================================
+// Paginazione (elenchi di pagine: news, prodotti, archivi…)
+//
+// Riferimento Figma: item 62×54, bordo 2px nero, radius 10, gap 5,
+// DM Sans 700 16. Numeri allineati a destra a 10px dal bordo; freccia
+// "precedente" a destra a 5px, freccia "successivo" a sinistra a 5px.
+// Corrente: fondo e bordo #D4D4D4. Hover: fondo e bordo rossi, testo bianco.
+// Disabilitato: opacità 0.2. Frecce: Material Symbols chevron_left/right.
+//
+//   <nav class="pagination" aria-label="Paginazione">
+//     <a class="pagination__item pagination__item--prev" href="?pg=1">
+//       <span class="icon" aria-hidden="true">chevron_left</span>
+//       <span class="visually-hidden">Pagina precedente</span>
+//     </a>
+//     <a class="pagination__item" href="?pg=1">1</a>
+//     <span class="pagination__item" aria-current="page">2</span>
+//     <span class="pagination__item pagination__item--dots">…</span>
+//     …
+//   </nav>
+//
+// Corrente:       aria-current="page" o .is-active
+// Disabilitato:   aria-disabled="true" o .is-disabled (es. "precedente" a pagina 1)
+//
+// Compatibile anche con il markup di WordPress paginate_links()
+// (.page-numbers, .current, .dots, .prev, .next): nel tema basterà avvolgerlo
+// in un elemento .pagination.
+// =============================================================================
+@use '../abstracts' as *;
+
+$pg-height: 54px;
+$pg-min-width: 62px;
+$pg-size-mobile: 44px; // sotto md: item più compatti per stare su una riga
+$pg-border: 2px;
+$pg-inset: 10px;     // numeri: distanza dal bordo esterno
+$pg-inset-icon: 5px; // frecce: distanza del riquadro icona dal bordo esterno
+$pg-radius: 10px;
+$pg-gap: 5px;
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $pg-gap;
+}
+
+.pagination__item,
+.pagination .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: $pg-size-mobile;
+  height: $pg-size-mobile;
+  padding: 0 ($pg-inset - $pg-border);
+  border: $pg-border solid $color-black;
+  border-radius: $pg-radius;
+  background: transparent;
+  color: $color-black;
+  font-family: $font-body;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+
+  @include mq-up(md) {
+    min-width: $pg-min-width;
+    height: $pg-height;
+  }
+
+  // frecce
+  &--prev,
+  &--next,
+  &.prev,
+  &.next {
+    padding-inline: ($pg-inset-icon - $pg-border);
+  }
+
+  // "successivo": contenuto a sinistra
+  &--next,
+  &.next {
+    justify-content: flex-start;
+  }
+
+  > .icon {
+    font-size: 24px;
+  }
+
+  // link e bottoni
+  &:is(a, button) {
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color-brand;
+      background: $color-brand;
+      color: $color-white;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-black;
+      outline-offset: 3px;
+    }
+  }
+
+  // pagina corrente
+  &[aria-current='page'],
+  &.is-active,
+  &.current {
+    border-color: palette('gray');
+    background: palette('gray');
+  }
+
+  // non disponibile
+  &[aria-disabled='true'],
+  &.is-disabled {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  // puntini di sospensione: senza bordo
+  &--dots,
+  &.dots {
+    justify-content: center;
+    min-width: 0;
+    padding-inline: 4px;
+    border-color: transparent;
+
+    @include mq-up(md) {
+      min-width: 0;
+      padding-inline: 8px;
+    }
+  }
+}
+
+button.pagination__item {
+  appearance: none;
+}

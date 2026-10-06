@@ -18,6 +18,8 @@
         <nav class="sg-sidenav" aria-label="Componenti">
           <a href="#pulsanti">Pulsanti</a>
           <a href="#pills">Pills</a>
+          <a href="#paginatore">Paginatore carousel</a>
+          <a href="#paginazione">Paginazione</a>
           <a href="#icone">Icone</a>
         </nav>
       </aside>
@@ -243,6 +245,137 @@
     &lt;button type="button" class="pill pill--red" aria-pressed="false"&gt;ICU&lt;/button&gt;</pre>
         </section>
 
+        </div>
+        <div class="sg-group" id="paginatore">
+          <h2 class="sg-group__title title-3">Paginatore carousel</h2>
+          <p class="sg-group__desc">Indicatore delle slide per i carousel. Clicca sui quadrati per provare · components/_pager.scss</p>
+    <section class="sg-section">
+      <h2 class="sg-title">Item neri (default)</h2>
+      <p class="sg-label">.pager — su fondi chiari</p>
+      <div class="sg-btn-row sg-pager-demo">
+        <div class="pager" aria-label="Paginazione">
+          <button type="button" class="pager__item" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" class="pager__item" aria-label="Slide 2"></button>
+          <button type="button" class="pager__item" aria-label="Slide 3"></button>
+          <button type="button" class="pager__item" aria-label="Slide 4"></button>
+        </div>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">Item bianchi</h2>
+      <p class="sg-label">.pager.pager--white — su fondi scuri o foto</p>
+      <div class="sg-btn-row sg-btn-row--dark sg-pager-demo">
+        <div class="pager pager--white" aria-label="Paginazione">
+          <button type="button" class="pager__item" aria-label="Slide 1"></button>
+          <button type="button" class="pager__item" aria-current="true" aria-label="Slide 2"></button>
+          <button type="button" class="pager__item" aria-label="Slide 3"></button>
+          <button type="button" class="pager__item" aria-label="Slide 4"></button>
+        </div>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">Numero di slide variabile</h2>
+      <p class="sg-label">2 · 6 item</p>
+      <div class="sg-btn-row sg-pager-demo">
+        <div class="pager" aria-label="Paginazione">
+          <button type="button" class="pager__item" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" class="pager__item" aria-label="Slide 2"></button>
+        </div>
+      </div>
+      <div class="sg-btn-row sg-pager-demo">
+        <div class="pager" aria-label="Paginazione">
+          <button type="button" class="pager__item" aria-label="Slide 1"></button>
+          <button type="button" class="pager__item" aria-label="Slide 2"></button>
+          <button type="button" class="pager__item" aria-label="Slide 3"></button>
+          <button type="button" class="pager__item" aria-current="true" aria-label="Slide 4"></button>
+          <button type="button" class="pager__item" aria-label="Slide 5"></button>
+          <button type="button" class="pager__item" aria-label="Slide 6"></button>
+        </div>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">Utilizzo</h2>
+      <p class="sg-label">L'item attivo ha aria-current="true" (o .is-active); il carousel aggiornerà l'attributo</p>
+<pre class="sg-code">&lt;div class="pager pager--white" aria-label="Paginazione"&gt;
+  &lt;button type="button" class="pager__item" aria-current="true" aria-label="Slide 1"&gt;&lt;/button&gt;
+  &lt;button type="button" class="pager__item" aria-label="Slide 2"&gt;&lt;/button&gt;
+  &lt;button type="button" class="pager__item" aria-label="Slide 3"&gt;&lt;/button&gt;
+&lt;/div&gt;</pre>
+    </section>
+        </div>
+        <div class="sg-group" id="paginazione">
+          <h2 class="sg-group__title title-3">Paginazione</h2>
+          <p class="sg-group__desc">Navigazione tra le pagine di un elenco (news, prodotti, archivi) · components/_pagination.scss</p>
+    <section class="sg-section">
+      <h2 class="sg-title">Come in Figma</h2>
+      <p class="sg-label">precedente disabilitato · pagina 1 · pagina 2 corrente · successivo</p>
+      <div class="sg-btn-row">
+        <nav class="pagination" aria-label="Paginazione">
+          <span class="pagination__item pagination__item--prev" aria-disabled="true"><span class="icon" aria-hidden="true">chevron_left</span><span class="visually-hidden">Pagina precedente</span></span>
+          <a class="pagination__item" href="#">1</a>
+          <span class="pagination__item" aria-current="page">2</span>
+          <a class="pagination__item pagination__item--next" href="#"><span class="icon" aria-hidden="true">chevron_right</span><span class="visually-hidden">Pagina successiva</span></a>
+        </nav>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">Molte pagine</h2>
+      <p class="sg-label">.pagination__item--dots per i salti · prima pagina, pagina centrale, ultima pagina</p>
+      <div class="sg-btn-row">
+        <nav class="pagination" aria-label="Paginazione">
+          <span class="pagination__item pagination__item--prev" aria-disabled="true"><span class="icon" aria-hidden="true">chevron_left</span><span class="visually-hidden">Pagina precedente</span></span>
+          <span class="pagination__item" aria-current="page">1</span>
+          <a class="pagination__item" href="#">2</a>
+          <a class="pagination__item" href="#">3</a>
+          <span class="pagination__item pagination__item--dots" aria-hidden="true">…</span>
+          <a class="pagination__item" href="#">12</a>
+          <a class="pagination__item pagination__item--next" href="#"><span class="icon" aria-hidden="true">chevron_right</span><span class="visually-hidden">Pagina successiva</span></a>
+        </nav>
+      </div>
+      <div class="sg-btn-row">
+        <nav class="pagination" aria-label="Paginazione">
+          <a class="pagination__item pagination__item--prev" href="#"><span class="icon" aria-hidden="true">chevron_left</span><span class="visually-hidden">Pagina precedente</span></a>
+          <a class="pagination__item" href="#">1</a>
+          <span class="pagination__item pagination__item--dots" aria-hidden="true">…</span>
+          <a class="pagination__item" href="#">5</a>
+          <span class="pagination__item" aria-current="page">6</span>
+          <a class="pagination__item" href="#">7</a>
+          <span class="pagination__item pagination__item--dots" aria-hidden="true">…</span>
+          <a class="pagination__item" href="#">12</a>
+          <a class="pagination__item pagination__item--next" href="#"><span class="icon" aria-hidden="true">chevron_right</span><span class="visually-hidden">Pagina successiva</span></a>
+        </nav>
+      </div>
+      <div class="sg-btn-row">
+        <nav class="pagination" aria-label="Paginazione">
+          <a class="pagination__item pagination__item--prev" href="#"><span class="icon" aria-hidden="true">chevron_left</span><span class="visually-hidden">Pagina precedente</span></a>
+          <a class="pagination__item" href="#">1</a>
+          <span class="pagination__item pagination__item--dots" aria-hidden="true">…</span>
+          <a class="pagination__item" href="#">10</a>
+          <a class="pagination__item" href="#">11</a>
+          <span class="pagination__item" aria-current="page">12</span>
+          <span class="pagination__item pagination__item--next" aria-disabled="true"><span class="icon" aria-hidden="true">chevron_right</span><span class="visually-hidden">Pagina successiva</span></span>
+        </nav>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">Utilizzo</h2>
+      <p class="sg-label">Corrente: aria-current="page" · disabilitato: aria-disabled="true" · compatibile con il markup di paginate_links() di WordPress (.page-numbers, .current, .dots)</p>
+<pre class="sg-code">&lt;nav class="pagination" aria-label="Paginazione"&gt;
+  &lt;a class="pagination__item pagination__item--prev" href="?pg=1"&gt;
+    &lt;span class="icon" aria-hidden="true"&gt;chevron_left&lt;/span&gt;
+    &lt;span class="visually-hidden"&gt;Pagina precedente&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a class="pagination__item" href="?pg=1"&gt;1&lt;/a&gt;
+  &lt;span class="pagination__item" aria-current="page"&gt;2&lt;/span&gt;
+  &lt;a class="pagination__item" href="?pg=3"&gt;3&lt;/a&gt;
+  &lt;span class="pagination__item pagination__item--dots" aria-hidden="true"&gt;…&lt;/span&gt;
+  &lt;a class="pagination__item" href="?pg=12"&gt;12&lt;/a&gt;
+  &lt;a class="pagination__item pagination__item--next" href="?pg=3"&gt;
+    &lt;span class="icon" aria-hidden="true"&gt;chevron_right&lt;/span&gt;
+    &lt;span class="visually-hidden"&gt;Pagina successiva&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/nav&gt;</pre>
+    </section>
         </div>
         <div class="sg-group" id="icone">
           <h2 class="sg-group__title title-3">Icone</h2>
