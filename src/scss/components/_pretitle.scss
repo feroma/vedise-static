@@ -2,7 +2,7 @@
 // PreTitle — testo preceduto da un rettangolo allineato alla baseline
 // della prima riga; le righe successive restano allineate al testo.
 //
-// Riferimento Figma: rettangolo 60×10 (sempre), distanza 30 (16 sotto i 1024px).
+// Riferimento Figma: rettangolo 60×10 e distanza 30; sotto i 1024px 40×6 e 14.
 //
 //   <h2 class="pretitle pretitle--lg">Per medici e professionisti sanitari</h2>
 //   <p class="pretitle pretitle--sm">Il fil-rouge dell'eccellenza mondiale</p>
@@ -23,15 +23,17 @@
 
 .pretitle {
   --pretitle-bar: currentColor;
-  --pretitle-bar-w: 60px; // sempre 60×10
-  --pretitle-bar-h: 10px;
-  --pretitle-gap: 16px;   // distanza dal testo: 16 mobile, 30 da lg
+  --pretitle-bar-w: 40px; // 40×6 mobile (Figma), 60×10 da lg
+  --pretitle-bar-h: 6px;
+  --pretitle-gap: 14px;   // distanza dal testo: 14 mobile, 30 da lg
 
   padding-left: calc(var(--pretitle-bar-w) + var(--pretitle-gap));
   text-indent: calc(-1 * (var(--pretitle-bar-w) + var(--pretitle-gap)));
 
   @include mq-up(lg) {
-    --pretitle-gap: 30px; // valore Figma
+    --pretitle-bar-w: 60px; // valori Figma desktop
+    --pretitle-bar-h: 10px;
+    --pretitle-gap: 30px;
   }
 
   &::before {
@@ -94,9 +96,9 @@
 }
 
 // Rientro pari a rettangolo + distanza del PreTitle: allinea titoli, testi e
-// pulsanti al testo del PreTitle che li precede (76px mobile, 90px da lg).
+// pulsanti al testo del PreTitle che li precede (54px mobile, 90px da lg).
 .pretitle-indent {
-  padding-left: 76px;
+  padding-left: 54px;
 
   @include mq-up(lg) {
     padding-left: 90px;

@@ -9,18 +9,22 @@
 //   .section               semplice, senza sfondo
 //   .section--bg           sfondo a tutta larghezza (colore e/o immagine)
 //                          .section--text-left / --text-right: lato del testo,
-//                          l'immagine (.section__media) va sul lato opposto
+//                          l'immagine (.section__media) va sul lato opposto;
+//                          su mobile immagine in alto sfumata e testo sovrapposto
+//                          (come il teaser banner)
 //   .section--panel        pannello con bordo arrotondato: sborda di 70px oltre
-//                          la griglia, padding 90/60, radius 45
+//                          la griglia, padding 90/60, radius 45 (mobile: a filo
+//                          schermo, padding 48/40, radius 30)
 //
 // SFONDO   .section--bg-{white|gray-light|gray|gray-dark|black}
 //          (sui fondi scuri il testo diventa bianco)
 //
-// SOVRAPPOSIZIONE   .section--overlap sulla section che sale di 45px:
+// SOVRAPPOSIZIONE   .section--overlap sulla section che sale di 2 × raggio
+//   (90px, 60px sotto md):
 //   - pannello: copre la parte bassa della section precedente, che riceve
-//     da sola 45px di padding inferiore in più (:has)
-//   - section con sfondo: scorre SOTTO il pannello precedente e riceve 45px
-//     di padding superiore in più, così il testo non viene coperto
+//     da sola lo stesso padding inferiore in più (:has)
+//   - section con sfondo: scorre SOTTO il pannello precedente e riceve lo
+//     stesso padding superiore in più, così il testo non viene coperto
 //
 // LIVELLI   section semplici e con sfondo z-index 0, pannelli z-index 1:
 //           i pannelli stanno sempre sopra; tra pannelli vince l'ordine.
@@ -30,9 +34,12 @@
 :root {
   --section-pad-top: 48px;
   --section-pad-bottom: 40px;
-  --panel-inset: 8px;    // quanto il pannello sborda oltre la griglia
-  --panel-radius: 30px;  // = area sovrapponibile
-  --section-overlap: var(--panel-radius);
+  --panel-inset: var(--margin); // sborda oltre la griglia: mobile a filo schermo, 70 da lg
+  --media-overlap: 32px; // mobile: il testo sale sull'immagine di una riga del PreTitle
+  --panel-radius: 30px;
+  // sovrapposizione = 2 × raggio: la curva inferiore della section sotto resta
+  // nascosta dietro la parte dritta del pannello che la copre
+  --section-overlap: calc(2 * var(--panel-radius));
 
   @include mq-up(md) {
     --panel-radius: 45px;
@@ -48,9 +55,11 @@
 .section {
   --surface-bg: transparent;
 
+  --_pt: var(--section-pad-top);
+
   position: relative;
   z-index: 0;
-  padding-top: var(--section-pad-top);
+  padding-top: var(--_pt);
   padding-bottom: var(--section-pad-bottom);
   background: var(--surface-bg);
 
@@ -80,7 +89,12 @@
 
   // la section con sfondo che sale sotto il pannello precedente
   &--bg.section--overlap {
-    padding-top: calc(var(--section-pad-top) + var(--section-overlap));
+    --_pt: calc(var(--section-pad-top) + var(--section-overlap));
+  }
+
+  // le section con sfondo hanno sempre un colore (serve alla sfumatura)
+  &--bg {
+    --surface-bg: var(--color-bg);
   }
 
   // la section precedente lascia spazio al pannello che la copre
@@ -89,11 +103,13 @@
   }
 
   // --- Immagine delle section con sfondo -------------------------------------------
-  // segnaposto/area immagine sul lato opposto al testo (da lg); sotto lg in alto
+  // Mobile (come il teaser banner): immagine in alto a tutta larghezza, sfumata
+  // in basso verso il colore di fondo; il testo sale di una riga del PreTitle.
+  // Da lg: in absolute sul lato opposto al testo, alta quanto la section.
   &__media {
     position: relative;
-    margin: calc(-1 * var(--section-pad-top)) 0 var(--section-pad-top);
-    aspect-ratio: 4 / 3;
+    margin: calc(-1 * var(--_pt)) 0 calc(-1 * var(--media-overlap));
+    aspect-ratio: 6 / 5;
     overflow: hidden;
 
     img {
@@ -102,13 +118,26 @@
       object-fit: cover;
     }
 
+    &::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0;
+      height: 40%;
+      background: linear-gradient(to bottom, transparent, var(--surface-bg));
+      pointer-events: none;
+    }
+
     @include mq-up(lg) {
       position: absolute;
       top: 0;
       bottom: 0;
-      width: 55%;
+      width: 60%;
       margin: 0;
       aspect-ratio: auto;
+
+      &::after {
+        content: none;
+      }
     }
   }
 

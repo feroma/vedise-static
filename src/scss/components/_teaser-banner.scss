@@ -40,8 +40,8 @@ $tb-entry-width: 36.5%;     // 440 / 1207 nel Figma (90 rientro PreTitle + 350 t
 $tb-entry-min: 440px;       // larghezza Figma: sotto, il titolo 48px andrebbe su 3 righe
 $tb-gap: 30px;
 
-// Rientro del testo = rettangolo + distanza del PreTitle (60+16 mobile, 60+30 desktop)
-$tb-indent-sm: 76px;
+// Rientro del testo = rettangolo + distanza del PreTitle (40+14 mobile, 60+30 desktop)
+$tb-indent-sm: 54px;
 $tb-indent-lg: 90px;
 
 .teaser-banner {

@@ -19,9 +19,19 @@
   margin-bottom: 40px;
 
   @include mq-up(lg) {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+    &,
+    &:not(:has(.section-head__aside > p)) {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
     align-items: end;
     margin-bottom: 60px;
+  }
+
+  // mobile: se a destra c'è solo il pulsante, sta sulla riga del titolo
+  &:not(:has(.section-head__aside > p)) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
   }
 
   > .pretitle {
@@ -29,6 +39,22 @@
 
     @include mq-up(lg) {
       grid-column: 1 / 7;
+    }
+  }
+
+  // mobile: testo e pulsante sotto il titolo, allineati al testo del PreTitle;
+  // il testo dei pulsanti può andare a capo (come nel Figma)
+  @include mq-down(lg) {
+    &__aside:has(> p) {
+      gap: 16px;
+      padding-left: 54px; // = .pretitle-indent mobile
+    }
+
+    .btn {
+      max-width: 130px;
+      padding-left: 13px; // 15 dal bordo (Figma mobile), bordo 2 incluso
+      white-space: normal;
+      text-align: left;
     }
   }
 
@@ -43,7 +69,8 @@
     }
 
     > p {
-      flex: 1 1 260px;
+      flex: 1 1 0;
+      min-width: 0;
     }
 
     @include mq-up(lg) {

@@ -814,9 +814,10 @@ h6, h5, h4, .title-4 {
 :root {
   --section-pad-top: 48px;
   --section-pad-bottom: 40px;
-  --panel-inset: 8px;
+  --panel-inset: var(--margin);
+  --media-overlap: 32px;
   --panel-radius: 30px;
-  --section-overlap: var(--panel-radius);
+  --section-overlap: calc(2 * var(--panel-radius));
 }
 @media (min-width: 768px) {
   :root {
@@ -833,9 +834,10 @@ h6, h5, h4, .title-4 {
 
 .section {
   --surface-bg: transparent;
+  --_pt: var(--section-pad-top);
   position: relative;
   z-index: 0;
-  padding-top: var(--section-pad-top);
+  padding-top: var(--_pt);
   padding-bottom: var(--section-pad-bottom);
   background: var(--surface-bg);
 }
@@ -886,15 +888,18 @@ h6, h5, h4, .title-4 {
   margin-top: calc(-1 * var(--section-overlap));
 }
 .section--bg.section--overlap {
-  padding-top: calc(var(--section-pad-top) + var(--section-overlap));
+  --_pt: calc(var(--section-pad-top) + var(--section-overlap));
+}
+.section--bg {
+  --surface-bg: var(--color-bg);
 }
 .section:has(+ .section--panel.section--overlap) {
   padding-bottom: calc(var(--section-pad-bottom) + var(--section-overlap));
 }
 .section__media {
   position: relative;
-  margin: calc(-1 * var(--section-pad-top)) 0 var(--section-pad-top);
-  aspect-ratio: 4/3;
+  margin: calc(-1 * var(--_pt)) 0 calc(-1 * var(--media-overlap));
+  aspect-ratio: 6/5;
   overflow: hidden;
 }
 .section__media img {
@@ -902,14 +907,25 @@ h6, h5, h4, .title-4 {
   height: 100%;
   object-fit: cover;
 }
+.section__media::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 40%;
+  background: linear-gradient(to bottom, transparent, var(--surface-bg));
+  pointer-events: none;
+}
 @media (min-width: 1024px) {
   .section__media {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 55%;
+    width: 60%;
     margin: 0;
     aspect-ratio: auto;
+  }
+  .section__media::after {
+    content: none;
   }
 }
 @media (min-width: 1024px) {
@@ -1321,14 +1337,16 @@ button.pagination__item {
 
 .pretitle {
   --pretitle-bar: currentColor;
-  --pretitle-bar-w: 60px;
-  --pretitle-bar-h: 10px;
-  --pretitle-gap: 16px;
+  --pretitle-bar-w: 40px;
+  --pretitle-bar-h: 6px;
+  --pretitle-gap: 14px;
   padding-left: calc(var(--pretitle-bar-w) + var(--pretitle-gap));
   text-indent: calc(-1 * (var(--pretitle-bar-w) + var(--pretitle-gap)));
 }
 @media (min-width: 1024px) {
   .pretitle {
+    --pretitle-bar-w: 60px;
+    --pretitle-bar-h: 10px;
     --pretitle-gap: 30px;
   }
 }
@@ -1439,7 +1457,7 @@ button.pagination__item {
 }
 
 .pretitle-indent {
-  padding-left: 76px;
+  padding-left: 54px;
 }
 @media (min-width: 1024px) {
   .pretitle-indent {
@@ -1453,11 +1471,17 @@ button.pagination__item {
   margin-bottom: 40px;
 }
 @media (min-width: 1024px) {
-  .section-head {
+  .section-head, .section-head:not(:has(.section-head__aside > p)) {
     grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .section-head {
     align-items: end;
     margin-bottom: 60px;
   }
+}
+.section-head:not(:has(.section-head__aside > p)) {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
 }
 .section-head > .pretitle {
   margin: 0;
@@ -1465,6 +1489,18 @@ button.pagination__item {
 @media (min-width: 1024px) {
   .section-head > .pretitle {
     grid-column: 1/7;
+  }
+}
+@media (max-width: 1023.98px) {
+  .section-head__aside:has(> p) {
+    gap: 16px;
+    padding-left: 54px;
+  }
+  .section-head .btn {
+    max-width: 130px;
+    padding-left: 13px;
+    white-space: normal;
+    text-align: left;
   }
 }
 .section-head__aside {
@@ -1477,7 +1513,8 @@ button.pagination__item {
   margin: 0;
 }
 .section-head__aside > p {
-  flex: 1 1 260px;
+  flex: 1 1 0;
+  min-width: 0;
 }
 @media (min-width: 1024px) {
   .section-head__aside {
@@ -1743,7 +1780,7 @@ button.pagination__item {
   flex-direction: column;
   align-items: flex-start;
   gap: 30px;
-  padding-left: 76px;
+  padding-left: 54px;
 }
 .teaser-banner__content > * {
   margin: 0;
