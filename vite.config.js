@@ -4,9 +4,10 @@ import { readdirSync, existsSync, readFileSync } from 'node:fs';
 
 const root = import.meta.dirname;
 
-// Percorso pubblico del sito. Lascia '/' se la styleguide viene pubblicata alla
-// radice di un dominio; se va in una sottocartella usa es. '/vedise-static/'.
-const BASE = '/';
+// Percorso pubblico del sito: '/' in locale e alla radice di un dominio.
+// Su GitHub Pages il sito sta in una sottocartella (/vedise-static/): il
+// workflow .github/workflows/pages.yml passa il valore con la variabile BASE_PATH.
+const BASE = process.env.BASE_PATH || '/';
 
 /**
  * Include HTML: nelle pagine scrivi <!-- @include nome.html --> e il contenuto

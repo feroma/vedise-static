@@ -26,8 +26,13 @@ npm run build      # compila l'SCSS e genera la styleguide statica in dist/
 npm run preview    # anteprima della build
 ```
 
-La build va pubblicata alla radice di un dominio. Per una sottocartella,
-imposta `BASE` in `vite.config.js` (es. `'/vedise-static/'`).
+### Pubblicazione su GitHub Pages
+
+A ogni push su `main` il workflow `.github/workflows/pages.yml` compila la
+styleguide e la pubblica su `https://<utente>.github.io/<repo>/`.
+Prima attivazione: su GitHub → Settings → Pages → Source: **GitHub Actions**.
+
+In locale, per provare una build in sottocartella: `BASE_PATH=/vedise-static/ npm run build`.
 
 ## Struttura
 
