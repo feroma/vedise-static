@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.zip
+/_TMP
+/_TEMP
+/_TEMP/*
