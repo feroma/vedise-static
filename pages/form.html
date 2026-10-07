@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <!-- @include head.html -->
+  <title>Form — VEDISE Styleguide</title>
+</head>
+<body>
+  <!-- @include sg-nav.html -->
+
+  <main class="container">
+    <header class="sg-header">
+      <h1>Form</h1>
+      <p>Campi di testo, select, textarea, checkbox e radio. Componente in src/scss/components/_form.scss. Gli stati: grigio (default), nero (hover), rosso (campo attivo).</p>
+    </header>
+
+    <div class="row sg-layout">
+      <aside class="col-4 col-lg-2 sg-layout__aside">
+        <nav class="sg-sidenav" aria-label="Form">
+          <a href="#campi">Campi di testo</a>
+          <a href="#select">Select</a>
+          <a href="#textarea">Textarea</a>
+          <a href="#checkbox">Checkbox</a>
+          <a href="#radio">Radio</a>
+          <a href="#esempio">Esempio</a>
+        </nav>
+      </aside>
+
+      <div class="col-4 col-lg-10">
+
+        <div class="sg-group" id="campi">
+          <h2 class="sg-group__title title-3">Campi di testo</h2>
+          <p class="sg-group__desc">Alto 56, radius 10, icona facoltativa a sinistra (colore del testo al 60%)</p>
+          <section class="sg-section">
+            <h3 class="sg-title">Stati come in Figma</h3>
+            <p class="sg-label">default · .is-hover (= :hover) · .is-focus (= campo attivo, :focus-within)</p>
+            <div class="sg-form-demo">
+              <div class="row sg-grid-gap">
+                <div class="col-4 col-lg-4">
+                  <div class="field">
+                    <div class="field__control">
+                      <span class="icon field__icon" aria-hidden="true">id_card</span>
+                      <input class="field__input" type="text" placeholder="placeholder or value" aria-label="Esempio">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 col-lg-4">
+                  <div class="field">
+                    <div class="field__control is-hover">
+                      <span class="icon field__icon" aria-hidden="true">id_card</span>
+                      <input class="field__input" type="text" placeholder="status on hover" aria-label="Esempio">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 col-lg-4">
+                  <div class="field">
+                    <div class="field__control is-focus">
+                      <span class="icon field__icon" aria-hidden="true">id_card</span>
+                      <input class="field__input" type="text" value="Value" aria-label="Esempio">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Con etichetta, senza icona, messaggi</h3>
+            <p class="sg-label">.field__label · .field__message · .field.is-invalid · disabled</p>
+            <div class="row sg-grid-gap">
+              <div class="col-4 col-lg-6">
+                <div class="field">
+                  <label class="field__label" for="f-email">Email</label>
+                  <div class="field__control">
+                    <span class="icon field__icon" aria-hidden="true">mail</span>
+                    <input class="field__input" id="f-email" type="email" placeholder="nome@ospedale.it">
+                  </div>
+                  <p class="field__message">Ti risponderemo a questo indirizzo.</p>
+                </div>
+              </div>
+              <div class="col-4 col-lg-6">
+                <div class="field">
+                  <label class="field__label" for="f-org">Struttura</label>
+                  <div class="field__control">
+                    <input class="field__input" id="f-org" type="text" placeholder="Senza icona">
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 col-lg-6">
+                <div class="field is-invalid">
+                  <label class="field__label" for="f-tel">Telefono</label>
+                  <div class="field__control">
+                    <span class="icon field__icon" aria-hidden="true">call</span>
+                    <input class="field__input" id="f-tel" type="tel" value="06 123" aria-invalid="true" aria-describedby="f-tel-msg">
+                  </div>
+                  <p class="field__message" id="f-tel-msg">Inserisci un numero di telefono valido.</p>
+                </div>
+              </div>
+              <div class="col-4 col-lg-6">
+                <div class="field">
+                  <label class="field__label" for="f-dis">Disabilitato</label>
+                  <div class="field__control">
+                    <span class="icon field__icon" aria-hidden="true">id_card</span>
+                    <input class="field__input" id="f-dis" type="text" placeholder="Non modificabile" disabled>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Codice</h3>
+<pre class="sg-code">&lt;div class="field"&gt;
+  &lt;label class="field__label" for="nome"&gt;Nome&lt;/label&gt;
+  &lt;div class="field__control"&gt;
+    &lt;span class="icon field__icon" aria-hidden="true"&gt;id_card&lt;/span&gt;
+    &lt;input class="field__input" id="nome" type="text" placeholder="Nome e cognome"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+          </section>
+        </div>
+
+        <div class="sg-group" id="select">
+          <h2 class="sg-group__title title-3">Select</h2>
+          <p class="sg-group__desc">Stesso aspetto dei campi, freccia arrow_drop_down a destra; il menu delle opzioni è quello nativo del browser</p>
+          <section class="sg-section">
+            <div class="row sg-grid-gap">
+              <div class="col-4 col-lg-6">
+                <div class="field">
+                  <label class="field__label" for="f-rep">Reparto</label>
+                  <div class="field__control field__control--select">
+                    <span class="icon field__icon" aria-hidden="true">apartment</span>
+                    <select class="field__input" id="f-rep">
+                      <option value="" selected disabled>Seleziona un reparto</option>
+                      <option>Terapia intensiva</option>
+                      <option>Cardiologia</option>
+                      <option>Neonatologia</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 col-lg-6">
+                <div class="field">
+                  <label class="field__label" for="f-paese">Paese (senza icona)</label>
+                  <div class="field__control field__control--select">
+                    <select class="field__input" id="f-paese">
+                      <option>Italia</option>
+                      <option>Svizzera</option>
+                      <option>San Marino</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Codice</h3>
+<pre class="sg-code">&lt;div class="field__control field__control--select"&gt;
+  &lt;span class="icon field__icon" aria-hidden="true"&gt;apartment&lt;/span&gt;
+  &lt;select class="field__input" id="reparto"&gt;
+    &lt;option value="" selected disabled&gt;Seleziona un reparto&lt;/option&gt;
+    &lt;option&gt;Terapia intensiva&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;</pre>
+          </section>
+        </div>
+
+        <div class="sg-group" id="textarea">
+          <h2 class="sg-group__title title-3">Textarea</h2>
+          <p class="sg-group__desc">Stesso aspetto dei campi, altezza minima 160, ridimensionabile in verticale</p>
+          <section class="sg-section">
+            <div class="row sg-grid-gap">
+              <div class="col-4 col-lg-8">
+                <div class="field">
+                  <label class="field__label" for="f-msg">Messaggio</label>
+                  <div class="field__control field__control--textarea">
+                    <span class="icon field__icon" aria-hidden="true">edit_note</span>
+                    <textarea class="field__input" id="f-msg" placeholder="Scrivi il tuo messaggio"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Codice</h3>
+<pre class="sg-code">&lt;div class="field__control field__control--textarea"&gt;
+  &lt;textarea class="field__input" id="messaggio" placeholder="Scrivi il tuo messaggio"&gt;&lt;/textarea&gt;
+&lt;/div&gt;</pre>
+          </section>
+        </div>
+
+        <div class="sg-group" id="checkbox">
+          <h2 class="sg-group__title title-3">Checkbox</h2>
+          <p class="sg-group__desc">54×54, radius 10 · hover nero con spunta grigia · selezionata rossa con spunta bianca</p>
+          <section class="sg-section">
+            <h3 class="sg-title">Stati come in Figma</h3>
+            <p class="sg-label">default · .is-hover · :checked</p>
+            <div class="sg-form-demo">
+              <div class="choice-group">
+                <input type="checkbox" class="choice__input" aria-label="Default">
+                <input type="checkbox" class="choice__input is-hover" aria-label="Hover">
+                <input type="checkbox" class="choice__input" checked aria-label="Selezionata">
+              </div>
+            </div>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Con testo</h3>
+            <fieldset class="choice-group choice-group--column">
+              <legend>Interessi</legend>
+              <label class="choice"><input type="checkbox" class="choice__input" checked><span class="choice__label">Dispositivi per terapia intensiva</span></label>
+              <label class="choice"><input type="checkbox" class="choice__input"><span class="choice__label">Formazione e corsi</span></label>
+              <label class="choice"><input type="checkbox" class="choice__input" disabled><span class="choice__label">Opzione non disponibile</span></label>
+            </fieldset>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Codice</h3>
+<pre class="sg-code">&lt;label class="choice"&gt;
+  &lt;input type="checkbox" class="choice__input" name="privacy"&gt;
+  &lt;span class="choice__label"&gt;Accetto l'informativa privacy&lt;/span&gt;
+&lt;/label&gt;</pre>
+          </section>
+        </div>
+
+        <div class="sg-group" id="radio">
+          <h2 class="sg-group__title title-3">Radio</h2>
+          <p class="sg-group__desc">24×24 tondo · hover nero con punto grigio · selezionato rosso con punto bianco</p>
+          <section class="sg-section">
+            <h3 class="sg-title">Stati come in Figma</h3>
+            <p class="sg-label">default · .is-hover · :checked</p>
+            <div class="sg-form-demo">
+              <div class="choice-group">
+                <input type="radio" class="choice__input" name="r-demo-a" aria-label="Default">
+                <input type="radio" class="choice__input is-hover" name="r-demo-b" aria-label="Hover">
+                <input type="radio" class="choice__input" name="r-demo-c" checked aria-label="Selezionato">
+              </div>
+            </div>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Con testo</h3>
+            <fieldset class="choice-group">
+              <legend>Sei un</legend>
+              <label class="choice"><input type="radio" class="choice__input" name="ruolo" checked><span class="choice__label">Medico</span></label>
+              <label class="choice"><input type="radio" class="choice__input" name="ruolo"><span class="choice__label">Infermiere</span></label>
+              <label class="choice"><input type="radio" class="choice__input" name="ruolo"><span class="choice__label">Altro</span></label>
+            </fieldset>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Codice</h3>
+<pre class="sg-code">&lt;fieldset class="choice-group"&gt;
+  &lt;legend&gt;Sei un&lt;/legend&gt;
+  &lt;label class="choice"&gt;&lt;input type="radio" class="choice__input" name="ruolo"&gt;&lt;span class="choice__label"&gt;Medico&lt;/span&gt;&lt;/label&gt;
+  &lt;label class="choice"&gt;&lt;input type="radio" class="choice__input" name="ruolo"&gt;&lt;span class="choice__label"&gt;Infermiere&lt;/span&gt;&lt;/label&gt;
+&lt;/fieldset&gt;</pre>
+          </section>
+        </div>
+
+        <div class="sg-group" id="esempio">
+          <h2 class="sg-group__title title-3">Esempio</h2>
+          <p class="sg-group__desc">Modulo di contatto composto con la griglia e i componenti</p>
+          <section class="sg-section">
+            <form class="row sg-grid-gap" action="#" onsubmit="return false">
+              <div class="col-4 col-lg-6">
+                <div class="field">
+                  <label class="field__label" for="c-nome">Nome e cognome</label>
+                  <div class="field__control">
+                    <span class="icon field__icon" aria-hidden="true">id_card</span>
+                    <input class="field__input" id="c-nome" type="text" autocomplete="name" placeholder="Mario Rossi">
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 col-lg-6">
+                <div class="field">
+                  <label class="field__label" for="c-email">Email</label>
+                  <div class="field__control">
+                    <span class="icon field__icon" aria-hidden="true">mail</span>
+                    <input class="field__input" id="c-email" type="email" autocomplete="email" placeholder="nome@ospedale.it">
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 col-lg-6">
+                <div class="field">
+                  <label class="field__label" for="c-tel">Telefono</label>
+                  <div class="field__control">
+                    <span class="icon field__icon" aria-hidden="true">call</span>
+                    <input class="field__input" id="c-tel" type="tel" autocomplete="tel" placeholder="+39">
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 col-lg-6">
+                <div class="field">
+                  <label class="field__label" for="c-rep">Reparto</label>
+                  <div class="field__control field__control--select">
+                    <span class="icon field__icon" aria-hidden="true">apartment</span>
+                    <select class="field__input" id="c-rep">
+                      <option value="" selected disabled>Seleziona</option>
+                      <option>Terapia intensiva</option>
+                      <option>Cardiologia</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 col-lg-12">
+                <div class="field">
+                  <label class="field__label" for="c-msg">Messaggio</label>
+                  <div class="field__control field__control--textarea">
+                    <textarea class="field__input" id="c-msg" placeholder="Come possiamo aiutarti?"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 col-lg-8">
+                <label class="choice"><input type="checkbox" class="choice__input" required><span class="choice__label body-6">Ho letto l'informativa privacy e acconsento al trattamento dei dati</span></label>
+              </div>
+              <div class="col-4 col-lg-4 d-flex justify-content-lg-end align-items-center">
+                <button type="submit" class="btn"><span class="btn__label">Invia</span><span class="icon" aria-hidden="true">arrow_right</span></button>
+              </div>
+            </form>
+          </section>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- @include scripts.html -->
+</body>
+</html>

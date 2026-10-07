@@ -415,6 +415,12 @@ body {
   object-fit: cover;
 }
 
+.sg-form-demo {
+  padding: 32px;
+  border-radius: 10px;
+  background: #9c9c9c;
+}
+
 .sg-btn-row {
   margin-bottom: 32px;
 }

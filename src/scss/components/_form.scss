@@ -1,0 +1,298 @@
+// =============================================================================
+// Form: campi di testo, select, textarea, checkbox, radio
+//
+// Riferimento Figma
+//   Campo:     alto 56, radius 10, padding 15, icona 24 + gap 10, testo 18/26
+//   Stati:     default  fondo #EAEAEA, testo nero
+//              hover    fondo nero, testo bianco
+//              focus    fondo rosso brand, testo bianco (campo attivo)
+//              l'icona è sempre il colore del testo al 60%
+//   Checkbox:  54×54, radius 10 · hover nero con spunta grigia · selezionata rossa con spunta bianca
+//   Radio:     24×24 tondo · hover nero con punto grigio · selezionato rosso con punto bianco
+//
+//   <div class="field">
+//     <label class="field__label" for="nome">Nome</label>
+//     <div class="field__control">
+//       <span class="icon field__icon" aria-hidden="true">id_card</span>
+//       <input class="field__input" id="nome" type="text" placeholder="Nome e cognome">
+//     </div>
+//   </div>
+//
+// Select:    .field__control--select  + <select class="field__input">  (freccia automatica)
+// Textarea:  .field__control--textarea + <textarea class="field__input">
+// Errore:    .field.is-invalid + <p class="field__message">…</p>
+// =============================================================================
+@use '../abstracts' as *;
+
+$field-height: 56px;
+$field-radius: 10px;
+$field-pad: 15px;
+$field-gap: 10px;
+$field-icon: 24px;
+$field-bg: palette('gray-light');
+
+// --- Campo -----------------------------------------------------------------------
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__label {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  &__control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: $field-gap;
+    min-height: $field-height;
+    padding: 0 $field-pad;
+    border-radius: $field-radius;
+    background: $field-bg;
+    color: $color-black;
+    cursor: text;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover,
+    &.is-hover {
+      background: $color-black;
+      color: $color-white;
+    }
+
+    // campo attivo (anche al passaggio del mouse)
+    // .is-hover / .is-focus simulano gli stati (documentazione)
+    &:focus-within,
+    &:focus-within:hover,
+    &.is-focus {
+      background: $color-brand;
+      color: $color-white;
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    font-size: $field-icon;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &__input {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    height: $field-height;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-family: $font-body;
+    font-size: 18px;
+    line-height: 26px;
+    outline: none;
+    appearance: none;
+
+    &::placeholder {
+      color: currentColor;
+      opacity: 0.55;
+    }
+  }
+
+  // --- Select ------------------------------------------------------------------------
+  &__control--select {
+    cursor: pointer;
+
+    .field__input {
+      padding-right: $field-icon + $field-gap;
+      cursor: pointer;
+    }
+
+    // freccia (Material Symbols "arrow_drop_down")
+    &::after {
+      content: 'arrow_drop_down';
+      position: absolute;
+      right: $field-pad;
+      font-family: 'Material Symbols Outlined';
+      font-size: $field-icon;
+      line-height: 1;
+      font-feature-settings: 'liga';
+      pointer-events: none;
+    }
+
+    // il menu delle opzioni è nativo: testo scuro su fondo chiaro
+    option {
+      color: $color-black;
+      background: $color-white;
+    }
+  }
+
+  // --- Textarea ---------------------------------------------------------------------
+  &__control--textarea {
+    align-items: flex-start;
+    padding-block: $field-pad;
+
+    .field__icon {
+      margin-top: 1px;
+    }
+
+    .field__input {
+      height: auto;
+      min-height: 130px;
+      resize: vertical;
+    }
+  }
+
+  // --- Messaggio / errore -----------------------------------------------------------
+  &__message {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    opacity: 0.7;
+  }
+
+  &.is-invalid {
+    .field__control:not(:focus-within) {
+      box-shadow: inset 0 0 0 2px $color-brand;
+    }
+
+    .field__message {
+      color: $color-brand;
+      opacity: 1;
+    }
+  }
+
+  // --- Disabilitato ------------------------------------------------------------------
+  &.is-disabled,
+  &:has(.field__input:disabled) {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+
+// --- Checkbox e radio ------------------------------------------------------------------
+//   <label class="choice">
+//     <input type="checkbox" class="choice__input">   (oppure type="radio")
+//     <span class="choice__label">Testo</span>
+//   </label>
+
+$check-size: 54px;
+$radio-size: 24px;
+
+.choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 18px;
+  line-height: 26px;
+  cursor: pointer;
+
+  &__input {
+    position: relative;
+    flex-shrink: 0;
+    display: grid;
+    place-content: center;
+    margin: 0;
+    background: $field-bg;
+    cursor: pointer;
+    appearance: none;
+    transition: background-color 0.2s ease;
+
+    &::before {
+      content: '';
+      transition: opacity 0.15s ease;
+    }
+
+    // --- checkbox: spunta disegnata in CSS
+    &[type='checkbox'] {
+      width: $check-size;
+      height: $check-size;
+      border-radius: $field-radius;
+
+      &::before {
+        width: 22px;
+        height: 11px;
+        margin-top: -6px;
+        border-bottom: 2px solid currentColor;
+        border-left: 2px solid currentColor;
+        color: transparent;
+        transform: rotate(-45deg);
+      }
+    }
+
+    // --- radio: punto centrale
+    &[type='radio'] {
+      width: $radio-size;
+      height: $radio-size;
+      border-radius: 50%;
+
+      &::before {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: transparent;
+      }
+    }
+
+    // --- stati (.is-hover simula l'hover nella documentazione)
+    &:hover,
+    &.is-hover {
+      background: $color-black;
+
+      &[type='checkbox']::before { color: palette('gray-dark'); }
+      &[type='radio']::before { background: palette('gray-dark'); }
+    }
+
+    &:checked {
+      background: $color-brand;
+
+      &[type='checkbox']::before { color: $color-white; }
+      &[type='radio']::before { background: $color-white; }
+    }
+
+    &:checked:hover {
+      background: palette('red-dark');
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-brand;
+      outline-offset: 3px;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  &:has(.choice__input:disabled) {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+// Gruppo di checkbox/radio con titolo
+.choice-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  > legend {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  &--column {
+    flex-direction: column;
+  }
+}

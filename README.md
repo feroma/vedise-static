@@ -167,6 +167,14 @@ markup di WordPress `paginate_links()` dentro un `.pagination`.
 
 Pulsanti, pills, paginatori e icone sono documentati nella pagina **Componenti**, con menu laterale.
 
+## Form
+
+Pagina **Form**: `.field` > `.field__control` > `.field__input` (input, select con
+`--select`, textarea con `--textarea`), icona facoltativa `.field__icon`.
+Stati: grigio (default), nero (hover), rosso (campo attivo). Checkbox e radio:
+`<label class="choice"><input class="choice__input" type="checkbox|radio">…</label>`.
+Errore: `.field.is-invalid` + `.field__message`.
+
 ## Teaser
 
 Pagina **Teaser** con menu laterale.
