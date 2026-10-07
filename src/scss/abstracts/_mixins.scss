@@ -39,7 +39,7 @@
   }
 }
 
-// Sfondi dei teaser: genera i modificatori &--bg-{nome}.
+// Sfondi di teaser e section: genera i modificatori &--bg-{nome} (var --surface-bg).
 // Sui fondi scuri il testo diventa bianco e i pulsanti .btn--black si invertono.
 $teaser-backgrounds: (
   'white': light,
@@ -49,10 +49,10 @@ $teaser-backgrounds: (
   'black': dark,
 );
 
-@mixin teaser-bg-modifiers {
+@mixin surface-bg-modifiers {
   @each $name, $tone in $teaser-backgrounds {
     &--bg-#{$name} {
-      --teaser-bg: #{palette($name)};
+      --surface-bg: #{palette($name)};
 
       @if $tone == dark {
         color: $color-white;

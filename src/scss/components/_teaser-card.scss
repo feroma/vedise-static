@@ -36,13 +36,13 @@ $tc-gap: 30px;
   --tc-pad-bottom: 70px;
   --tc-media-w: 50%;
   --tc-media-ratio: 2 / 1;
-  --teaser-bg: #{$color-white};
+  --surface-bg: #{$color-white};
 
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   overflow: hidden;
   border-radius: $tc-radius;
-  background: var(--teaser-bg);
+  background: var(--surface-bg);
   isolation: isolate;
 
   // --- Immagine ----------------------------------------------------------------
@@ -92,7 +92,7 @@ $tc-gap: 30px;
   }
 
   // --- Modificatori -------------------------------------------------------------
-  @include teaser-bg-modifiers;
+  @include surface-bg-modifiers;
 
   &--sm {
     --tc-min-h: 300px;

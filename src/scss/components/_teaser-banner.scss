@@ -49,10 +49,10 @@ $tb-indent-lg: 90px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  --teaser-bg: #{palette('gray-light')};
+  --surface-bg: #{palette('gray-light')};
 
   border-radius: $tb-radius;
-  background: var(--teaser-bg);
+  background: var(--surface-bg);
   isolation: isolate; // z-index locali alla card
 
   // --- Immagine ----------------------------------------------------------------
@@ -72,7 +72,7 @@ $tb-indent-lg: 90px;
       position: absolute;
       inset: auto 0 0;
       height: 40%;
-      background: linear-gradient(to bottom, transparent, var(--teaser-bg));
+      background: linear-gradient(to bottom, transparent, var(--surface-bg));
       pointer-events: none;
     }
   }
@@ -106,7 +106,7 @@ $tb-indent-lg: 90px;
   }
 
   // --- Sfondo: --bg-white · --bg-gray-light (default) · --bg-gray · --bg-gray-dark · --bg-black
-  @include teaser-bg-modifiers;
+  @include surface-bg-modifiers;
 
   // --- Desktop -------------------------------------------------------------------
   @include mq-up(lg) {

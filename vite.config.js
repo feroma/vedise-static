@@ -4,17 +4,21 @@ import { readdirSync, existsSync, readFileSync } from 'node:fs';
 
 const root = import.meta.dirname;
 
-// Percorso pubblico del sito: '/' in locale e alla radice di un dominio.
-// Su GitHub Pages il sito sta in una sottocartella (/vedise-static/): il
-// workflow .github/workflows/pages.yml passa il valore con la variabile BASE_PATH.
+// Percorso pubblico del sito:
+//   '/'                in locale e alla radice di un dominio
+//   '/vedise-static/'  su GitHub Pages (lo passa il workflow con BASE_PATH)
+//   './'               percorsi relativi: la build funziona in qualsiasi cartella
+//                      (es. FTP) → npm run build:relative
 const BASE = process.env.BASE_PATH || '/';
 
 /**
  * Include HTML: nelle pagine scrivi <!-- @include nome.html --> e il contenuto
  * di partials/nome.html viene inserito al suo posto (anche annidato).
- * Nei partial e nelle pagine %BASE_URL% viene sostituito con BASE.
+ * Nei partial e nelle pagine %BASE_URL% viene sostituito con la base del sito;
+ * con base relativa ('./') diventa il percorso verso la radice ('./' o '../').
  */
 function htmlIncludes() {
+    let base = BASE;
     const re = /<!--\s*@include\s+([\w./-]+)\s*-->/g;
     const inject = (html, depth = 0) =>
         depth > 5
@@ -25,9 +29,20 @@ function htmlIncludes() {
 
     return {
         name: 'html-includes',
+        configResolved(config) {
+            base = config.base;
+        },
         transformIndexHtml: {
             order: 'pre',
-            handler: (html) => inject(html).replaceAll('%BASE_URL%', BASE),
+            handler: (html, ctx) => {
+                let prefix = base;
+                if (!base.startsWith('/')) {
+                    // base relativa: risale di un livello per ogni cartella della pagina
+                    const depth = ctx.path.replace(/^\//, '').split('/').length - 1;
+                    prefix = depth ? '../'.repeat(depth) : './';
+                }
+                return inject(html).replaceAll('%BASE_URL%', prefix);
+            },
         },
         // Modificando un partial il browser si ricarica
         handleHotUpdate({ file, server }) {

@@ -332,3 +332,12 @@ document.querySelectorAll('.sg-bg-switch').forEach((sw) => {
         sw.querySelectorAll('[data-bg]').forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
     });
 });
+
+// Prototipi: tasto "S" mostra tipo e limiti di ogni section
+if (document.querySelector('.section[data-sg-label]')) {
+    document.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() !== 's' || e.ctrlKey || e.metaKey || e.altKey) return;
+        if (e.target.closest('input, textarea, select, [contenteditable]')) return;
+        document.body.classList.toggle('sg-show-sections');
+    });
+}

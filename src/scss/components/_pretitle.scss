@@ -92,3 +92,13 @@
   &--bar-white { --pretitle-bar: #{$color-white}; }
   &--bar-black { --pretitle-bar: #{$color-black}; }
 }
+
+// Rientro pari a rettangolo + distanza del PreTitle: allinea titoli, testi e
+// pulsanti al testo del PreTitle che li precede (76px mobile, 90px da lg).
+.pretitle-indent {
+  padding-left: 76px;
+
+  @include mq-up(lg) {
+    padding-left: 90px;
+  }
+}

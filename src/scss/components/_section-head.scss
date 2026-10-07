@@ -1,0 +1,60 @@
+// =============================================================================
+// Intestazione di section: titolo con rettangolo a sinistra, a destra testo
+// introduttivo e/o pulsante (allineati in basso). Da lg su 12 colonne:
+// titolo 1–5, lato destro 7–12.
+//
+//   <div class="section-head">
+//     <h2 class="pretitle pretitle--lg">Per medici e professionisti sanitari</h2>
+//     <div class="section-head__aside">
+//       <p class="body-6">…</p>
+//       <a class="btn btn--outline btn--black" href="#">…</a>
+//     </div>
+//   </div>
+// =============================================================================
+@use '../abstracts' as *;
+
+.section-head {
+  display: grid;
+  gap: 24px var(--gutter);
+  margin-bottom: 40px;
+
+  @include mq-up(lg) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: end;
+    margin-bottom: 60px;
+  }
+
+  > .pretitle {
+    margin: 0;
+
+    @include mq-up(lg) {
+      grid-column: 1 / 7;
+    }
+  }
+
+  &__aside {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px 30px;
+
+    > * {
+      margin: 0;
+    }
+
+    > p {
+      flex: 1 1 260px;
+    }
+
+    @include mq-up(lg) {
+      grid-column: 7 / 13;
+      justify-content: flex-end;
+      // senza testo: il pulsante si allinea al titolo
+      align-self: center;
+
+      &:has(> p) {
+        align-self: end;
+      }
+    }
+  }
+}

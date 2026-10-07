@@ -8,7 +8,8 @@
     "build": "npm run scss:build && vite build",
     "preview": "vite preview",
     "scss": "sass --watch src/scss:src/css --style=expanded",
-    "scss:build": "sass src/scss:src/css --style=expanded --no-source-map"
+    "scss:build": "sass src/scss:src/css --style=expanded --no-source-map",
+    "build:relative": "npm run scss:build && vite build --base=./"
   },
   "devDependencies": {
     "sass": "^1.105.1",

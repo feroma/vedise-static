@@ -464,6 +464,69 @@ body {
   background: #9c9c9c;
 }
 
+// --- Prototipi di pagina ------------------------------------------------------------
+.sg-placeholder {
+  display: grid;
+  place-content: center;
+  min-height: var(--h, 220px);
+  padding: 16px;
+  border: 2px dashed rgba(0, 0, 0, 0.18);
+  border-radius: var(--radius-card);
+  background: repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.03) 0 12px, transparent 12px 24px);
+  color: rgba(0, 0, 0, 0.45);
+  font: 13px/1.4 $sg-mono;
+  text-align: center;
+
+  &--dark {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 0 12px, transparent 12px 24px);
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  // riempie il contenitore (immagini delle section con sfondo)
+  &--fill {
+    height: 100%;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    background-color: #dfe3e8;
+  }
+
+  &--inline {
+    min-height: 0;
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+
+  &--footer {
+    margin: 60px var(--margin) 0;
+  }
+}
+
+.sg-center {
+  justify-content: center;
+  margin-top: 40px;
+}
+
+// Tasto S: mostra tipo e limiti di ogni section
+.sg-show-sections .section {
+  outline: 2px dashed $sg-accent;
+  outline-offset: -2px;
+
+  &::after {
+    content: attr(data-sg-label);
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 5;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: $sg-accent;
+    color: #fff;
+    font: 11px/1.4 $sg-mono;
+  }
+}
+
 // --- Pulsanti --------------------------------------------------------------------
 .sg-btn-row {
   margin-bottom: 32px;

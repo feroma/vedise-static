@@ -1,0 +1,164 @@
+// =============================================================================
+// Section — i blocchi che compongono le pagine
+//
+//   <section class="section section--panel section--bg-gray-dark section--overlap">
+//     <div class="section__inner"> …righe della griglia… </div>
+//   </section>
+//
+// TIPI
+//   .section               semplice, senza sfondo
+//   .section--bg           sfondo a tutta larghezza (colore e/o immagine)
+//                          .section--text-left / --text-right: lato del testo,
+//                          l'immagine (.section__media) va sul lato opposto
+//   .section--panel        pannello con bordo arrotondato: sborda di 70px oltre
+//                          la griglia, padding 90/60, radius 45
+//
+// SFONDO   .section--bg-{white|gray-light|gray|gray-dark|black}
+//          (sui fondi scuri il testo diventa bianco)
+//
+// SOVRAPPOSIZIONE   .section--overlap sulla section che sale di 45px:
+//   - pannello: copre la parte bassa della section precedente, che riceve
+//     da sola 45px di padding inferiore in più (:has)
+//   - section con sfondo: scorre SOTTO il pannello precedente e riceve 45px
+//     di padding superiore in più, così il testo non viene coperto
+//
+// LIVELLI   section semplici e con sfondo z-index 0, pannelli z-index 1:
+//           i pannelli stanno sempre sopra; tra pannelli vince l'ordine.
+// =============================================================================
+@use '../abstracts' as *;
+
+:root {
+  --section-pad-top: 48px;
+  --section-pad-bottom: 40px;
+  --panel-inset: 8px;    // quanto il pannello sborda oltre la griglia
+  --panel-radius: 30px;  // = area sovrapponibile
+  --section-overlap: var(--panel-radius);
+
+  @include mq-up(md) {
+    --panel-radius: 45px;
+  }
+
+  @include mq-up(lg) {
+    --section-pad-top: 90px; // valori Figma
+    --section-pad-bottom: 60px;
+    --panel-inset: 70px;
+  }
+}
+
+.section {
+  --surface-bg: transparent;
+
+  position: relative;
+  z-index: 0;
+  padding-top: var(--section-pad-top);
+  padding-bottom: var(--section-pad-bottom);
+  background: var(--surface-bg);
+
+  @include surface-bg-modifiers;
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    padding-inline: var(--margin);
+  }
+
+  // --- Pannello con bordo -------------------------------------------------------
+  &--panel {
+    z-index: 1;
+    margin-inline: calc(var(--margin) - var(--panel-inset));
+    border-radius: var(--panel-radius);
+
+    .section__inner {
+      padding-inline: var(--panel-inset); // il contenuto resta sulla griglia
+    }
+  }
+
+  // --- Sovrapposizione ------------------------------------------------------------
+  &--overlap {
+    margin-top: calc(-1 * var(--section-overlap));
+  }
+
+  // la section con sfondo che sale sotto il pannello precedente
+  &--bg.section--overlap {
+    padding-top: calc(var(--section-pad-top) + var(--section-overlap));
+  }
+
+  // la section precedente lascia spazio al pannello che la copre
+  &:has(+ .section--panel.section--overlap) {
+    padding-bottom: calc(var(--section-pad-bottom) + var(--section-overlap));
+  }
+
+  // --- Immagine delle section con sfondo -------------------------------------------
+  // segnaposto/area immagine sul lato opposto al testo (da lg); sotto lg in alto
+  &__media {
+    position: relative;
+    margin: calc(-1 * var(--section-pad-top)) 0 var(--section-pad-top);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @include mq-up(lg) {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 55%;
+      margin: 0;
+      aspect-ratio: auto;
+    }
+  }
+
+  &--text-left &__media {
+    @include mq-up(lg) {
+      right: 0;
+    }
+  }
+
+  &--text-right &__media {
+    @include mq-up(lg) {
+      left: 0;
+    }
+  }
+}
+
+// Testo a destra: colonna di testo spinta sul lato destro della griglia
+.section--text-right .section__text {
+  @include mq-up(lg) {
+    margin-left: auto;
+  }
+}
+
+// Colonna di testo delle section con sfondo (5 colonne su 12 da lg)
+.section__text {
+  @include mq-up(lg) {
+    width: calc((100% + var(--gutter)) * 5 / 12 - var(--gutter));
+  }
+}
+
+// Hero: più aria in alto (spazio per l'header) e altezza minima da lg
+.section--hero {
+  @include mq-up(lg) {
+    min-height: 760px;
+    padding-top: 160px;
+  }
+}
+
+// Contenuto impilato con gap verticale 30 (PreTitle + titolo + testo + pulsante)
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+
+  > * {
+    margin: 0;
+  }
+
+  > .pretitle {
+    align-self: stretch;
+  }
+}

@@ -26,6 +26,17 @@ npm run build      # compila l'SCSS e genera la styleguide statica in dist/
 npm run preview    # anteprima della build
 ```
 
+### Pubblicazione su FTP (o qualsiasi spazio web)
+
+```bash
+npm run build:relative
+```
+
+Genera `dist/` con percorsi relativi: carica **il contenuto** di `dist/` in una
+cartella qualsiasi dello spazio FTP (es. `/preview/vedise/`) e apri l'indirizzo
+corrispondente. Va servito da un web server: aprendo i file con doppio clic
+(file://) gli script non partono.
+
 ### Pubblicazione su GitHub Pages
 
 A ogni push su `main` il workflow `.github/workflows/pages.yml` compila la
@@ -171,6 +182,26 @@ Frecce `.pagination__item--prev/--next` con icone `chevron_left/right`, salti
 markup di WordPress `paginate_links()` dentro un `.pagination`.
 
 Pulsanti, pills, paginatori e icone sono documentati nella pagina **Componenti**, con menu laterale.
+
+## Section (impaginazione delle pagine)
+
+Prototipo: pagina **Home** (tasto **S** mostra tipo e limiti di ogni section).
+
+```html
+<section class="section section--panel section--bg-gray-dark section--overlap">
+  <div class="section__inner"> …griglia… </div>
+</section>
+```
+
+- `.section` semplice · `.section--bg` sfondo a tutta larghezza (`--text-left/right`,
+  immagine in `.section__media`) · `.section--panel` pannello: sborda 70px oltre la
+  griglia, padding 90/60, radius 45.
+- Sfondi: `.section--bg-{white|gray-light|gray|gray-dark|black}`.
+- `.section--overlap` sulla section che sale di 45px: un pannello copre la precedente
+  (che riceve da sola +45px di padding sotto); una section con sfondo scorre sotto.
+- Livelli: pannelli sempre sopra (z-index 1), le altre sotto (0).
+- `.section-head`: titolo con rettangolo + testo/pulsante a destra.
+- `.pretitle-indent`: allinea il contenuto al testo del PreTitle; `.stack`: gap 30.
 
 ## Form
 

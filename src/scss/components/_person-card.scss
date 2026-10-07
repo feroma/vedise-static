@@ -26,7 +26,7 @@
 @use '../abstracts' as *;
 
 .person-card {
-  --teaser-bg: #{palette('gray-light')};
+  --surface-bg: #{palette('gray-light')};
   --pc-pad: 24px;
   --pc-gap: 20px;
   --pc-avatar: 100px;
@@ -37,7 +37,7 @@
   padding: var(--pc-pad);
   overflow: hidden;
   border-radius: var(--radius-card); // 15 sotto 768, 30 da 768
-  background: var(--teaser-bg);
+  background: var(--surface-bg);
 
   @include mq-up(md) {
     --pc-pad: 30px;
@@ -50,7 +50,7 @@
     min-height: 590px;
   }
 
-  @include teaser-bg-modifiers;
+  @include surface-bg-modifiers;
 
   // --- Testata ----------------------------------------------------------------------
   &__head {
