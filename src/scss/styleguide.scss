@@ -503,6 +503,29 @@ body {
   }
 }
 
+.sg-placeholder--photo {
+  background-color: #6b7a8a;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sg-proto-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 80px var(--margin) 40px;
+  color: $sg-muted;
+  font: 12px/1.4 $sg-mono;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-top: 1px dashed $sg-line;
+  }
+}
+
 .sg-center {
   justify-content: center;
   margin-top: 40px;

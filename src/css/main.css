@@ -920,7 +920,7 @@ h6, h5, h4, .title-4 {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 60%;
+    width: var(--section-media-w, 60%);
     margin: 0;
     aspect-ratio: auto;
   }
@@ -940,15 +940,40 @@ h6, h5, h4, .title-4 {
 }
 
 @media (min-width: 1024px) {
-  .section--text-right .section__text {
-    margin-left: auto;
+  .section--text-right .section__inner > .row {
+    justify-content: flex-end;
   }
 }
 
+.section--media-cover {
+  display: flex;
+  flex-direction: column;
+}
 @media (min-width: 1024px) {
-  .section__text {
-    width: calc((100% + var(--gutter)) * 5 / 12 - var(--gutter));
+  .section--media-cover {
+    min-height: 640px;
   }
+}
+.section--media-cover .section__inner {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+}
+.section--media-cover .section__media {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  margin: 0;
+  aspect-ratio: auto;
+  border-radius: inherit;
+}
+.section--media-cover .section__media::after {
+  content: "";
+  inset: 0;
+  height: auto;
+  background: linear-gradient(100deg, rgba(0, 0, 0, 0.6) 20%, rgba(0, 0, 0, 0.25));
 }
 
 @media (min-width: 1024px) {
@@ -1336,7 +1361,7 @@ button.pagination__item {
 }
 
 .pretitle {
-  --pretitle-bar: currentColor;
+  --pretitle-bar: #cd161d;
   --pretitle-bar-w: 40px;
   --pretitle-bar-h: 6px;
   --pretitle-gap: 14px;
@@ -1392,7 +1417,6 @@ button.pagination__item {
   font-weight: 700;
 }
 .pretitle--sm {
-  --pretitle-bar: #cd161d;
   font-family: "DM Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   font-size: 16px;
   line-height: 2;

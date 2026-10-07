@@ -454,6 +454,27 @@ body {
   margin: 60px var(--margin) 0;
 }
 
+.sg-placeholder--photo {
+  background-color: #6b7a8a;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sg-proto-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 80px var(--margin) 40px;
+  color: #8a8a8a;
+  font: 12px/1.4 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.sg-proto-divider::before, .sg-proto-divider::after {
+  content: "";
+  flex: 1;
+  border-top: 1px dashed #e2e2e2;
+}
+
 .sg-center {
   justify-content: center;
   margin-top: 40px;
@@ -639,3 +660,5 @@ body {
     display: block;
   }
 }
+
+/*# sourceMappingURL=styleguide.css.map */

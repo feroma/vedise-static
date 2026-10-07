@@ -10,8 +10,12 @@
 //   .section--bg           sfondo a tutta larghezza (colore e/o immagine)
 //                          .section--text-left / --text-right: lato del testo,
 //                          l'immagine (.section__media) va sul lato opposto;
+//                          larghezza del testo con le classi della griglia
+//                          (row > col-lg-N.section__text);
 //                          su mobile immagine in alto sfumata e testo sovrapposto
 //                          (come il teaser banner)
+//   .section--media-cover  immagine su tutta la section con velatura scura
+//                          (es. hero di Chi siamo, anche su un pannello)
 //   .section--panel        pannello con bordo arrotondato: sborda di 70px oltre
 //                          la griglia, padding 90/60, radius 45 (mobile: a filo
 //                          schermo, padding 48/40, radius 30)
@@ -131,7 +135,7 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      width: 60%;
+      width: var(--section-media-w, 60%); // sovrascrivibile: style="--section-media-w: 50%"
       margin: 0;
       aspect-ratio: auto;
 
@@ -154,17 +158,50 @@
   }
 }
 
-// Testo a destra: colonna di testo spinta sul lato destro della griglia
-.section--text-right .section__text {
+// Colonna di testo: larghezza decisa nel markup con le classi della griglia
+// (es. .col-4 .col-lg-5), così in futuro si potrà impostare dal backend.
+// Con --text-right la riga si allinea a destra: non servono offset.
+.section--text-right .section__inner > .row {
   @include mq-up(lg) {
-    margin-left: auto;
+    justify-content: flex-end;
   }
 }
 
-// Colonna di testo delle section con sfondo (5 colonne su 12 da lg)
-.section__text {
+// --- Immagine a tutta section (sfondo fotografico) --------------------------------
+// .section--media-cover: l'immagine copre l'intera section (anche un pannello,
+// seguendone gli angoli) con una velatura scura per la leggibilità del testo.
+// Da usare con uno sfondo scuro (--bg-black / --bg-gray-dark) per il testo bianco.
+.section--media-cover {
+  display: flex;
+  flex-direction: column;
+
   @include mq-up(lg) {
-    width: calc((100% + var(--gutter)) * 5 / 12 - var(--gutter));
+    min-height: 640px;
+  }
+
+  // il primo blocco resta in alto, l'ultimo va in fondo
+  .section__inner {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .section__media {
+    position: absolute;
+    inset: 0;
+    width: auto;
+    margin: 0;
+    aspect-ratio: auto;
+    border-radius: inherit;
+
+    &::after {
+      content: '';
+      inset: 0;
+      height: auto;
+      background: linear-gradient(100deg, rgba(0, 0, 0, 0.6) 20%, rgba(0, 0, 0, 0.25));
+    }
   }
 }
 

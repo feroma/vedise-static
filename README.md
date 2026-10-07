@@ -153,7 +153,7 @@ Pieno anche con `.is-active` o `aria-pressed="true"` (filtri).
 ```
 
 Rettangolo 60×10 (40×6 sotto i 1024px) allineato alla baseline della prima riga; `.pretitle--no-bar` solo testo, `.pretitle--bar-only` solo rettangolo. `--lg` = body-1 bold,
-`--sm` = body-6 light maiuscolo spaziato al 50%. Colore rettangolo: `.pretitle--bar-*`.
+`--sm` = body-6 light maiuscolo spaziato al 50%. Rettangolo sempre rosso; bianco con `.pretitle--bar-white`.
 Pesi disponibili come utility: `.fw-100` … `.fw-900`.
 
 ### Paginatore
@@ -197,6 +197,11 @@ Prototipo: pagina **Home** (tasto **S** mostra tipo e limiti di ogni section).
   immagine in `.section__media`; su mobile immagine in alto sfumata con il testo
   sovrapposto, come il teaser banner) · `.section--panel` pannello: sborda 70px oltre la
   griglia, padding 90/60, radius 45 (mobile: a filo schermo, 48/40, radius 30).
+- `.section--media-cover`: immagine su tutta la section (anche un pannello) con
+  velatura scura; il primo blocco resta in alto, l'ultimo va in fondo.
+- Colonna di testo delle section con sfondo: classi della griglia
+  (`.row > .col-4.col-lg-N.section__text`); con `--text-right` la riga si allinea a
+  destra da sola, senza offset. Larghezza immagine: `style="--section-media-w: 50%"`.
 - Sfondi: `.section--bg-{white|gray-light|gray|gray-dark|black}`.
 - `.section--overlap` sulla section che sale di 2 × raggio (90px, 60px su mobile): un
   pannello copre la precedente (che riceve da sola lo stesso padding sotto); una

@@ -8,10 +8,11 @@
 //   <p class="pretitle pretitle--sm">Il fil-rouge dell'eccellenza mondiale</p>
 //
 // Stili di testo (corrispondenze con la scala tipografica):
-//   .pretitle--lg  = .body-1 + bold 700               → rettangolo del colore del testo
+//   .pretitle--lg  = .body-1 + bold 700
 //   .pretitle--sm  = .body-6 + light 300 + .text-uppercase + .ls-wide,
-//                    testo al 50%                     → rettangolo rosso brand
-// Colore del rettangolo: .pretitle--bar-brand · --bar-current · --bar-white · --bar-black
+//                    testo al 50%
+// Rettangolo: sempre rosso brand. Altri colori: .pretitle--bar-white (es. su fondi
+//             scuri, se previsto dal design) · --bar-black · --bar-current
 //                        (o la custom property --pretitle-bar)
 // Varianti: .pretitle--no-bar (solo testo) · .pretitle--bar-only (solo rettangolo)
 //
@@ -22,7 +23,7 @@
 @use '../abstracts' as *;
 
 .pretitle {
-  --pretitle-bar: currentColor;
+  --pretitle-bar: #{$color-brand}; // rosso brand, sempre (salvo --bar-white ecc.)
   --pretitle-bar-w: 40px; // 40×6 mobile (Figma), 60×10 da lg
   --pretitle-bar-h: 6px;
   --pretitle-gap: 14px;   // distanza dal testo: 14 mobile, 30 da lg
@@ -54,8 +55,6 @@
   }
 
   &--sm {
-    --pretitle-bar: #{$color-brand};
-
     @include text-style('body-6');
     font-weight: 300;
     letter-spacing: 0.1em; // = .ls-wide (1.6px su 16px)
