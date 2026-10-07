@@ -10,47 +10,212 @@
   <main class="container">
     <header class="sg-header">
       <h1>Teaser</h1>
-      <p>Anteprime di contenuto. Struttura BEM di partenza (src/scss/components/_teaser.scss, partials/teaser.html): lo stile va applicato secondo il progetto grafico.</p>
+      <p>Anteprime di contenuto che rimandano a una pagina di dettaglio. Diventeranno template part del tema WordPress. Le immagini di prova sono in src/img/.</p>
     </header>
 
-    <section class="sg-section">
-      <h2 class="sg-title">Teaser in griglia</h2>
-      <p class="sg-label">.col-4 .col-lg-4 ×3 &gt; .teaser</p>
-      <div class="row sg-grid-gap">
-        <div class="col-4 col-lg-4"><!-- @include teaser.html --></div>
-        <div class="col-4 col-lg-4"><!-- @include teaser.html --></div>
-        <div class="col-4 col-lg-4"><!-- @include teaser.html --></div>
-      </div>
-    </section>
+    <div class="row sg-layout">
+      <aside class="col-4 col-lg-2 sg-layout__aside">
+        <nav class="sg-sidenav" aria-label="Teaser">
+          <a href="#prodotto">Prodotto</a>
+          <a href="#news">News</a>
+          <a href="#contenuto">Contenuto</a>
+          <a href="#catalogo">Catalogo</a>
+          <a href="#persona">Persona</a>
+          <a href="#opzioni">Opzioni</a>
+        </nav>
+      </aside>
 
-    <section class="sg-section">
-      <h2 class="sg-title">Teaser compatti</h2>
-      <p class="sg-label">.col-2 .col-lg-3 ×4 &gt; .teaser</p>
-      <div class="row sg-grid-gap">
-        <div class="col-2 col-lg-3"><!-- @include teaser.html --></div>
-        <div class="col-2 col-lg-3"><!-- @include teaser.html --></div>
-        <div class="col-2 col-lg-3"><!-- @include teaser.html --></div>
-        <div class="col-2 col-lg-3"><!-- @include teaser.html --></div>
-      </div>
-    </section>
-
-    <section class="sg-section">
-      <h2 class="sg-title">Teaser orizzontale</h2>
-      <p class="sg-label">.teaser.teaser--horizontal</p>
-      <div class="row">
-        <div class="col-4 col-lg-10 offset-lg-1">
-          <article class="teaser teaser--horizontal">
-            <a class="teaser__media" href="#"></a>
-            <div>
-              <p class="teaser__eyebrow body-6 ls-wide text-uppercase">In evidenza</p>
-              <h3 class="teaser__title title-3">Titolo del teaser in evidenza</h3>
-              <p class="teaser__text">Testo introduttivo più ampio per la variante orizzontale, pensata per i contenuti in primo piano.</p>
-              <a class="teaser__link" href="#">Scopri di più</a>
+      <div class="col-4 col-lg-10">
+        <div class="sg-group" id="prodotto">
+          <h2 class="sg-group__title title-3">Prodotto</h2>
+          <p class="sg-group__desc">Immagine in absolute ancorata a destra, il testo ci passa sopra; su mobile immagine in alto con sfumatura e PreTitle sovrapposto · components/_teaser-product.scss</p>
+          <section class="sg-section">
+            <p class="sg-label">.teaser-product · entry max(36.5%, 440px), padding 80/70</p>
+            <div class="sg-bg-switch pill-group" role="group" aria-label="Sfondo"><button type="button" class="pill pill--sm pill--dark" data-bg="white" aria-pressed="false">Bianco</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray-light" aria-pressed="true">Grigio chiaro</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray" aria-pressed="false">Grigio</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray-dark" aria-pressed="false">Grigio scuro</button><button type="button" class="pill pill--sm pill--dark" data-bg="black" aria-pressed="false">Nero</button></div>
+            <div class="row">
+              <div class="col-4 col-lg-12">
+                <!-- @include teaser-product.html -->
+              </div>
             </div>
-          </article>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Codice</h3>
+            <p class="sg-label">Immagini: _dt da 1024px, _mob sotto (via &lt;picture&gt;)</p>
+<pre class="sg-code">&lt;article class="teaser-product"&gt;
+  &lt;picture class="teaser-product__media"&gt;
+    &lt;source media="(min-width: 1024px)" srcset="/src/img/product_teaser_image_dt.png"&gt;
+    &lt;img src="/src/img/product_teaser_image_mob.png" alt=""&gt;
+  &lt;/picture&gt;
+  &lt;div class="teaser-product__entry"&gt;
+    &lt;p class="pretitle pretitle--sm"&gt;Dia-Bruxo&lt;/p&gt;
+    &lt;div class="teaser-product__content"&gt;
+      &lt;h3 class="title-4 fw-300"&gt;The Diagnosis of Bruxism&lt;/h3&gt;
+      &lt;p class="body-5"&gt;The essential mini electromyograph for your clinical practice.&lt;/p&gt;
+      &lt;a class="btn btn--outline btn--black" href="#"&gt;
+        &lt;span class="btn__label"&gt;Read more…&lt;/span&gt;
+        &lt;span class="icon" aria-hidden="true"&gt;arrow_right&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</pre>
+          </section>
+        </div>
+        <div class="sg-group" id="news">
+          <h2 class="sg-group__title title-3">News</h2>
+          <p class="sg-group__desc">Sfondo grigio, data, titolo e pulsante; su mobile immagine sotto il testo · components/_teaser-card.scss</p>
+          <section class="sg-section">
+            <p class="sg-label">.teaser-card --bg-gray-light --sm --media-narrow --media-end</p>
+            <div class="sg-bg-switch pill-group" role="group" aria-label="Sfondo"><button type="button" class="pill pill--sm pill--dark" data-bg="white" aria-pressed="false">Bianco</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray-light" aria-pressed="true">Grigio chiaro</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray" aria-pressed="false">Grigio</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray-dark" aria-pressed="false">Grigio scuro</button><button type="button" class="pill pill--sm pill--dark" data-bg="black" aria-pressed="false">Nero</button></div>
+            <div class="row">
+              <div class="col-4 col-lg-6">
+                <!-- @include teaser-news.html -->
+              </div>
+            </div>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Codice</h3>
+            <p class="sg-label">Data: .pretitle--sm.pretitle--no-bar · titolo: .body-3.fw-300</p>
+<pre class="sg-code">&lt;article class="teaser-card teaser-card--bg-gray-light teaser-card--sm teaser-card--media-narrow teaser-card--media-end"&gt;
+  &lt;div class="teaser-card__media"&gt;
+    &lt;img src="/src/img/teaser_ref_1.png" alt="" class="object-center-center"&gt;
+  &lt;/div&gt;
+  &lt;div class="teaser-card__body"&gt;
+    &lt;p class="pretitle pretitle--sm pretitle--no-bar"&gt;&lt;time datetime="2026-03-12"&gt;12.03.26&lt;/time&gt;&lt;/p&gt;
+    &lt;h3 class="body-3 fw-300"&gt;New partnership with Tuoren Medical&lt;/h3&gt;
+    &lt;a class="btn" href="#"&gt;
+      &lt;span class="btn__label"&gt;Leggi&lt;/span&gt;
+      &lt;span class="icon" aria-hidden="true"&gt;arrow_right&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</pre>
+          </section>
+        </div>
+        <div class="sg-group" id="contenuto">
+          <h2 class="sg-group__title title-3">Contenuto</h2>
+          <p class="sg-group__desc">Rettangolo + titolo in alto, testo in basso · components/_teaser-card.scss</p>
+          <section class="sg-section">
+            <p class="sg-label">.teaser-card --lg --spread</p>
+            <div class="sg-bg-switch pill-group" role="group" aria-label="Sfondo"><button type="button" class="pill pill--sm pill--dark" data-bg="white" aria-pressed="true">Bianco</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray-light" aria-pressed="false">Grigio chiaro</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray" aria-pressed="false">Grigio</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray-dark" aria-pressed="false">Grigio scuro</button><button type="button" class="pill pill--sm pill--dark" data-bg="black" aria-pressed="false">Nero</button></div>
+            <div class="row">
+              <div class="col-4 col-lg-8">
+                <!-- @include teaser-content.html -->
+              </div>
+            </div>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Codice</h3>
+            <p class="sg-label">Rettangolo: .pretitle--bar-only · rettangolo e titolo restano uniti in .teaser-card__group</p>
+<pre class="sg-code">&lt;article class="teaser-card teaser-card--lg teaser-card--spread"&gt;
+  &lt;div class="teaser-card__media"&gt;
+    &lt;img src="/src/img/teaser_ref_1.png" alt="" class="object-center-center"&gt;
+  &lt;/div&gt;
+  &lt;div class="teaser-card__body"&gt;
+    &lt;div class="teaser-card__group"&gt;
+      &lt;span class="pretitle pretitle--bar-only pretitle--bar-brand" aria-hidden="true"&gt;&lt;/span&gt;
+      &lt;h3 class="title-4 fw-300"&gt;Curabitur nec nisi turpis&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;p class="body-5"&gt;Morbi vitae viverra tellus. In sollicitudin eros quis ante imperdiet, quis dignissim odio finibus. Quisque ut nibh non justo maximus sagittis in vel leo.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</pre>
+          </section>
+        </div>
+        <div class="sg-group" id="catalogo">
+          <h2 class="sg-group__title title-3">Catalogo</h2>
+          <p class="sg-group__desc">Etichetta, titolo, testo e pulsante centrati in verticale · components/_teaser-card.scss</p>
+          <section class="sg-section">
+            <p class="sg-label">.teaser-card (default: bianco, min 480, padding 80/70, immagine 50%)</p>
+            <div class="sg-bg-switch pill-group" role="group" aria-label="Sfondo"><button type="button" class="pill pill--sm pill--dark" data-bg="white" aria-pressed="true">Bianco</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray-light" aria-pressed="false">Grigio chiaro</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray" aria-pressed="false">Grigio</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray-dark" aria-pressed="false">Grigio scuro</button><button type="button" class="pill pill--sm pill--dark" data-bg="black" aria-pressed="false">Nero</button></div>
+            <div class="row">
+              <div class="col-4 col-lg-7">
+                <!-- @include teaser-catalog.html -->
+              </div>
+            </div>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Codice</h3>
+            <p class="sg-label">Etichetta: .pretitle--sm.pretitle--no-bar · titolo: .title-4.fw-300 · testo: .body-5</p>
+<pre class="sg-code">&lt;article class="teaser-card"&gt;
+  &lt;div class="teaser-card__media"&gt;
+    &lt;img src="/src/img/teaser_ref_1.png" alt="" class="object-center-center"&gt;
+  &lt;/div&gt;
+  &lt;div class="teaser-card__body"&gt;
+    &lt;p class="pretitle pretitle--sm pretitle--no-bar"&gt;Catalogo&lt;/p&gt;
+    &lt;h3 class="title-4 fw-300"&gt;I nostri prodotti&lt;/h3&gt;
+    &lt;p class="body-5"&gt;Duis ultricies, eros quis feugiat consequat, massa nisl blandit sapien, ac laoreet.&lt;/p&gt;
+    &lt;a class="btn" href="#"&gt;
+      &lt;span class="btn__label"&gt;Entra nel CATALOGO&lt;/span&gt;
+      &lt;span class="icon" aria-hidden="true"&gt;arrow_right&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</pre>
+          </section>
+        </div>
+        <div class="sg-group" id="persona">
+          <h2 class="sg-group__title title-3">Persona</h2>
+          <p class="sg-group__desc">Due blocchi sovrapposti: testata (avatar, rettangolo, nome e ruolo in basso) e citazione allineata in basso · components/_person-card.scss</p>
+          <section class="sg-section">
+            <p class="sg-label">.person-card · altezza min 590 da 1024px · avatar 240 (160 da 768, 100 sotto) · citazione rientrata come il nome da 768px</p>
+            <div class="sg-bg-switch pill-group" role="group" aria-label="Sfondo"><button type="button" class="pill pill--sm pill--dark" data-bg="white" aria-pressed="false">Bianco</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray-light" aria-pressed="true">Grigio chiaro</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray" aria-pressed="false">Grigio</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray-dark" aria-pressed="false">Grigio scuro</button><button type="button" class="pill pill--sm pill--dark" data-bg="black" aria-pressed="false">Nero</button></div>
+            <div class="row">
+              <div class="col-4 col-lg-9">
+                <!-- @include teaser-person.html -->
+              </div>
+            </div>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Codice</h3>
+            <p class="sg-label">Nome .title-4.fw-300 · ruolo .body-5 · citazione .body-2.fw-500 · rettangolo .pretitle--bar-only</p>
+<pre class="sg-code">&lt;article class="person-card"&gt;
+  &lt;div class="person-card__head"&gt;
+    &lt;div class="person-card__avatar"&gt;
+      &lt;img src="/src/img/person_avatar.png" alt="" class="object-center-top"&gt;
+    &lt;/div&gt;
+    &lt;div class="person-card__info"&gt;
+      &lt;span class="pretitle pretitle--bar-only pretitle--bar-brand" aria-hidden="true"&gt;&lt;/span&gt;
+      &lt;div class="person-card__name"&gt;
+        &lt;h3 class="title-4 fw-300"&gt;Anthony McCarthur&lt;/h3&gt;
+        &lt;p class="body-5"&gt;General Director&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;blockquote class="person-card__quote body-2 fw-500"&gt;
+    &lt;p&gt;“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula risus dignissim interdum aliquam. Sed volutpat fringilla.”&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/article&gt;</pre>
+          </section>
+        </div>
+        <div class="sg-group" id="opzioni">
+          <h2 class="sg-group__title title-3">Opzioni teaser card</h2>
+          <p class="sg-group__desc">Modificatori di .teaser-card e allineamento delle immagini</p>
+          <section class="sg-section">
+            <div class="sg-table-wrap">
+              <table class="sg-table">
+                <thead><tr><th>Classe</th><th>Effetto</th></tr></thead>
+                <tbody>
+                  <tr><td><code>.teaser-card--bg-{white|gray-light|gray|gray-dark|black}</code></td><td>sfondo (default bianco; .teaser-product default gray-light) · sui fondi scuri testo bianco e .btn--black invertito</td></tr>
+                  <tr><td><code>.teaser-card--sm</code></td><td>altezza min 300 · padding 32/32 · immagine mobile 3:2</td></tr>
+                  <tr><td><code>(default)</code></td><td>altezza min 480 · padding 80/70 · immagine mobile 2:1</td></tr>
+                  <tr><td><code>.teaser-card--lg</code></td><td>altezza min 520 · padding 48/48</td></tr>
+                  <tr><td><code>.teaser-card--media-narrow</code></td><td>immagine al 38% (default 50%)</td></tr>
+                  <tr><td><code>.teaser-card--media-end</code></td><td>su mobile immagine sotto il testo</td></tr>
+                  <tr><td><code>.teaser-card--spread</code></td><td>primo elemento in alto, ultimo in basso</td></tr>
+                  <tr><td><code>.object-{left|center|right}-{top|center|bottom}</code></td><td>sull'&lt;img&gt;: punto di ancoraggio del cover (es. .object-left-top)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section class="sg-section">
+            <h3 class="sg-title">Allineamento immagine</h3>
+            <p class="sg-label">.object-left-center · .object-center-center · .object-right-center sulla stessa immagine</p>
+            <div class="row sg-grid-gap">
+              <div class="col-4 col-lg-4"><div class="sg-obj"><img src="/src/img/teaser_ref_1.png" alt="" class="object-left-center"></div></div>
+              <div class="col-4 col-lg-4"><div class="sg-obj"><img src="/src/img/teaser_ref_1.png" alt="" class="object-center-center"></div></div>
+              <div class="col-4 col-lg-4"><div class="sg-obj"><img src="/src/img/teaser_ref_1.png" alt="" class="object-right-center"></div></div>
+            </div>
+          </section>
         </div>
       </div>
-    </section>
+    </div>
   </main>
 
   <!-- @include scripts.html -->

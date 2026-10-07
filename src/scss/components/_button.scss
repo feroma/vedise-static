@@ -13,7 +13,7 @@
 // dopo, da sola) viene riconosciuta in automatico e il padding si adatta.
 //
 // Varianti:   .btn (pieno, default)  ·  .btn--outline
-// Colori:     .btn--red (default) · --green · --blue · --dark · --white
+// Colori:     .btn--red (default) · --green · --blue · --dark · --black · --white
 // Altro:      .btn--block (larghezza 100%)
 // =============================================================================
 @use 'sass:list';
@@ -33,6 +33,7 @@ $btn-colors: (
   'green': (palette('green'), $color-white, palette('green-dark')), // testo bianco: contrasto 4.12, sotto AA
   'blue':  (palette('blue'), $color-white, palette('blue-dark')),
   'dark':  (palette('blue-dark'), $color-white, $color-black),
+  'black': ($color-black, $color-white, palette('gray-dark')),
   'white': ($color-white, palette('red'), palette('gray-light')),
 );
 

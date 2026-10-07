@@ -41,7 +41,7 @@ src/scss/styleguide.scss CSS della styleguide → NON va nel tema
 src/scss/abstracts/     variabili, breakpoint, mixin, scala tipografica (@use '../abstracts' as *;)
 src/scss/base/          font, reset, tipografia
 src/scss/layout/        griglia, header, footer…
-src/scss/components/    componenti BEM (teaser…)
+src/scss/components/    componenti BEM (pulsanti, pill, teaser…)
 src/scss/utilities/     classi di utilità (.d-none, .d-lg-block…)
 src/css/                CSS compilato (versionato)
 src/js/main.js          JS del sito (GSAP) → andrà nel tema
@@ -129,6 +129,17 @@ dopo o da sola viene riconosciuta in automatico (padding come da Figma).
 Outline di default, `.pill--fill` per il pieno; colori come i pulsanti; `.pill--sm`.
 Pieno anche con `.is-active` o `aria-pressed="true"` (filtri).
 
+### PreTitle
+
+```html
+<h2 class="pretitle pretitle--lg text-white">Per medici e professionisti sanitari</h2>
+<p class="pretitle pretitle--sm">Il fil-rouge dell’eccellenza mondiale</p>
+```
+
+Rettangolo 60×10 (sempre) allineato alla baseline della prima riga; `.pretitle--no-bar` solo testo, `.pretitle--bar-only` solo rettangolo. `--lg` = body-1 bold,
+`--sm` = body-6 light maiuscolo spaziato al 50%. Colore rettangolo: `.pretitle--bar-*`.
+Pesi disponibili come utility: `.fw-100` … `.fw-900`.
+
 ### Paginatore
 
 ```html
@@ -156,6 +167,21 @@ markup di WordPress `paginate_links()` dentro un `.pagination`.
 
 Pulsanti, pills, paginatori e icone sono documentati nella pagina **Componenti**, con menu laterale.
 
+## Teaser
+
+Pagina **Teaser** con menu laterale.
+
+- `.teaser-product`: PreTitle + contenuto a sinistra, immagine in absolute a destra
+  (cover, ancorata centro-sinistra); su mobile immagine in alto con sfumatura.
+- `.teaser-card`: testo a sinistra, immagine (blocco con radius 30) a destra da
+  1024px; su mobile immagine in alto o in basso (`--media-end`). Modificatori:
+  `--bg-*` (sfondo), `--sm`/`--lg` (altezza minima e padding), `--media-narrow`, `--spread`.
+  Esempi: news, contenuto, catalogo (partials/teaser-*.html).
+- `.person-card`: avatar + rettangolo + nome/ruolo, sotto la citazione allineata in
+  basso (altezza min 590 da 1024px).
+- Sfondi per tutti: `--bg-{white|gray-light|gray|gray-dark|black}`.
+- Allineamento delle immagini in cover: `.object-{left|center|right}-{top|center|bottom}`.
+
 ## Colori
 
 Palette in `src/scss/abstracts/_variables.scss` (mappa `$colors`): grigi, rosso
@@ -176,7 +202,7 @@ Vite la include in build automaticamente.
 
 ## Convenzioni
 
-- Classi BEM: `.teaser`, `.teaser__title`, `.teaser--horizontal`.
+- Classi BEM: `.teaser-product`, `.teaser-product__entry`, `.btn--outline`.
 - Classi `js-*` riservate agli agganci JavaScript, mai usate per lo stile.
 - Percorsi in CSS relativi (`url('../img/…')`), così funzionano anche nel tema.
 - Animazioni GSAP in `src/js/modules/animations.js`, sempre dentro

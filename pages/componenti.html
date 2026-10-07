@@ -18,6 +18,7 @@
         <nav class="sg-sidenav" aria-label="Componenti">
           <a href="#pulsanti">Pulsanti</a>
           <a href="#pills">Pills</a>
+          <a href="#pretitle">PreTitle</a>
           <a href="#paginatore">Paginatore carousel</a>
           <a href="#paginazione">Paginazione</a>
           <a href="#icone">Icone</a>
@@ -245,6 +246,66 @@
     &lt;button type="button" class="pill pill--red" aria-pressed="false"&gt;ICU&lt;/button&gt;</pre>
         </section>
 
+        </div>
+        <div class="sg-group" id="pretitle">
+          <h2 class="sg-group__title title-3">PreTitle</h2>
+          <p class="sg-group__desc">Testo preceduto da un rettangolo allineato alla baseline della prima riga · components/_pretitle.scss</p>
+    <section class="sg-section">
+      <h2 class="sg-title">Come in Figma</h2>
+      <p class="sg-label">.pretitle--lg (rettangolo del colore del testo) + .pretitle--sm (rettangolo rosso)</p>
+      <div class="sg-pretitle-demo sg-pretitle-demo--gray">
+        <h2 class="pretitle pretitle--lg text-white">Per medici e professionisti sanitari</h2>
+        <p class="pretitle pretitle--sm">Il fil-rouge dell’eccellenza mondiale</p>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">.pretitle--lg</h2>
+      <p class="sg-label">= .body-1 + .fw-700 · rettangolo 60×10 (40×8 sotto i 1024px), distanza 30 (16)</p>
+      <div class="sg-pretitle-demo">
+        <h2 class="pretitle pretitle--lg">Per medici e professionisti sanitari</h2>
+      </div>
+      <div class="sg-pretitle-demo sg-pretitle-demo--dark">
+        <h2 class="pretitle pretitle--lg text-white">Per medici e professionisti sanitari</h2>
+      </div>
+      <div class="sg-pretitle-demo">
+        <h2 class="pretitle pretitle--lg pretitle--bar-brand">Rettangolo rosso con .pretitle--bar-brand</h2>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">.pretitle--sm</h2>
+      <p class="sg-label">= .body-6 + .fw-300 + .text-uppercase + .ls-wide, testo al 50% del colore · rettangolo rosso brand</p>
+      <div class="sg-pretitle-demo">
+        <p class="pretitle pretitle--sm">Il fil-rouge dell’eccellenza mondiale</p>
+      </div>
+      <div class="sg-pretitle-demo sg-pretitle-demo--dark">
+        <p class="pretitle pretitle--sm text-white">Il fil-rouge dell’eccellenza mondiale</p>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">Testo su più righe e allineamento</h2>
+      <p class="sg-label">Le righe successive restano allineate al testo · linea rossa = baseline della prima riga</p>
+      <div class="row">
+        <div class="col-4 col-lg-5">
+          <div class="sg-pretitle-demo sg-baseline">
+            <h2 class="pretitle pretitle--lg">Per medici e professionisti sanitari di tutta Italia</h2>
+          </div>
+        </div>
+        <div class="col-4 col-lg-5 offset-lg-1">
+          <div class="sg-pretitle-demo sg-baseline">
+            <p class="pretitle pretitle--sm">Il fil-rouge dell’eccellenza mondiale nei dispositivi medici per la terapia intensiva</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="sg-section">
+      <h2 class="sg-title">Utilizzo</h2>
+      <p class="sg-label">Il tag è libero (h1–h6, p, span…): la classe definisce l'aspetto</p>
+<pre class="sg-code">&lt;h2 class="pretitle pretitle--lg text-white"&gt;Per medici e professionisti sanitari&lt;/h2&gt;
+&lt;p class="pretitle pretitle--sm"&gt;Il fil-rouge dell’eccellenza mondiale&lt;/p&gt;
+
+&lt;!-- colore del rettangolo --&gt;
+&lt;h2 class="pretitle pretitle--lg pretitle--bar-brand"&gt;…&lt;/h2&gt;</pre>
+    </section>
         </div>
         <div class="sg-group" id="paginatore">
           <h2 class="sg-group__title title-3">Paginatore carousel</h2>

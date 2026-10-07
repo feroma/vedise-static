@@ -1,0 +1,13 @@
+// Allineamento delle immagini in cover: .object-{orizzontale}-{verticale}
+// es. <img class="object-left-center">, <img class="object-center-top">
+$obj-h: (left, center, right);
+$obj-v: (top, center, bottom);
+
+@each $h in $obj-h {
+  @each $v in $obj-v {
+    .object-#{$h}-#{$v} { object-position: $h $v !important; }
+  }
+}
+
+.object-cover { object-fit: cover !important; }
+.object-contain { object-fit: contain !important; }

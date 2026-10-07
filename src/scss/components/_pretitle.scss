@@ -1,0 +1,94 @@
+// =============================================================================
+// PreTitle — testo preceduto da un rettangolo allineato alla baseline
+// della prima riga; le righe successive restano allineate al testo.
+//
+// Riferimento Figma: rettangolo 60×10 (sempre), distanza 30 (16 sotto i 1024px).
+//
+//   <h2 class="pretitle pretitle--lg">Per medici e professionisti sanitari</h2>
+//   <p class="pretitle pretitle--sm">Il fil-rouge dell'eccellenza mondiale</p>
+//
+// Stili di testo (corrispondenze con la scala tipografica):
+//   .pretitle--lg  = .body-1 + bold 700               → rettangolo del colore del testo
+//   .pretitle--sm  = .body-6 + light 300 + .text-uppercase + .ls-wide,
+//                    testo al 50%                     → rettangolo rosso brand
+// Colore del rettangolo: .pretitle--bar-brand · --bar-current · --bar-white · --bar-black
+//                        (o la custom property --pretitle-bar)
+// Varianti: .pretitle--no-bar (solo testo) · .pretitle--bar-only (solo rettangolo)
+//
+// Come funziona: il rettangolo è un inline-block vuoto, quindi il suo bordo
+// inferiore poggia sulla baseline della prima riga con qualsiasi font e
+// dimensione; padding + text-indent negativo creano il rientro sporgente.
+// =============================================================================
+@use '../abstracts' as *;
+
+.pretitle {
+  --pretitle-bar: currentColor;
+  --pretitle-bar-w: 60px; // sempre 60×10
+  --pretitle-bar-h: 10px;
+  --pretitle-gap: 16px;   // distanza dal testo: 16 mobile, 30 da lg
+
+  padding-left: calc(var(--pretitle-bar-w) + var(--pretitle-gap));
+  text-indent: calc(-1 * (var(--pretitle-bar-w) + var(--pretitle-gap)));
+
+  @include mq-up(lg) {
+    --pretitle-gap: 30px; // valore Figma
+  }
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: var(--pretitle-bar-w);
+    height: var(--pretitle-bar-h);
+    margin-right: var(--pretitle-gap);
+    background: var(--pretitle-bar);
+    text-indent: 0;
+    vertical-align: baseline;
+  }
+
+  // --- Stili di testo -----------------------------------------------------------
+  &--lg {
+    @include text-style('body-1');
+    font-weight: 700;
+  }
+
+  &--sm {
+    --pretitle-bar: #{$color-brand};
+
+    @include text-style('body-6');
+    font-weight: 300;
+    letter-spacing: 0.1em; // = .ls-wide (1.6px su 16px)
+    text-transform: uppercase;
+    // testo al 50% del colore ereditato, rettangolo pieno
+    color: color-mix(in srgb, currentColor 50%, transparent);
+  }
+
+  // --- Senza rettangolo (solo lo stile del testo, es. date ed etichette) ----
+  &--no-bar {
+    padding-left: 0;
+    text-indent: 0;
+
+    &::before {
+      content: none;
+    }
+  }
+
+  // --- Solo rettangolo (es. sopra un titolo) ------------------------------------
+  //   <span class="pretitle pretitle--bar-only pretitle--bar-brand" aria-hidden="true"></span>
+  &--bar-only {
+    display: block;
+    padding-left: 0;
+    text-indent: 0;
+    line-height: 0;
+
+    &::before {
+      display: block;
+      margin-right: 0;
+    }
+  }
+
+  // --- Colore del rettangolo ------------------------------------------------------
+  &--bar-brand { --pretitle-bar: #{$color-brand}; }
+  &--bar-current { --pretitle-bar: currentColor; }
+  &--bar-white { --pretitle-bar: #{$color-white}; }
+  &--bar-black { --pretitle-bar: #{$color-black}; }
+}

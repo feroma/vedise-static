@@ -1,0 +1,17 @@
+<div style="width: 100%; height: 100%; padding: 30px; background: #EAEAEA; overflow: hidden; border-radius: 30px; flex-direction: column; justify-content: flex-start; align-items: flex-end; gap: 30px; display: inline-flex">
+    <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 30px; display: inline-flex">
+        <div style="width: 240px; height: 240px; position: relative; overflow: hidden; border-radius: 30px">
+            <img style="width: 612px; height: 408px; left: -186px; top: -30px; position: absolute" src="https://placehold.co/612x408" />
+        </div>
+        <div style="flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 30px; display: inline-flex">
+            <div style="width: 61px; height: 11px; background: #CD161D"></div>
+            <div style="align-self: stretch; flex: 1 1 0; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 15px; display: flex">
+                <div style="align-self: stretch; color: black; font-size: 48px; font-family: Noto Serif SC; font-weight: 300; line-height: 52px; word-wrap: break-word">Anthony         McCarthur</div>
+                <div style="align-self: stretch; color: black; font-size: 18px; font-family: DM Sans; font-weight: 400; line-height: 26px; word-wrap: break-word">General Director</div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 919px; height: 262px; padding-left: 270px; justify-content: flex-end; align-items: flex-end; gap: 10px; display: inline-flex">
+        <div style="flex: 1 1 0; color: black; font-size: 36px; font-family: DM Sans; font-weight: 500; line-height: 48px; word-wrap: break-word">“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula risus dignissim interdum aliquam. Sed volutpat fringilla.“</div>
+    </div>
+</div>

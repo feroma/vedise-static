@@ -294,3 +294,41 @@ document.querySelectorAll('.sg-pager-demo .pager').forEach((pager) => {
         item.setAttribute('aria-current', 'true');
     });
 });
+
+// Guida baseline: misura la prima riga con un elemento invisibile allineato alla baseline
+const drawBaselines = () => {
+    document.querySelectorAll('.sg-baseline').forEach((box) => {
+        const text = box.querySelector('.pretitle');
+        if (!text) return;
+        const probe = document.createElement('span');
+        probe.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
+        text.prepend(probe);
+        const y = probe.getBoundingClientRect().top - box.getBoundingClientRect().top;
+        probe.remove();
+        let line = box.querySelector('.sg-baseline__line');
+        if (!line) {
+            line = document.createElement('div');
+            line.className = 'sg-baseline__line';
+            box.append(line);
+        }
+        line.style.top = `${y}px`;
+    });
+};
+if (document.querySelector('.sg-baseline')) {
+    document.fonts.ready.then(drawBaselines);
+    window.addEventListener('resize', drawBaselines);
+}
+
+// Teaser: selettore dello sfondo (aggiunge la classe --bg-* al teaser del gruppo)
+document.querySelectorAll('.sg-bg-switch').forEach((sw) => {
+    sw.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-bg]');
+        if (!btn) return;
+        const teaser = sw.closest('.sg-group')?.querySelector('.teaser-card, .teaser-product, .person-card');
+        if (!teaser) return;
+        const block = ['teaser-product', 'person-card'].find((c) => teaser.classList.contains(c)) || 'teaser-card';
+        [...teaser.classList].filter((c) => c.startsWith(`${block}--bg-`)).forEach((c) => teaser.classList.remove(c));
+        teaser.classList.add(`${block}--bg-${btn.dataset.bg}`);
+        sw.querySelectorAll('[data-bg]').forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+    });
+});

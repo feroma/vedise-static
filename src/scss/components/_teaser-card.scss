@@ -1,0 +1,138 @@
+// =============================================================================
+// Teaser card — testo a sinistra, immagine a destra (da 1024px);
+// sotto i 1024px immagine in alto (o in basso con .teaser-card--media-end).
+//
+//   <article class="teaser-card">
+//     <div class="teaser-card__media">
+//       <img src="…" alt="" class="object-center-center">
+//     </div>
+//     <div class="teaser-card__body">
+//       …PreTitle / titolo / testo / pulsante…
+//     </div>
+//   </article>
+//
+// Misure Figma: radius 30, rientro testo 90 (48 mobile), gap 30, rettangolo 60×10.
+// L'immagine è un blocco con radius 30 a filo del lato destro; riempie
+// sempre il suo spazio in cover: l'allineamento si sceglie con le classi
+// .object-{left|center|right}-{top|center|bottom} sull'<img> (default centro).
+//
+// Modificatori
+//   Sfondo:      .teaser-card--bg-{white|gray-light|gray|gray-dark|black}
+//                (default bianco; sui fondi scuri il testo diventa bianco)
+//   Dimensione:  (min 480, padding 80/70, default) · --sm (min 300, padding 32)
+//                · --lg (min 520, padding 48)
+//   Immagine:    (50% della card, default) · --media-narrow (38%)
+//                · --media-end: su mobile l'immagine va sotto il testo
+//   Testo:       --spread: primo elemento in alto, ultimo in basso
+// =============================================================================
+@use '../abstracts' as *;
+
+$tc-radius: 30px;
+$tc-gap: 30px;
+
+.teaser-card {
+  --tc-min-h: 480px;
+  --tc-pad-top: 80px;
+  --tc-pad-bottom: 70px;
+  --tc-media-w: 50%;
+  --tc-media-ratio: 2 / 1;
+  --teaser-bg: #{$color-white};
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  overflow: hidden;
+  border-radius: $tc-radius;
+  background: var(--teaser-bg);
+  isolation: isolate;
+
+  // --- Immagine ----------------------------------------------------------------
+  &__media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: var(--tc-media-ratio);
+    border-radius: $tc-radius;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+
+  // --- Testo ---------------------------------------------------------------------
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $tc-gap;
+    padding: 32px 24px 40px 48px;
+
+    > * {
+      margin: 0;
+    }
+
+    > .pretitle {
+      align-self: stretch;
+    }
+  }
+
+  // Gruppo di elementi che restano uniti (es. rettangolo + titolo con --spread)
+  &__group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $tc-gap;
+
+    > * {
+      margin: 0;
+    }
+  }
+
+  // --- Modificatori -------------------------------------------------------------
+  @include teaser-bg-modifiers;
+
+  &--sm {
+    --tc-min-h: 300px;
+    --tc-pad-top: 32px;
+    --tc-pad-bottom: 32px;
+    --tc-media-ratio: 3 / 2;
+  }
+
+  &--lg {
+    --tc-min-h: 520px;
+    --tc-pad-top: 48px;
+    --tc-pad-bottom: 48px;
+  }
+
+  &--media-narrow {
+    --tc-media-w: 38%;
+  }
+
+  // mobile: immagine dopo il testo
+  &--media-end &__media {
+    order: 1;
+  }
+
+  // --- Desktop -------------------------------------------------------------------
+  @include mq-up(lg) {
+    grid-template-columns: minmax(0, 1fr) var(--tc-media-w);
+    min-height: var(--tc-min-h);
+
+    &__media {
+      order: 1; // sempre a destra
+      aspect-ratio: auto;
+    }
+
+    &__body {
+      justify-content: center;
+      padding: var(--tc-pad-top) 48px var(--tc-pad-bottom) 90px;
+    }
+
+    &--spread &__body {
+      justify-content: space-between;
+    }
+  }
+}

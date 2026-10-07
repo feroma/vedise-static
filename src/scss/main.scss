@@ -14,9 +14,14 @@
 @use 'components/pill';
 @use 'components/pager';
 @use 'components/pagination';
-@use 'components/teaser';
+@use 'components/pretitle';
+
+@use 'components/teaser-product';
+@use 'components/teaser-card';
+@use 'components/person-card';
 
 // @use 'pages/home';
 
 @use 'utilities/colors';
+@use 'utilities/object';
 @use 'utilities/display';

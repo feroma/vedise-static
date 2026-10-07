@@ -32,6 +32,10 @@ html {
   scroll-padding-top: 73px;
 }
 
+body {
+  background-color: #fafafa;
+}
+
 .sg-nav {
   position: sticky;
   top: 0;
@@ -288,7 +292,7 @@ html {
   position: sticky;
   top: 49px;
   z-index: 50;
-  background: #fff;
+  background: #fafafa;
 }
 @media (min-width: 1024px) {
   .sg-layout__aside {
@@ -362,6 +366,53 @@ html {
   max-width: 70ch;
   margin-bottom: 0;
   color: #8a8a8a;
+}
+
+.sg-pretitle-demo {
+  margin-bottom: 24px;
+}
+.sg-pretitle-demo > :last-child {
+  margin-bottom: 0;
+}
+.sg-pretitle-demo--dark, .sg-pretitle-demo--gray {
+  padding: 32px;
+}
+.sg-pretitle-demo--dark {
+  background: #001d3d;
+}
+.sg-pretitle-demo--gray {
+  background: #a6a6a6;
+}
+.sg-pretitle-demo--gray > * + * {
+  margin-top: 48px;
+}
+
+.sg-baseline {
+  position: relative;
+}
+.sg-baseline .sg-baseline__line {
+  position: absolute;
+  left: -8px;
+  right: -8px;
+  height: 1px;
+  background: #ff0050;
+  pointer-events: none;
+}
+
+.sg-bg-switch {
+  margin-bottom: 20px;
+}
+
+.sg-obj {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 30px;
+  background: #eee;
+}
+.sg-obj img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .sg-btn-row {

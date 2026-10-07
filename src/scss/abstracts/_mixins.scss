@@ -38,3 +38,33 @@
     @content;
   }
 }
+
+// Sfondi dei teaser: genera i modificatori &--bg-{nome}.
+// Sui fondi scuri il testo diventa bianco e i pulsanti .btn--black si invertono.
+$teaser-backgrounds: (
+  'white': light,
+  'gray-light': light,
+  'gray': light,
+  'gray-dark': dark,
+  'black': dark,
+);
+
+@mixin teaser-bg-modifiers {
+  @each $name, $tone in $teaser-backgrounds {
+    &--bg-#{$name} {
+      --teaser-bg: #{palette($name)};
+
+      @if $tone == dark {
+        color: $color-white;
+
+        .btn--black {
+          --btn-main: #{$color-white};
+          --btn-on-main: #{$color-black};
+          --btn-hover: #{palette('gray-light')};
+        }
+      } @else {
+        color: $color-text;
+      }
+    }
+  }
+}

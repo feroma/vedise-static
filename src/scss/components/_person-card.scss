@@ -1,0 +1,124 @@
+// =============================================================================
+// Person card — due blocchi sovrapposti:
+//   1. testata: avatar quadrato (240, radius 30) + rettangolo rosso in alto e
+//      nome/ruolo allineati in basso
+//   2. citazione allineata in basso, rientrata come il testo della testata
+//
+// Riferimento Figma: card #EAEAEA, padding 30, radius 30, gap 30;
+// nome .title-4 light, ruolo .body-5, citazione .body-2 medium (500).
+//
+//   <article class="person-card">
+//     <div class="person-card__head">
+//       <div class="person-card__avatar"><img src="…" alt=""></div>
+//       <div class="person-card__info">
+//         <span class="pretitle pretitle--bar-only pretitle--bar-brand" aria-hidden="true"></span>
+//         <div class="person-card__name">
+//           <h3 class="title-4 fw-300">Anthony McCarthur</h3>
+//           <p class="body-5">General Director</p>
+//         </div>
+//       </div>
+//     </div>
+//     <blockquote class="person-card__quote body-2 fw-500"><p>“…”</p></blockquote>
+//   </article>
+//
+// Sfondo: .person-card--bg-{white|gray-light|gray|gray-dark|black} (default gray-light)
+// =============================================================================
+@use '../abstracts' as *;
+
+.person-card {
+  --teaser-bg: #{palette('gray-light')};
+  --pc-pad: 24px;
+  --pc-gap: 20px;
+  --pc-avatar: 100px;
+  --pc-radius-avatar: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: var(--pc-pad);
+  overflow: hidden;
+  border-radius: 30px;
+  background: var(--teaser-bg);
+
+  @include mq-up(md) {
+    --pc-pad: 30px;
+    --pc-gap: 30px;
+    --pc-avatar: 160px;
+    --pc-radius-avatar: 30px;
+  }
+
+  @include mq-up(lg) {
+    --pc-avatar: 240px; // valore Figma
+    min-height: 590px;
+  }
+
+  @include teaser-bg-modifiers;
+
+  // --- Testata ----------------------------------------------------------------------
+  &__head {
+    display: flex;
+    align-items: stretch;
+    gap: var(--pc-gap);
+  }
+
+  &__avatar {
+    position: relative;
+    flex: 0 0 var(--pc-avatar);
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: var(--pc-radius-avatar);
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    min-width: 0;
+  }
+
+  // nome + ruolo, spinti in basso
+  &__name {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 15px;
+    align-self: stretch;
+
+    > * {
+      margin: 0;
+    }
+
+    @include mq-down(md) {
+      gap: 6px;
+    }
+  }
+
+  // --- Citazione: occupa lo spazio rimasto, testo in basso ------------------
+  &__quote {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 0;
+
+    > * {
+      margin: 0;
+    }
+
+    @include mq-up(md) {
+      padding-left: calc(var(--pc-avatar) + var(--pc-gap)); // allineata al nome
+    }
+  }
+}
