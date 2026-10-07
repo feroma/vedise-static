@@ -406,7 +406,7 @@ body {
 .sg-obj {
   aspect-ratio: 16/9;
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: var(--radius-card);
   background: #eee;
 }
 .sg-obj img {

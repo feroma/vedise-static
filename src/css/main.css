@@ -16,6 +16,12 @@
   --color-brand: #cd161d;
   --color-text: #000000;
   --color-bg: #ffffff;
+  --radius-card: 15px;
+}
+@media (min-width: 768px) {
+  :root {
+    --radius-card: 30px;
+  }
 }
 
 @font-face {
@@ -1280,26 +1286,26 @@ button.pagination__item {
   --pretitle-bar: #000000;
 }
 
-.teaser-product {
+.teaser-banner {
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   --teaser-bg: #eaeaea;
-  border-radius: 30px;
+  border-radius: var(--radius-card);
   background: var(--teaser-bg);
   isolation: isolate;
 }
-.teaser-product__media {
+.teaser-banner__media {
   position: relative;
   display: block;
 }
-.teaser-product__media img {
+.teaser-banner__media img {
   display: block;
   width: 100%;
   height: auto;
 }
-.teaser-product__media::after {
+.teaser-banner__media::after {
   content: "";
   position: absolute;
   inset: auto 0 0;
@@ -1307,7 +1313,7 @@ button.pagination__item {
   background: linear-gradient(to bottom, transparent, var(--teaser-bg));
   pointer-events: none;
 }
-.teaser-product__entry {
+.teaser-banner__entry {
   position: relative;
   z-index: 1;
   display: flex;
@@ -1316,77 +1322,77 @@ button.pagination__item {
   margin-top: -32px;
   padding: 0 24px 40px 0;
 }
-.teaser-product__entry > .pretitle {
+.teaser-banner__entry > .pretitle {
   margin: 0;
 }
-.teaser-product__content {
+.teaser-banner__content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 30px;
   padding-left: 76px;
 }
-.teaser-product__content > * {
+.teaser-banner__content > * {
   margin: 0;
 }
-.teaser-product--bg-white {
+.teaser-banner--bg-white {
   --teaser-bg: #ffffff;
   color: #000000;
 }
-.teaser-product--bg-gray-light {
+.teaser-banner--bg-gray-light {
   --teaser-bg: #eaeaea;
   color: #000000;
 }
-.teaser-product--bg-gray {
+.teaser-banner--bg-gray {
   --teaser-bg: #d4d4d4;
   color: #000000;
 }
-.teaser-product--bg-gray-dark {
+.teaser-banner--bg-gray-dark {
   --teaser-bg: #505356;
   color: #ffffff;
 }
-.teaser-product--bg-gray-dark .btn--black {
+.teaser-banner--bg-gray-dark .btn--black {
   --btn-main: #ffffff;
   --btn-on-main: #000000;
   --btn-hover: #eaeaea;
 }
-.teaser-product--bg-black {
+.teaser-banner--bg-black {
   --teaser-bg: #000000;
   color: #ffffff;
 }
-.teaser-product--bg-black .btn--black {
+.teaser-banner--bg-black .btn--black {
   --btn-main: #ffffff;
   --btn-on-main: #000000;
   --btn-hover: #eaeaea;
 }
 @media (min-width: 1024px) {
-  .teaser-product {
+  .teaser-banner {
     justify-content: center;
     min-height: 480px;
   }
-  .teaser-product__media {
+  .teaser-banner__media {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     width: 72%;
   }
-  .teaser-product__media img {
+  .teaser-banner__media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: left center;
   }
-  .teaser-product__media::after {
+  .teaser-banner__media::after {
     content: none;
   }
-  .teaser-product__entry {
+  .teaser-banner__entry {
     width: max(36.5%, 440px);
     max-width: 100%;
     margin-top: 0;
     padding: 80px 0 70px;
   }
-  .teaser-product__content {
+  .teaser-banner__content {
     padding-left: 90px;
   }
 }
@@ -1401,7 +1407,7 @@ button.pagination__item {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: var(--radius-card);
   background: var(--teaser-bg);
   isolation: isolate;
 }
@@ -1409,7 +1415,7 @@ button.pagination__item {
   position: relative;
   overflow: hidden;
   aspect-ratio: var(--tc-media-ratio);
-  border-radius: 30px;
+  border-radius: var(--radius-card);
 }
 .teaser-card__media img {
   position: absolute;
@@ -1511,13 +1517,12 @@ button.pagination__item {
   --pc-pad: 24px;
   --pc-gap: 20px;
   --pc-avatar: 100px;
-  --pc-radius-avatar: 20px;
   display: flex;
   flex-direction: column;
   gap: 30px;
   padding: var(--pc-pad);
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: var(--radius-card);
   background: var(--teaser-bg);
 }
 @media (min-width: 768px) {
@@ -1525,7 +1530,6 @@ button.pagination__item {
     --pc-pad: 30px;
     --pc-gap: 30px;
     --pc-avatar: 160px;
-    --pc-radius-avatar: 30px;
   }
 }
 @media (min-width: 1024px) {
@@ -1574,7 +1578,7 @@ button.pagination__item {
   flex: 0 0 var(--pc-avatar);
   aspect-ratio: 1;
   overflow: hidden;
-  border-radius: var(--pc-radius-avatar);
+  border-radius: var(--radius-card);
 }
 .person-card__avatar img {
   position: absolute;

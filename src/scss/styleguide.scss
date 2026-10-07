@@ -41,7 +41,6 @@ body {
   background-color: #fafafa;
 }
 
-
 // --- Barra di navigazione --------------------------------------------------
 .sg-nav {
   position: sticky;
@@ -448,7 +447,7 @@ body {
 .sg-obj {
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: var(--radius-card);
   background: #eee;
 
   img {

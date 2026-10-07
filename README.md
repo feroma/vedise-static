@@ -171,7 +171,7 @@ Pulsanti, pills, paginatori e icone sono documentati nella pagina **Componenti**
 
 Pagina **Teaser** con menu laterale.
 
-- `.teaser-product`: PreTitle + contenuto a sinistra, immagine in absolute a destra
+- `.teaser-banner` (ex teaser prodotto): PreTitle + contenuto a sinistra, immagine in absolute a destra
   (cover, ancorata centro-sinistra); su mobile immagine in alto con sfumatura.
 - `.teaser-card`: testo a sinistra, immagine (blocco con radius 30) a destra da
   1024px; su mobile immagine in alto o in basso (`--media-end`). Modificatori:
@@ -202,7 +202,7 @@ Vite la include in build automaticamente.
 
 ## Convenzioni
 
-- Classi BEM: `.teaser-product`, `.teaser-product__entry`, `.btn--outline`.
+- Classi BEM: `.teaser-banner`, `.teaser-banner__entry`, `.btn--outline`.
 - Classi `js-*` riservate agli agganci JavaScript, mai usate per lo stile.
 - Percorsi in CSS relativi (`url('../img/…')`), così funzionano anche nel tema.
 - Animazioni GSAP in `src/js/modules/animations.js`, sempre dentro

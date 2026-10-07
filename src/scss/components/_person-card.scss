@@ -4,7 +4,7 @@
 //      nome/ruolo allineati in basso
 //   2. citazione allineata in basso, rientrata come il testo della testata
 //
-// Riferimento Figma: card #EAEAEA, padding 30, radius 30, gap 30;
+// Riferimento Figma: card #EAEAEA, padding 30, radius 30 (15 sotto 768), gap 30;
 // nome .title-4 light, ruolo .body-5, citazione .body-2 medium (500).
 //
 //   <article class="person-card">
@@ -30,21 +30,19 @@
   --pc-pad: 24px;
   --pc-gap: 20px;
   --pc-avatar: 100px;
-  --pc-radius-avatar: 20px;
 
   display: flex;
   flex-direction: column;
   gap: 30px;
   padding: var(--pc-pad);
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: var(--radius-card); // 15 sotto 768, 30 da 768
   background: var(--teaser-bg);
 
   @include mq-up(md) {
     --pc-pad: 30px;
     --pc-gap: 30px;
     --pc-avatar: 160px;
-    --pc-radius-avatar: 30px;
   }
 
   @include mq-up(lg) {
@@ -66,7 +64,7 @@
     flex: 0 0 var(--pc-avatar);
     aspect-ratio: 1;
     overflow: hidden;
-    border-radius: var(--pc-radius-avatar);
+    border-radius: var(--radius-card);
 
     img {
       position: absolute;

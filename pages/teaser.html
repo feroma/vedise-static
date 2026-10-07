@@ -16,7 +16,7 @@
     <div class="row sg-layout">
       <aside class="col-4 col-lg-2 sg-layout__aside">
         <nav class="sg-sidenav" aria-label="Teaser">
-          <a href="#prodotto">Prodotto</a>
+          <a href="#banner">Banner</a>
           <a href="#news">News</a>
           <a href="#contenuto">Contenuto</a>
           <a href="#catalogo">Catalogo</a>
@@ -26,29 +26,29 @@
       </aside>
 
       <div class="col-4 col-lg-10">
-        <div class="sg-group" id="prodotto">
-          <h2 class="sg-group__title title-3">Prodotto</h2>
-          <p class="sg-group__desc">Immagine in absolute ancorata a destra, il testo ci passa sopra; su mobile immagine in alto con sfumatura e PreTitle sovrapposto · components/_teaser-product.scss</p>
+        <div class="sg-group" id="banner">
+          <h2 class="sg-group__title title-3">Banner</h2>
+          <p class="sg-group__desc">Immagine in absolute ancorata a destra, il testo ci passa sopra; su mobile immagine in alto con sfumatura e PreTitle sovrapposto · components/_teaser-banner.scss</p>
           <section class="sg-section">
-            <p class="sg-label">.teaser-product · entry max(36.5%, 440px), padding 80/70</p>
+            <p class="sg-label">.teaser-banner · entry max(36.5%, 440px), padding 80/70</p>
             <div class="sg-bg-switch pill-group" role="group" aria-label="Sfondo"><button type="button" class="pill pill--sm pill--dark" data-bg="white" aria-pressed="false">Bianco</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray-light" aria-pressed="true">Grigio chiaro</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray" aria-pressed="false">Grigio</button><button type="button" class="pill pill--sm pill--dark" data-bg="gray-dark" aria-pressed="false">Grigio scuro</button><button type="button" class="pill pill--sm pill--dark" data-bg="black" aria-pressed="false">Nero</button></div>
             <div class="row">
               <div class="col-4 col-lg-12">
-                <!-- @include teaser-product.html -->
+                <!-- @include teaser-banner.html -->
               </div>
             </div>
           </section>
           <section class="sg-section">
             <h3 class="sg-title">Codice</h3>
             <p class="sg-label">Immagini: _dt da 1024px, _mob sotto (via &lt;picture&gt;)</p>
-<pre class="sg-code">&lt;article class="teaser-product"&gt;
-  &lt;picture class="teaser-product__media"&gt;
+<pre class="sg-code">&lt;article class="teaser-banner"&gt;
+  &lt;picture class="teaser-banner__media"&gt;
     &lt;source media="(min-width: 1024px)" srcset="/src/img/product_teaser_image_dt.png"&gt;
     &lt;img src="/src/img/product_teaser_image_mob.png" alt=""&gt;
   &lt;/picture&gt;
-  &lt;div class="teaser-product__entry"&gt;
+  &lt;div class="teaser-banner__entry"&gt;
     &lt;p class="pretitle pretitle--sm"&gt;Dia-Bruxo&lt;/p&gt;
-    &lt;div class="teaser-product__content"&gt;
+    &lt;div class="teaser-banner__content"&gt;
       &lt;h3 class="title-4 fw-300"&gt;The Diagnosis of Bruxism&lt;/h3&gt;
       &lt;p class="body-5"&gt;The essential mini electromyograph for your clinical practice.&lt;/p&gt;
       &lt;a class="btn btn--outline btn--black" href="#"&gt;
@@ -192,7 +192,7 @@
               <table class="sg-table">
                 <thead><tr><th>Classe</th><th>Effetto</th></tr></thead>
                 <tbody>
-                  <tr><td><code>.teaser-card--bg-{white|gray-light|gray|gray-dark|black}</code></td><td>sfondo (default bianco; .teaser-product default gray-light) · sui fondi scuri testo bianco e .btn--black invertito</td></tr>
+                  <tr><td><code>.teaser-card--bg-{white|gray-light|gray|gray-dark|black}</code></td><td>sfondo (default bianco; .teaser-banner default gray-light) · sui fondi scuri testo bianco e .btn--black invertito</td></tr>
                   <tr><td><code>.teaser-card--sm</code></td><td>altezza min 300 · padding 32/32 · immagine mobile 3:2</td></tr>
                   <tr><td><code>(default)</code></td><td>altezza min 480 · padding 80/70 · immagine mobile 2:1</td></tr>
                   <tr><td><code>.teaser-card--lg</code></td><td>altezza min 520 · padding 48/48</td></tr>

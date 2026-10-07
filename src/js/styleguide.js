@@ -324,9 +324,9 @@ document.querySelectorAll('.sg-bg-switch').forEach((sw) => {
     sw.addEventListener('click', (e) => {
         const btn = e.target.closest('[data-bg]');
         if (!btn) return;
-        const teaser = sw.closest('.sg-group')?.querySelector('.teaser-card, .teaser-product, .person-card');
+        const teaser = sw.closest('.sg-group')?.querySelector('.teaser-card, .teaser-banner, .person-card');
         if (!teaser) return;
-        const block = ['teaser-product', 'person-card'].find((c) => teaser.classList.contains(c)) || 'teaser-card';
+        const block = ['teaser-banner', 'person-card'].find((c) => teaser.classList.contains(c)) || 'teaser-card';
         [...teaser.classList].filter((c) => c.startsWith(`${block}--bg-`)).forEach((c) => teaser.classList.remove(c));
         teaser.classList.add(`${block}--bg-${btn.dataset.bg}`);
         sw.querySelectorAll('[data-bg]').forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));

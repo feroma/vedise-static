@@ -72,6 +72,12 @@ $bp-xxl: map.get($breakpoints, 'xxl');
 // Larghezza di riferimento del progetto grafico
 $design-width: 1920px;
 
+// --- Raggi -----------------------------------------------------------------------
+// Card e immagini dei teaser: 15px sotto md (768), 30px da md in su.
+// In CSS: var(--radius-card)
+$radius-card-sm: 15px;
+$radius-card: 30px;
+
 // --- Griglia ---------------------------------------------------------------
 $cols-sm: 4;   // < 1024
 $cols-lg: 12;  // ≥ 1024

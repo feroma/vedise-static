@@ -1,7 +1,7 @@
 // =============================================================================
-// Teaser prodotto
+// Teaser banner
 //
-// Riferimento Figma (desktop): card #EAEAEA, radius 30, alta 480.
+// Riferimento Figma (desktop): card #EAEAEA, radius 30 (15 sotto 768), alta 480.
 //   - a sinistra l'"entry": PreTitle + contenuto (titolo, testo, pulsante),
 //     gap verticale 30; il rettangolo del PreTitle parte dal bordo della card
 //     e il testo è allineato a 90px
@@ -13,17 +13,17 @@
 // l'altezza della prima riga del PreTitle; sfumatura del colore di fondo nella
 // parte bassa dell'immagine.
 //
-// Sfondo: .teaser-product--bg-{white|gray-light|gray|gray-dark|black} (default gray-light);
+// Sfondo: .teaser-banner--bg-{white|gray-light|gray|gray-dark|black} (default gray-light);
 // sui fondi scuri il testo diventa bianco.
 //
-//   <article class="teaser-product">
-//     <picture class="teaser-product__media">
+//   <article class="teaser-banner">
+//     <picture class="teaser-banner__media">
 //       <source media="(min-width: 1024px)" srcset="…_dt.png">
 //       <img src="…_mob.png" alt="">
 //     </picture>
-//     <div class="teaser-product__entry">
+//     <div class="teaser-banner__entry">
 //       <p class="pretitle pretitle--sm">Dia-Bruxo</p>
-//       <div class="teaser-product__content">
+//       <div class="teaser-banner__content">
 //         <h3 class="title-4 fw-300">…</h3>
 //         <p class="body-5">…</p>
 //         <a class="btn btn--outline btn--black" href="#">…</a>
@@ -33,25 +33,25 @@
 // =============================================================================
 @use '../abstracts' as *;
 
-$tp-radius: 30px;
-$tp-height: 480px;          // altezza Figma (desktop)
-$tp-media-width: 72%;       // 864 / 1207
-$tp-entry-width: 36.5%;     // 440 / 1207 nel Figma (90 rientro PreTitle + 350 testo)
-$tp-entry-min: 440px;       // larghezza Figma: sotto, il titolo 48px andrebbe su 3 righe
-$tp-gap: 30px;
+$tb-radius: var(--radius-card); // 15 sotto 768, 30 da 768
+$tb-height: 480px;          // altezza Figma (desktop)
+$tb-media-width: 72%;       // 864 / 1207
+$tb-entry-width: 36.5%;     // 440 / 1207 nel Figma (90 rientro PreTitle + 350 testo)
+$tb-entry-min: 440px;       // larghezza Figma: sotto, il titolo 48px andrebbe su 3 righe
+$tb-gap: 30px;
 
 // Rientro del testo = rettangolo + distanza del PreTitle (60+16 mobile, 60+30 desktop)
-$tp-indent-sm: 76px;
-$tp-indent-lg: 90px;
+$tb-indent-sm: 76px;
+$tb-indent-lg: 90px;
 
-.teaser-product {
+.teaser-banner {
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   --teaser-bg: #{palette('gray-light')};
 
-  border-radius: $tp-radius;
+  border-radius: $tb-radius;
   background: var(--teaser-bg);
   isolation: isolate; // z-index locali alla card
 
@@ -83,7 +83,7 @@ $tp-indent-lg: 90px;
     z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: $tp-gap;
+    gap: $tb-gap;
     // si sovrappone all'immagine per l'altezza della prima riga del PreTitle
     margin-top: -32px; // = line-height del PreTitle --sm (body-6)
     padding: 0 24px 40px 0;
@@ -97,8 +97,8 @@ $tp-indent-lg: 90px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: $tp-gap;
-    padding-left: $tp-indent-sm;
+    gap: $tb-gap;
+    padding-left: $tb-indent-sm;
 
     > * {
       margin: 0;
@@ -111,14 +111,14 @@ $tp-indent-lg: 90px;
   // --- Desktop -------------------------------------------------------------------
   @include mq-up(lg) {
     justify-content: center;
-    min-height: $tp-height;
+    min-height: $tb-height;
 
     &__media {
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
-      width: $tp-media-width;
+      width: $tb-media-width;
 
       img {
         width: 100%;
@@ -133,14 +133,14 @@ $tp-indent-lg: 90px;
     }
 
     &__entry {
-      width: max($tp-entry-width, $tp-entry-min);
+      width: max($tb-entry-width, $tb-entry-min);
       max-width: 100%;
       margin-top: 0;
       padding: 80px 0 70px;
     }
 
     &__content {
-      padding-left: $tp-indent-lg;
+      padding-left: $tb-indent-lg;
     }
   }
 }

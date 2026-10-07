@@ -11,7 +11,7 @@
 //     </div>
 //   </article>
 //
-// Misure Figma: radius 30, rientro testo 90 (48 mobile), gap 30, rettangolo 60×10.
+// Misure Figma: radius 30 (15 sotto 768), rientro testo 90 (48 mobile), gap 30, rettangolo 60×10.
 // L'immagine è un blocco con radius 30 a filo del lato destro; riempie
 // sempre il suo spazio in cover: l'allineamento si sceglie con le classi
 // .object-{left|center|right}-{top|center|bottom} sull'<img> (default centro).
@@ -27,7 +27,7 @@
 // =============================================================================
 @use '../abstracts' as *;
 
-$tc-radius: 30px;
+$tc-radius: var(--radius-card); // 15 sotto 768, 30 da 768
 $tc-gap: 30px;
 
 .teaser-card {

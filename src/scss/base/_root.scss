@@ -10,4 +10,11 @@
   --color-brand: #{$color-brand};
   --color-text: #{$color-text};
   --color-bg: #{$color-bg};
+
+  // raggio di card e immagini dei teaser
+  --radius-card: #{$radius-card-sm};
+
+  @include mq-up(md) {
+    --radius-card: #{$radius-card};
+  }
 }
